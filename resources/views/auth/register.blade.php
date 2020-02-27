@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
@@ -68,6 +68,72 @@
                                 </button>
                             </div>
                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end of the first--div-->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Register') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('register') }}">
+                      
+                        <form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">First Name</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="first name">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="password">Sur Name</label>
+      <input type="password" class="form-control" id="password" placeholder="sur name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Password</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="password">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">confirm password</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="confirm password">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Email</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">Department</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputState">Role</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>
+                       
                     </form>
                 </div>
             </div>
