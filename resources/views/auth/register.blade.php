@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
 <!--end of the first-->
 <div class="container">
    <div class="row justify-content-center">
@@ -8,7 +7,7 @@
          <div class="card">
             <div class="card-header">{{ __('Register') }}</div>
             <div class="card-body">
-               <form method="POST" action="{{ route('register') }}" autocomplete="off">
+               <form method="POST" action="{{ route('register') }}" autocomplete="off" class="form">
                   @csrf
                   <div class="form-row">
                      <div class="form-group col-md-6">
