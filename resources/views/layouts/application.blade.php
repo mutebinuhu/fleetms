@@ -108,7 +108,6 @@
                             DashBoard
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
                             <div class="card-text">@yield('info').</div>
                         </div>
                         </div>   

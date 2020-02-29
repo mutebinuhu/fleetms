@@ -19,3 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'AdminController@index');
+Route::get('/user/{id}', 'AdminController@singleUser');
+Route::patch('/user/{id}', 'AdminController@update');
+
+

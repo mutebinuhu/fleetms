@@ -26,8 +26,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    //protected $redirectTo = '/home';
-        public function redirectTo(){
+    protected $redirectTo = '/home';
+      /*  public function redirectTo(){
 
     // User role
     $role = Auth::user()->role; 
@@ -44,7 +44,7 @@ class LoginController extends Controller
                 return '/login'; 
             break;
     }
-}
+}*/
 
     /**
      * Create a new controller instance.
