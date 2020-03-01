@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequestsTable extends Migration
+class CreateTechnicalFindingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requests', function (Blueprint $table) {
+        Schema::create('technical_findings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->longText('description');
+            $table->integer('job_id');
+            $table->longText('findings');
+            $table->longText('presented_repair');
             $table->string('created_by');
             $table->string('updated_by');
-            $table->string('status')->default('default');    
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('technical_findings');
     }
 }
