@@ -21,5 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('admin/users/{id}', 'AdminController@singleUser');
 Route::patch('admin/users/{id}', 'AdminController@update');
+Route::post('/admin/storevehicle', 'AdminController@storeVehicle')->name('admin.storeVehicle');
+Route::get('admin/vehicle/{id}', 'AdminController@singleVehicle');
+
 
 

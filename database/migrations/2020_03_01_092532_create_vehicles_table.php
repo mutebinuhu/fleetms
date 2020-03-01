@@ -21,9 +21,11 @@ class CreateVehiclesTable extends Migration
             $table->string('make');
             $table->string('mileage');
             $table->integer('year');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
+            $table->unsignedInteger('user_id');
+            $table->string('url');
         });
     }
 

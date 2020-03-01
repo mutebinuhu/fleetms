@@ -35,6 +35,8 @@
         						<option >ot</option>
         						<option >driver</option>
         						<option >default</option>
+        						<option >admin</option>
+
         					</select>
         					@error('role')
         						<div class="invalid-feedback">
