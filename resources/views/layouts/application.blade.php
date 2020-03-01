@@ -88,9 +88,10 @@
             </div>
         </nav>
 
-        <main class="">
+        <main class="my-3">
             @yield('content')
-            <div class="row">
+            <div class="container">
+                            <div class="row">
                 <div class="col-md-3">
                     <div class="card">
                         <div class="card-header">
@@ -111,7 +112,7 @@
                         </div>
                         </div>   
                 </div>
-                @yield('hi')
+            </div>
             </div>
         </main>
     </div>

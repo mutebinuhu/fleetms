@@ -190,10 +190,8 @@
 
             }
 
-            .adc-icon{
+            .icon{
                 color:white;
-                padding: 10px;
-                line-height: 50px;
                 font-size: 30px;
 
             }
@@ -204,8 +202,8 @@
     <body>
 
             <nav class="welcome-nav">
-            <div class="adc-icon">
-                <img src="https://www.picturenative.com/content2/7915/thumb2.jpg" width="80px" height="60px">
+            <div class="icon">
+                <img src="http://www.ugandahighcommissionpretoria.com/images/xcourt2.jpg.pagespeed.ic.GF5JUdAYNN.jpg" width="80px" height="80px">
             </div>
                    
                 @if (Route::has('login'))
