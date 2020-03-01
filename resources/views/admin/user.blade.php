@@ -29,8 +29,8 @@
                         <input type="email" name="email" class="form-control" id="email" placeholder="email" value="{{$user->email}}" readonly="">
                      </div>
                         <div class="form-group col-md-6">
-                         <label for="inputState">Role</label>
-      						<select id="inputState" name="role" class="form-control @error('role') is-invalid @enderror " >
+                         <label for="role">Role</label>
+      						<select id="role" name="role" class="form-control @error('role') is-invalid @enderror " >
         						<option selected>{{$user->role}}</option>
         						<option >ot</option>
         						<option >driver</option>
@@ -49,8 +49,8 @@
                   </div>
                   <div class="form-row">
                         <div class="form-group col-md-12">
-                         <label for="inputState">department</label>
-      						<select id="inputState" name="department" class="form-control @error('department') is-invalid @enderror " >
+                         <label for="department">department</label>
+      						<select id="department" name="department" class="form-control @error('department') is-invalid @enderror " >
         						<option selected>{{$user->department}}</option>
         						<option >finance</option>
         						<option >admnistration</option>
