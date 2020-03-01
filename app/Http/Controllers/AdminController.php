@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\vehicle;
 
 class AdminController extends Controller
 {
@@ -26,7 +27,7 @@ class AdminController extends Controller
     	return view('admin.user')
     			->withuser($user);
     }
-
+	//updates department/role
     public function update($id, Request $request)
     {
     	$update = User::whereid($id)->firstOrFail();
@@ -43,6 +44,11 @@ class AdminController extends Controller
     	$update->department = $request->get('department');
     	$update->save();
     	return redirect('/admin')->with('status', 'users role updated to  ' . $request->get('role'));
+
+    }
+
+    public function storeVehicle()
+    {
 
     }
 }

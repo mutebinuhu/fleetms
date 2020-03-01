@@ -27,7 +27,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                 <div class="modal-body">
+                 <divO class="modal-body">
                    <form>
                        <div class="form-group row">
                            <label for="reg_no" class="col-sm-2 col-form-label">Reg No:</label>
@@ -68,12 +68,13 @@
                             
                         </div>
                      </div>
-                   </form>
-                </div>
-                <div class="modal-footer">
+                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
+                   </form>
+                </div>
+                
             </div>
         </div>
     </div>
