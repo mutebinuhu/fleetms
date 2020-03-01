@@ -97,7 +97,6 @@
                             welcome {{Auth::user()->sur_name}}
                          </div>
                         <div class="card-body">
-                             <h5 class="card-title">Special title treatment</h5>
                             <div class="card-text">@yield('sidebar')</div>
                         </div>
                     </div>
@@ -108,10 +107,11 @@
                             DashBoard
                         </div>
                         <div class="card-body">
-                            <div class="card-text">@yield('info').</div>
+                            <div class="card-text">@yield('info')</div>
                         </div>
                         </div>   
                 </div>
+                @yield('hi')
             </div>
         </main>
     </div>

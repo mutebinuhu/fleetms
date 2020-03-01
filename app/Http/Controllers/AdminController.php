@@ -33,10 +33,14 @@ class AdminController extends Controller
     	
     	$request->validate([
 
-    		'role' => 'required'
+    		'role' => 'required',
+    		'department' => 'required',
+
+
     	]);
 
     	$update->role = $request->get('role');
+    	$update->department = $request->get('department');
     	$update->save();
     	return redirect('/admin')->with('status', 'users role updated to  ' . $request->get('role'));
 
