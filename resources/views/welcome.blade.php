@@ -1,237 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ff6600" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Fleet Management System</title>
-        <!--icons-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-        <!--icons-->
-        <!--bootstrap-->
-          <script src="{{ asset('js/app.js') }}" defer></script>
-          <script src="{{ asset('js/jquerylatest.js') }}" defer></script>
-          <script src="{{ asset('js/application.js') }}" defer></script>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-        
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:900&display=swap" rel="stylesheet">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #19273d;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-                color: white;
-            }
-            @media screen and (max-width: 992px) {
-            .right-header-info {display: none}
-           
-            
-       }
-                  
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-
-               
-                font-size: 13px;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-                font-family: 'Poppins', sans-serif;
-                float: right;
-                padding: 10px  10px;
-                border: 1px solid rgb(100, 150, 200);
-                margin: 5px;
-                color: white;
-            }
-             .links > a:hover{
-                background-color: rgb(100, 150, 200);
-                color: white;
-             }
-            
-
-            .header{
-                text-align: center;
-                position:absolute;
-                top: 0;
-                
-                background-color: red;
-
-            }
-            .m-b-md {
-                margin-bottom: 30px;
-
-            }
-            .text-center{
-                margin:5px 5px;
-            }
-            .welcome-nav{
-                height: 80px;
-                width: 100%;
-                
-            }
-            .welcome-nav-icon{
-               padding: 10px;
-               color: white;
-            }
-            .welcome-side-nav{
-                display: none;
-                position: relative;
-                width: 70px;
-                background-color: rgb(100, 150, 200);
-                color: white;
-                border-radius: 100%;
-                border: 3px solid #fff;
-                text-align: center;
-
-            }
-                .welcome-side-nav li{
-                display: block;
-                list-style:none;
-            }
-             .welcome-side-nav a{
+    <!-- Styles -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
-                color: #111;
-                padding-top: 30px;
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style type="text/css">
+        .container{
 
-            }
-           
-            .welcome-button:hover{
-                -webkit-transform:rotateZ(150deg);
-                transform: rotateZ(10deg);
-                transition: all 0.3s ease-in-out;
-                width: 200px;
-            }
-        
-            .intro-1{
-               
-                color: white;
-                width: 100%;
-                
+        }
+        .card{
 
-            }
-            .satisfied-clients{
-                border-bottom: 5px solid rgb(100, 150, 200);
-            }
-            .card-header{
-                text-align: center;
-                font-weight: 600;
-                margin-top: 0;
-            }
-            .welcome-header{
-                color: white;
-                position: relative;
-                font-family: 'Roboto', sans-serif;
-                font-size: 50px;
-                text-shadow: 5px 5px 10px #000000;
-                margin-top: 100px;
-            }
-            .welcome-button{
-              
-            }
-            .welcome-header-p{
-                position: relative;
-                color: white;
-                font-size: 40px;
-                margin-top: 30px;
-            }
-           
-            .header-fluid{
-                background-image: url('https://d33wubrfki0l68.cloudfront.net/a51c52dcc1365d92465ff5e191bc6b908198caff/cc8e5/assets/images/blog/fleet-maintenance-management-check.png');
-                background-size: cover;
-                background-repeat: none;
-                background-position: center;
-                padding: 20px;
-                height: 500px;
-           
+        }
+    </style>
+</head>
+<body style="background-color: whitesmoke">
 
-            }
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+                <div class="my-5" style="height: 50px;"></div>
 
-            .icon{
-                color:white;
-                font-size: 30px;
+            <div class="card my-5">
+                <div class="card-header text-center"><h3>{{ __('Login here') }}</h3></div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
 
-            }
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-             
-</style>
-    </head>
-    <body>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-            <nav class="welcome-nav">
-            <div class="icon">
-                <img src="http://www.ugandahighcommissionpretoria.com/images/xcourt2.jpg.pagespeed.ic.GF5JUdAYNN.jpg" width="80px" height="80px">
-            </div>
-                   
-                @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
+
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            @endif
-            </nav>
-            <div class="container-fluid header-fluid" >
-                <div class="row first-row">
-                    <div class="col-md-6 test">
-                    <div class="welcome-center text-center test">
-                    <h3 class="welcome-header" >Welcome To The Fleet Management System</h3>
-                    <a href="{{ route('register') }}" class="btn btn-danger btn-lg welcome-button">Get Started</a> 
-                </div> 
-                </div>
-               
             </div>
-        </div>        
-     </div>  
-        </div> 
-    </body>
+        </div>
+    </div>
+</div>
+
+
+</body>
 </html>

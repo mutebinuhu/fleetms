@@ -4,6 +4,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\User;
 use App\vehicle;
+use Hash;
 
 class AdminController extends Controller
 {
@@ -89,5 +90,35 @@ class AdminController extends Controller
     	$vehicle = vehicle::whereurl($url)->firstOrFail();
     	return view('admin.vehicle')
     			->withvehicle($vehicle);
+    }
+    //add user
+     public function addUser(Request $request)
+
+    {
+    	//default password
+    	$password = Hash::make(12345);
+    	$request->validate([
+
+    		 'first_name' => ['required', 'string', 'max:255'],
+            'sur_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'role' => 'required',
+            'department' => 'required',
+
+    	]);
+
+    	$userdata = array(
+    		'first_name' => $request->first_name,
+    		'sur_name' => $request->sur_name,
+    		'email' => $request->email,
+    		'role' => $request->role,
+    		'department' => $request->department,
+    		'password'=> $password
+
+    	);
+
+    	user::create($userdata);
+    	return redirect('/admin')->with('status', 'user registered');
+
     }
 }
