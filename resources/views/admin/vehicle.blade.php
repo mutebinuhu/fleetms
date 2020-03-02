@@ -1,12 +1,8 @@
 @extends('layouts.application')
-@section('info')
-	<div class="container">
-		<div class="row justify-content-center">
-		<div class="col-md-6 ">
-			<div class="card">
+		<div class="card">
 			<div class="card-header">{{$vehicle->reg_no}}</div>
-				<div class="card-body">
-					<div class="card-text">
+			<div class="card-body">
+				<div class="card-text">
 					<label>Reg no:</label>
 					<strong>{{$vehicle->reg_no}}</strong>
 					<hr>
@@ -28,10 +24,7 @@
 				</div>
 			</div>
 		</div>
-		</div>
-	</div>
 	<a class="btn btn-primary" href="{{url('/admin')}}">Back</a>
 	</div>
-@endsection
 @section('sidebar')
 @endsection

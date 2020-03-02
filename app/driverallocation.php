@@ -8,3 +8,4 @@ class driverallocation extends Model
 {
     //
 }
+

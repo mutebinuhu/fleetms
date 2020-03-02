@@ -1,201 +1,341 @@
 @extends('layouts.application')
-<div class="container">
     @section('content')
-     @section('info') 
-    @if (session('status'))
-                <p  class="alert alert-success">{{session('status')}}</p>
-        @endif
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header text-center">User List <span class="text-right"><sup>{{$countusers}}</sup></span></div>
-                <div class="card-body">
-                    @if($users->isEmpty())
-                        <p>No Users</p>
-                    @endif
-                    @foreach($users as $user)
-                        <li><a href="{{action('AdminController@singleUser', $user->id)}}">{{$user->sur_name}}</a>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header text-center">Vehicle List <span><sup>{{$countvehicles}}</sup></span></div>
-                <div class="card-body">
-                @if($vehicles->isEmpty())
-                    <p>No Vehicles Yet</p>
-                @endif
-                @foreach($vehicles as $vehicle)
-                   <li> <a href="{{action('AdminController@singleVehicle', $vehicle->id)}}">{{$vehicle->reg_no}}</a></li>
-                @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-    @section('sidebar')
+    <div class="col-md-12">
+      <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
 
-    <!-- checks for errors -->
-    @foreach($errors->all() as $error)
-        <p>{{$error}}</p>
-    @endforeach
-    <!-- end of check for errors -->
-    <!-- success status -->
-    @if(session('status'))
-        <p>{{session('status')}}</p>
-    @endif
-    <!-- end success status -->
+                <p>New Orders</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-vehicle">Add Vehicle
-    </button> 
-     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-user">Add User
-    </button>  
-    @endsection
-    <!-- Button trigger modal-->
-    <!-- add vehicle modal -->
-    <div class="modal fade lg" id="add-vehicle" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-center" id="">Add Vehicle</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                 <div class="modal-body">
-                   <form action="{{url('/admin/storevehicle')}}" method="POST">
-                    @csrf
-                       <div class="form-group row">
-                           <label for="reg_no" class="col-sm-2 col-form-label">Reg No:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="reg_no" class="form-control" placeholder="reg no">
+                <p>Bounce Rate</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>User Registrations</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Unique Visitors</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Timeline</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="tab-pane" id="activity">
+                    <!-- Post -->
+                    <div class="post">
+                      <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+                        <span class="username">
+                          <a href="#">Jonathan Burke Jr.</a>
+                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                        </span>
+                        <span class="description">Shared publicly - 7:30 PM today</span>
+                      </div>
+                      <!-- /.user-block -->
+                      <p>
+                        Lorem ipsum represents a long-held tradition for designers,
+                        typographers and the like. Some people hate it and argue for
+                        its demise, but others ignore the hate as they create awesome
+                        tools to help create filler text for everyone from bacon lovers
+                        to Charlie Sheen fans.
+                      </p>
+
+                      <p>
+                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                        <span class="float-right">
+                          <a href="#" class="link-black text-sm">
+                            <i class="far fa-comments mr-1"></i> Comments (5)
+                          </a>
+                        </span>
+                      </p>
+
+                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+                    </div>
+                    <!-- /.post -->
+
+                    <!-- Post -->
+                    <div class="post clearfix">
+                      <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
+                        <span class="username">
+                          <a href="#">Sarah Ross</a>
+                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                        </span>
+                        <span class="description">Sent you a message - 3 days ago</span>
+                      </div>
+                      <!-- /.user-block -->
+                      <p>
+                        Lorem ipsum represents a long-held tradition for designers,
+                        typographers and the like. Some people hate it and argue for
+                        its demise, but others ignore the hate as they create awesome
+                        tools to help create filler text for everyone from bacon lovers
+                        to Charlie Sheen fans.
+                      </p>
+
+                      <form class="form-horizontal">
+                        <div class="input-group input-group-sm mb-0">
+                          <input class="form-control form-control-sm" placeholder="Response">
+                          <div class="input-group-append">
+                            <button type="submit" class="btn btn-danger">Send</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- /.post -->
+
+                    <!-- Post -->
+                    <div class="post">
+                      <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+                        <span class="username">
+                          <a href="#">Adam Jones</a>
+                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                        </span>
+                        <span class="description">Posted 5 photos - 5 days ago</span>
+                      </div>
+                      <!-- /.user-block -->
+                      <div class="row mb-3">
+                        <div class="col-sm-6">
+                          <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <img class="img-fluid mb-3" src="../../dist/img/photo2.png" alt="Photo">
+                              <img class="img-fluid" src="../../dist/img/photo3.jpg" alt="Photo">
                             </div>
-                     </div>
-                     <div class="form-group row">
-                         <label for="eng_no" class="col-sm-2 col-form-label">Engine No:</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="eng_no" class="form-control" placeholder="eng no">
+                            <!-- /.col -->
+                            <div class="col-sm-6">
+                              <img class="img-fluid mb-3" src="../../dist/img/photo4.jpg" alt="Photo">
+                              <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
+                            </div>
+                            <!-- /.col -->
+                          </div>
+                          <!-- /.row -->
                         </div>
-                     </div>
-                     <div class="form-group row">
-                        <label for="make" class="col-sm-2 col-form-label">Make</label> 
-                        <div class="col-sm-10">
-                            <input type="text" name="make" class="form-control" placeholder="make">
-                            
-                        </div>
-                     </div>
-                       <div class="form-group row">
-                        <label for="type" class="col-sm-2 col-form-label">Type</label> 
-                        <div class="col-sm-10">
-                            <input type="text" name="type" class="form-control" placeholder="type">    
-                        </div>
-                     </div>
-                       <div class="form-group row">
-                        <label for="mileage" class="col-sm-2 col-form-label">Mileage</label> 
-                        <div class="col-sm-10">
-                            <input type="text" name="mileage" class="form-control" placeholder="mileage">
-                            
-                        </div>
-                     </div>
-                       <div class="form-group row">
-                        <label for="year" class="col-sm-2 col-form-label">Year</label> 
-                        <div class="col-sm-10">
-                            <input type="text" name="year" class="form-control" placeholder="year">
-                            
-                        </div>
-                     </div>
-                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-                   </form>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-    <!-- end add vehicle modal -->
-    <!-- add user modal -->
-        <div class="modal fade lg" id="add-user" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-center" id="">Add user</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                 <div class="modal-body">
-                    <form method="POST" action="{{ url('/admin/adduser') }}" autocomplete="off" >
-                  @csrf
-                  <div class="form-row">
-                     <div class="form-group col-md-6">
-                        <label for="first name">First Name</label>
-                        <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" id="first-name" placeholder="first name" autofocus value="{{old('first_name')}}">
-                         @error('first_name')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+
+                      <p>
+                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                        <span class="float-right">
+                          <a href="#" class="link-black text-sm">
+                            <i class="far fa-comments mr-1"></i> Comments (5)
+                          </a>
                         </span>
-                        @enderror
-                     </div>
-                     <div class="form-group col-md-6">
-                        <label for="sur name">Sur Name</label>
-                         <input type="text" name="sur_name" class="form-control @error('sur_name') is-invalid @enderror" id="sur-name" placeholder="sur name" value="{{old('sur_name')}}">
-                        @error('sur_name')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                     </div>
+                      </p>
+
+                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+                    </div>
+                    <!-- /.post -->
                   </div>
-                  <div class="form-row">
-                     <div class="form-group col-md-6">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="email" value="{{old('email')}}" >
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane active" id="timeline">
+                    <!-- The timeline -->
+                    <div class="timeline timeline-inverse">
+                      <!-- timeline time label -->
+                      <div class="time-label">
+                        <span class="bg-danger">
+                          10 Feb. 2014
                         </span>
-                        @enderror
-                     </div>
-                     <div class="form-group col-md-3">
-                         <label for="password">Role</label>
-                            <select id="role" class="form-control" name="role">
-                                <option></option>
-                                <option>otp</option>
-                                <option>admin</option>
-                                <option>driver</option>
+                      </div>
+                      <!-- /.timeline-label -->
+                      <!-- timeline item -->
+                      <div>
+                        <i class="fas fa-envelope bg-primary"></i>
 
-                            </select>
-                        @error('role')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                     </div>
-                     <div class="form-group col-md-3">
-                         <label for="password-confirm">Department</label>
-                              <select id="department" class="form-control" name="department">
-                                <option></option>
-                                <option>finance</option>
-                                <option>procurement</option>
-                                <option>adminstration</option>
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 12:05</span>
 
-                            </select>
-                        @error('department')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                          <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+
+                          <div class="timeline-body">
+                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                            quora plaxo ideeli hulu weebly balihoo...
+                          </div>
+                          <div class="timeline-footer">
+                            <a href="#" class="btn btn-primary btn-sm">Read more</a>
+                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <!-- timeline item -->
+                      <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
+
+                          <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request
+                          </h3>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <!-- timeline item -->
+                      <div>
+                        <i class="fas fa-comments bg-warning"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
+
+                          <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+
+                          <div class="timeline-body">
+                            Take me to your leader!
+                            Switzerland is small and neutral!
+                            We are more like Germany, ambitious and misunderstood!
+                          </div>
+                          <div class="timeline-footer">
+                            <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <!-- timeline time label -->
+                      <div class="time-label">
+                        <span class="bg-success">
+                          3 Jan. 2014
                         </span>
-                        @enderror
-                     </div>
+                      </div>
+                      <!-- /.timeline-label -->
+                      <!-- timeline item -->
+                      <div>
+                        <i class="fas fa-camera bg-purple"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
+
+                          <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+
+                          <div class="timeline-body">
+                            <img src="http://placehold.it/150x100" alt="...">
+                            <img src="http://placehold.it/150x100" alt="...">
+                            <img src="http://placehold.it/150x100" alt="...">
+                            <img src="http://placehold.it/150x100" alt="...">
+                          </div>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <div>
+                        <i class="far fa-clock bg-gray"></i>
+                      </div>
+                    </div>
                   </div>
-                  <button type="submit" name="submit" class="btn btn-primary">Register</button>
-               </form>
-                </div>
-                
-            </div>
-        </div>
-    </div>
+                  <!-- /.tab-pane -->
 
+                  <div class="tab-pane" id="settings">
+                    <form class="form-horizontal">
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                          <input type="email" class="form-control" id="inputName" placeholder="Name">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
+                        <div class="col-sm-10">
+                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <button type="submit" class="btn btn-danger">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+          </div>
     @endsection
-</div>
