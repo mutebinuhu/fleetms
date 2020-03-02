@@ -27,8 +27,7 @@
                     <p>No Vehicles Yet</p>
                 @endif
                 @foreach($vehicles as $vehicle)
-                   <li> <a href="{{action('AdminController@singleVehicle', $vehicle->url)}}">{{$vehicle->reg_no}}</a></li>
-
+                   <li> <a href="{{action('AdminController@singleVehicle', $vehicle->id)}}">{{$vehicle->reg_no}}</a></li>
                 @endforeach
                 </div>
             </div>

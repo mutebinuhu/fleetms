@@ -85,9 +85,9 @@ class AdminController extends Controller
     	return redirect('/admin')->with('status', 'vehicle added');
     }
     //single vehicle
-    public function singleVehicle($url)
+    public function singleVehicle($id)
     {
-    	$vehicle = vehicle::whereurl($url)->firstOrFail();
+    	$vehicle = vehicle::whereid($id)->firstOrFail();
     	return view('admin.vehicle')
     			->withvehicle($vehicle);
     }

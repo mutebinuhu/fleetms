@@ -27,6 +27,13 @@ Route::get('admin/vehicle/{id}', 'AdminController@singleVehicle');
 
 Route::post('/admin/adduser', 'AdminController@addUser');
 
+//driverscontroller
+Route::get('carms/drivers', 'DriversController@index');
+
+
+//driverscontroller
+Route::get('carms/transportofficers', 'TransportOfficerController@index');
+
 
 
 
