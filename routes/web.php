@@ -34,6 +34,7 @@ Route::get('carms/drivers', 'DriversController@index');
 //driverscontroller
 Route::get('carms/transportofficers', 'TransportOfficerController@index');
 
-
+//users controllers
+Route::resource('users', 'userscontroller');
 
 
