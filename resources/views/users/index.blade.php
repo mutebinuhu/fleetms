@@ -1,11 +1,18 @@
 @extends('layouts.application')
 @section('content')
-	<div class="row">
+	<div class="row content">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Users List</h3>
-
+                @if(session('status'))
+                	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  						<strong>{{session('status')}}</strong> 
+  						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    					<span aria-hidden="true">&times;</span>
+  					</button>
+				</div>
+                @endif
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -27,6 +34,7 @@
                       <th>Email</th>
                       <th>Role</th>
                       <th>Department</th>
+                      <th class="text-right"><a href="{{url('users/create')}}" class="btn btn-success btn-lg">Add User</button></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -41,6 +49,18 @@
                       <td>{{$user->email}}</td>
                       <td>{{$user->role}}</td>
                       <td>{{$user->department}}</td>
+                      <td class="project-actions text-right">
+                          <a class="btn btn-primary btn-sm" href="{{action('userscontroller@show', $user->id)}}">
+                              <i class="fas fa-folder">
+                              </i>
+                              View
+                          </a>
+                          <a class="btn btn-info btn-sm" href="{{action('userscontroller@edit', $user->id)}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Edit
+                          </a>
+                      </td>
                     </tr>
                     @endforeach
                   </tbody>
@@ -49,8 +69,7 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
+        	<a href="{{url('/admin')}}" class="btn btn-primary">Back</a>
           </div>
         </div>
-        <a href="{{url('/admin')}}" class="btn btn-primary">Back</a>
-
 @endsection
