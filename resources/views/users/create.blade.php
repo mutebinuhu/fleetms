@@ -84,7 +84,7 @@
                      </div>
                   </div>
                   <button type="submit" name="submit" class="btn btn-primary">Register</button>
-                  <a  href={{url('/admin')}} class="btn btn-default">Back</a>
+                  <a  href="{{url('/users)}}" class="btn btn-default">Back</a>
 
                </form>
             </div>
