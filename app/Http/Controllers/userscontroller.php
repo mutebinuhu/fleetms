@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\user;
 use Illuminate\Http\Request;
+use App\user;
+
 
 class userscontroller extends Controller
 {
@@ -14,7 +15,10 @@ class userscontroller extends Controller
      */
     public function index()
     {
-        //
+        //returns users list
+        $users = user::all();
+        return view('users.index')
+                    ->withusers($users);
     }
 
     /**
@@ -24,7 +28,9 @@ class userscontroller extends Controller
      */
     public function create()
     {
-        //
+        //adds user
+        return view('users.create');
+
     }
 
     /**
