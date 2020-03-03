@@ -103,6 +103,7 @@
                 <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
               </div>
             </div>
+
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
@@ -143,7 +144,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <span class="brand-text font-weight-light">eRegister</span>
+      <span class="brand-text font-weight-light">Fleet</span>
     </a>
 
     <!-- Sidebar -->
