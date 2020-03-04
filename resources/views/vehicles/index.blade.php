@@ -69,6 +69,14 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Vehicles list</h3>
+                 @if(session('status'))
+                	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  						     <strong>{{session('status')}}</strong> 
+  						    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    					         <span aria-hidden="true">&times;</span>
+  					     </button>
+                 </div>
+                @endif
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -111,7 +119,7 @@
                               </i>
                               View
                           </a>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="{{action('vehiclescontroller@edit', $vehicle->id)}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit

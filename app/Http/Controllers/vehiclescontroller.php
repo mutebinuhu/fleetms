@@ -28,7 +28,7 @@ class vehiclescontroller extends Controller
         $countusers = count($users);
         $vehicles = DB::table('vehicles')
                     ->latest()
-                    ->paginate(10);
+                    ->paginate(5);
 
         $countvehicles = count($vehicles);
         return view('vehicles.index')
@@ -124,6 +124,26 @@ class vehiclescontroller extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'reg_no'=>'required',
+            'eng_no'=>'required',
+            'make'=>'required',
+            'type'=>'required',
+            'mileage'=>'required',
+            'year'=>'required'
+        ]);
+
+        $update = vehicle::whereid($id)->firstorFail();
+        $update->reg_no = $request->get('reg_no');
+        $update->eng_no = $request->get('eng_no');
+        $update->make = $request->get('make');
+        $update->type = $request->get('type');
+        $update->mileage = $request->get('mileage');
+        $update->year = $request->get('year');
+
+        $update->save();
+        return redirect('/vehicles')->with('status', 'vehicle data updated');
+
     }
 
     /**
@@ -135,5 +155,8 @@ class vehiclescontroller extends Controller
     public function destroy($id)
     {
         //
+        $id = vehicle::whereid($id)->firstorFail();
+        $id->delete();
+        return redirect('/vehicles')->with('status', 'vehicle deleted');
     }
 }

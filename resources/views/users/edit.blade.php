@@ -2,7 +2,7 @@
 @section('content')
 	<div class="content">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
@@ -32,7 +32,7 @@
                      </div>
                   </div>
                   <div class="form-row">
-                     <div class="form-group col-md-6">
+                     <div class="form-group col-md-4">
                         <label for="email">Email</label>
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="email" value="{{$edituser->email}}" >
                         @error('email')
@@ -41,7 +41,7 @@
                         </span>
                         @enderror
                      </div>
-                     <div class="form-group col-md-3">
+                     <div class="form-group col-md-4">
                          <label for="role">Role</label>
                             <select id="role" class="form-control  @error('role') is-invalid @enderror" name="role">
                                 <option>{{$edituser->role}}</option>
@@ -56,7 +56,7 @@
                         </span>
                         @enderror
                      </div>
-                     <div class="form-group col-md-3">
+                     <div class="form-group col-md-4">
                          <label for="password-confirm">Department</label>
                               <select id="department" class="form-control  @error('department') is-invalid @enderror" name="department">
                                 <option>{{$edituser->department}}</option>

@@ -70,12 +70,14 @@
                 <h3 class="card-title">Users List</h3>
                 @if(session('status'))
                 	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  						<strong>{{session('status')}}</strong> 
-  						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    					<span aria-hidden="true">&times;</span>
-  					</button>
-				</div>
+  						     <strong>{{session('status')}}</strong> 
+  						    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    					         <span aria-hidden="true">&times;</span>
+  					     </button>
+                 </div>
                 @endif
+				
+           
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
