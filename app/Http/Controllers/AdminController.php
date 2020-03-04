@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Support\Paginator;
 use App\User;
 use App\vehicle;
 use Hash;
@@ -17,9 +19,17 @@ class AdminController extends Controller
 
     public function index()
     {
-    	$users = User::all();
-    	$countusers = count($users);
-    	$vehicles = vehicle::all();
+
+
+    	$users = DB::table('users')
+                    ->latest()
+                    ->paginate(5);
+        $countusers = count(user::all());
+
+    /*-----------------------------------------*/    
+    	$vehicles = DB::table('vehicles')
+                        ->latest()
+                        ->paginate(5);
     	$countvehicles = count($vehicles);
     	return view('admin.index')
     			->withusers($users)
