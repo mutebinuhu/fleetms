@@ -109,6 +109,9 @@ class vehiclescontroller extends Controller
     public function edit($id)
     {
         //
+        $editvehicle = vehicle::whereid($id)->firstorFail();
+        return view('vehicles.edit')
+                ->witheditvehicle($editvehicle);
     }
 
     /**
