@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUrlAndUserIdToVehiclesTable extends Migration
+class CreateRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class AddUrlAndUserIdToVehiclesTable extends Migration
      */
     public function up()
     {
-        Schema::table('vehicles', function (Blueprint $table) {
-            //
+        Schema::create('requests', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedInteger('user_id');
-            $table->string('url');
+            $table->longText('description');
+            $table->string('created_by');
+            $table->string('updated_by');
+            $table->string('status')->default('default');
+            $table->timestamps();
         });
     }
 
@@ -27,10 +31,6 @@ class AddUrlAndUserIdToVehiclesTable extends Migration
      */
     public function down()
     {
-        Schema::table('vehicles', function (Blueprint $table) {
-            //
-            $table->integer('user_id');
-            $table->string('url');
-        });
+        Schema::dropIfExists('requests');
     }
 }
