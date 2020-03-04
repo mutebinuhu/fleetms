@@ -14,6 +14,7 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
+
     public function index()
     {
     	$users = User::all();
@@ -119,6 +120,21 @@ class AdminController extends Controller
 
     	user::create($userdata);
     	return redirect('/admin')->with('status', 'user registered');
+
+    }
+
+    //shos starts on the admin side on all pages
+    public function adminlayouts()
+    {
+        $users = User::all();
+        $countusers = count($users);
+        $vehicles = vehicle::all();
+        $countvehicles = count($vehicles);
+        return view('layouts.application')
+                ->withusers($users)
+                ->withvehicles($vehicles)
+                ->withcountusers($countusers)
+                ->withcountvehicles($countvehicles);
 
     }
 }

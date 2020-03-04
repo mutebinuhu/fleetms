@@ -1,5 +1,68 @@
 @extends('layouts.application')
 @section('content')
+<div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard v1</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <div class="row content">
+          <div class="col-lg-4 col-8">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{$countusers}}</h3>
+                <p>users Registrations</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+                
+              </div>
+              <a href="{{url('/users')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-8">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{$countvehicles}}</h3>
+
+                <p>vehicles</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-android-car"></i>
+              </div>
+              <a href="{{url('/vehicles')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-8">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{$countusers}}</h3>
+
+                <p>User Registrations</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="{{url('/users')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <!-- ./col -->
+        </div>
 	<div class="row content">
           <div class="col-12">
             <div class="card">
@@ -69,6 +132,8 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
+              <div class="text-center">{{$users->links()}}</div>
+
         	<a href="{{url('/admin')}}" class="btn btn-primary">Back</a>
           </div>
         </div>

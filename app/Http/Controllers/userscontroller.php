@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Support\Paginator;
 use Auth;
-
 use Illuminate\Http\Request;
 use App\user;
 use App\vehicle;
@@ -23,10 +24,21 @@ class userscontroller extends Controller
 
     public function index()
     {
-        //returns users list
-        $users = user::all();
+        //counting users
+        $countusers = count(user::all());
+
+        //counting vehicles   
+        $countvehicles = count(vehicle::all());
+
+        $users = DB::table('users')
+                    ->latest()
+                    ->simplePaginate(5);
+
         return view('users.index')
-                    ->withusers($users);
+                ->withusers($users)
+                ->withcountusers($countusers)
+                ->withcountvehicles($countvehicles);
+       
     }
 
     /**
@@ -150,4 +162,5 @@ class userscontroller extends Controller
     
         
     }
+    
 }

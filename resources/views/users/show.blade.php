@@ -15,13 +15,10 @@
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Email</b> <a class="float-right">{{$singleuser->first_name}}</a>
+                    <b>Email</b> <a class="float-right">{{$singleuser->email}}</a>
                   </li>
                   <li class="list-group-item">
                     <b>Registered</b> <a class="float-right">{{$singleuser->created_at}}</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Role</b> <a class="float-right">{{$singleuser->role}}</a>
                   </li>
                 </ul>
 

@@ -2,17 +2,17 @@
 @section('content')
 	<div class="content">
 		<div class="row justify-content-center ">
-        <div class="col-md-6 ">
+        <div class="col-md-12 ">
+          @if(session('status'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>{{session('status')}}</strong> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+              @endif
           <div class="card card-primary ">
             <div class="card-header">
-            	@if(session('status'))
-            		<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  						<strong>{{session('status')}}</strong> 
-  						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    					<span aria-hidden="true">&times;</span>
-  					</button>
-				</div>
-            	@endif
               <h3 class="card-title">Add user</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -84,7 +84,7 @@
                      </div>
                   </div>
                   <button type="submit" name="submit" class="btn btn-primary">Register</button>
-                  <a  href="{{url('/users)}}" class="btn btn-default">Back</a>
+                  <a  href="{{url('/users')}}" class="btn btn-default">Back</a>
 
                </form>
             </div>

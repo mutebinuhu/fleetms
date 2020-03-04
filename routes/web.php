@@ -25,6 +25,7 @@ Route::patch('admin/users/{id}', 'AdminController@update');
 Route::post('/admin/storevehicle', 'AdminController@storeVehicle')->name('admin.storeVehicle');
 Route::get('admin/vehicle/{id}', 'AdminController@singleVehicle');
 
+
 Route::post('/admin/adduser', 'AdminController@addUser');
 
 //driverscontroller
@@ -36,5 +37,8 @@ Route::get('carms/transportofficers', 'TransportOfficerController@index');
 
 //users controllers
 Route::resource('users', 'userscontroller');
+
+//vehicles controllers
+Route::resource('vehicles', 'vehiclescontroller');
 
 
