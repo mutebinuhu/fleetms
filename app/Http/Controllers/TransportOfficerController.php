@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TransportOfficerController extends Controller
+class transportofficercontroller extends Controller
 {
     //
     public function index()
     {
-    	return view('transportofficers.index');
+    	return view('transportofficer.index');
     }
 }

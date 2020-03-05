@@ -31,14 +31,11 @@ Route::post('/admin/adduser', 'AdminController@addUser');
 //driverscontroller
 Route::get('carms/drivers', 'DriversController@index');
 
-
-//driverscontroller
-Route::get('carms/transportofficers', 'TransportOfficerController@index');
-
 //users controllers
 Route::resource('users', 'userscontroller');
 
 //vehicles controllers
 Route::resource('vehicles', 'vehiclescontroller');
 
-
+//transportofficecontroller
+Route::get('/transportofficer', 'transportofficercontroller@index');
