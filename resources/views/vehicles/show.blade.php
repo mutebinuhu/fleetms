@@ -1,8 +1,8 @@
 @extends('layouts.application')
 @section('content')
 	<div class="content">
-		<div class="row justify-content-center">
-			<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-3">
 				<div class="card card-primary card-outline my-5">
               <div class="card-body box-profile">
                 <div class="text-center">

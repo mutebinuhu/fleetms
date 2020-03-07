@@ -39,3 +39,6 @@ Route::resource('vehicles', 'vehiclescontroller');
 
 //transportofficecontroller
 Route::get('/transportofficer', 'transportofficercontroller@index');
+
+//vehicle allocation controller
+Route::resource('vehicleallocation', 'vehicleallocationcontroller');
