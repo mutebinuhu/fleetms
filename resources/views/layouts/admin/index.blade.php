@@ -19,6 +19,9 @@
   <!-- Theme style -->
   <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <!-- select2 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <body>
   <div class="wrapper">
@@ -273,8 +276,12 @@
     @yield('content')
   </div>
   </div>
-<script src="{{asset('js/plugins/jquery/jquery.js')}}"></script>
-<script src="{{asset('js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('.regno').select2();
+});
+</script>
+
 <!-- Bootstrap 4 -->
 <script src="{{asset('js/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
@@ -300,6 +307,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{asset('js/pages/demo.js')}}"></script>
+
+</script>
 </body>
 </html>

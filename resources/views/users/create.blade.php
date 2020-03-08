@@ -43,7 +43,7 @@
                      </div>
                   </div>
                   <div class="form-row">
-                     <div class="form-group col-md-4">
+                     <div class="form-group col-md-3">
                         <label for="email">Email</label>
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="email" value="{{old('email')}}" >
                         @error('email')
@@ -52,7 +52,7 @@
                         </span>
                         @enderror
                      </div>
-                     <div class="form-group col-md-4">
+                     <div class="form-group col-md-3">
                          <label for="password">Role</label>
                             <select id="role" class="form-control  @error('role') is-invalid @enderror" name="role">
                                 <option></option>
@@ -67,7 +67,7 @@
                         </span>
                         @enderror
                      </div>
-                     <div class="form-group col-md-4">
+                     <div class="form-group col-md-3">
                          <label for="password-confirm">Department</label>
                               <select id="department" class="form-control  @error('department') is-invalid @enderror" name="department">
                                 <option></option>
@@ -79,6 +79,15 @@
                         @error('department')
                         <span class="invalid-feedback" role="alert">
                         <strong>{{$message }}</strong>
+                        </span>
+                        @enderror
+                     </div>
+                      <div class="form-group col-md-3">
+                        <label for="phone_number">Phone</label>
+                        <input type="phone_number" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" placeholder="phone" value="{{old('phone_number')}}" >
+                        @error('phone_number')
+                        <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                      </div>

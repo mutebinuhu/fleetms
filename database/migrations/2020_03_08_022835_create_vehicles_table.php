@@ -23,10 +23,10 @@ class CreateVehiclesTable extends Migration
             $table->integer('year');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
-            $table->timestamps();
             $table->unsignedInteger('user_id');
             $table->string('url');
-            $table->tinyInt('status');
+            $table->tinyInteger('status')->default(1);
+            $table->timestamps();
         });
     }
 

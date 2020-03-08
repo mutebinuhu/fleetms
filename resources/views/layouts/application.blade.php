@@ -19,6 +19,7 @@
   <!-- Theme style -->
   <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href=" //cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 </head>
 <body>
   <div class="wrapper">
@@ -221,13 +222,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{'users/'}}" class="nav-link">
+                <a href="{{url('users/')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View users</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{'users/create'}}" class="nav-link">
+                <a href="{{url('users/create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add User</p>
                 </a>
@@ -273,6 +274,13 @@
     @yield('content')
   </div>
   </div>
+<!-- data tables -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script type="">
+      $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
 <script src="{{asset('js/plugins/jquery/jquery.js')}}"></script>
 <script src="{{asset('js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Bootstrap 4 -->

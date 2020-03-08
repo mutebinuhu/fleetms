@@ -82,7 +82,7 @@ class vehiclescontroller extends Controller
 
         );
         vehicle::create($formdata);
-        return redirect('vehicles/create')->with('status', 'vehicles successfully added');
+        return redirect('vehicles/create')->with('status', 'vehicle successfully added');
 
     }
 

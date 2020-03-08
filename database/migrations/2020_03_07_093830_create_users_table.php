@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('department');
             $table->string('picture')->nullable();
             $table->string('phone_number');
-            $table->timestamps();        
+            $table->timestamps(); 
         });
     }
 

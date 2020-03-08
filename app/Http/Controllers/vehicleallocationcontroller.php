@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\vehicle;
+use App\vehicleallocation;
 
 class vehicleallocationcontroller extends Controller
 {
@@ -14,10 +15,18 @@ class vehicleallocationcontroller extends Controller
      */
     public function index()
     {
-        //
-        $vehicles = vehicle::all();
+
+        //returns all tos
+        
+        //returns all vehicles
+        $allocatedvehicles = DB::table('vehicleallocations')
+                                    ->get();
+        $countallocatedvehicles = count(DB::table('vehicleallocations')
+                                    ->get());
         return view('vehicleallocation.index')
-                    ->withvehicles($vehicles);
+                    ->withallocatedvehicles($allocatedvehicles)
+                    ->withcountallocatedvehicles($countallocatedvehicles);
+              
     }
 
     /**
@@ -28,6 +37,23 @@ class vehicleallocationcontroller extends Controller
     public function create()
     {
         //
+         //returns all tos
+        $officers = DB::table('users')
+                    ->where('role', '=', 'to')
+                    ->get();
+        //returns all vehicles
+        $vehicles = DB::table('vehicles')
+                    ->get();
+        //returns all drivers
+        $drivers = DB::table('users')
+                    ->where('role', '=', 'driver')
+                    ->get();
+        
+        return view('vehicleallocation.create')
+                    ->withvehicles($vehicles)
+                    ->withofficers($officers)
+                    ->withdrivers($drivers);
+
     }
 
     /**
@@ -39,6 +65,19 @@ class vehicleallocationcontroller extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'reg_no' => 'required',
+            'officer' => 'required',
+            'driver'=> 'required'
+        ]);
+
+        $formdata = array(
+            'reg_no' => $request->reg_no,
+            'officer' => $request->officer,
+            'driver' => $request->driver,
+        );
+        vehicleallocation::create($formdata);
+        return redirect('vehicleallocation/create')->with('status','vehicle allocated');
     }
 
     /**

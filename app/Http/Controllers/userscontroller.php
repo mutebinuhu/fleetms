@@ -71,6 +71,9 @@ class userscontroller extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required'],
             'department' => ['required'],
+            'phone_number' => ['required'],
+
+
 
         ]);
 
@@ -80,8 +83,8 @@ class userscontroller extends Controller
             'email' => $request->email,
             'role' => $request->role,
             'department' => $request->department,
-            'password'=> $password
-
+            'password'=> $password,
+            'phone_number'=> $request->phone_number,
         );
 
         user::create($userdata);

@@ -29,11 +29,6 @@
               <a href="{{url('/users')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
-         
-          <!-- ./col -->
-          <!-- ./col -->
-          <!-- ./col -->
         </div>
 	<div class="row content">
           <div class="col-12">
