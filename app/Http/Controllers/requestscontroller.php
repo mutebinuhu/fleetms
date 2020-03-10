@@ -1,8 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Auth;
+use vehicle;
+use App\repairrequest;
+use vehicleallocation;
+
+
 
 class requestscontroller extends Controller
 {
@@ -11,6 +17,44 @@ class requestscontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+     public function dashboard()
+    {
+        //counting requests
+        $countRequests = DB::table('repairrequests')
+                         ->where('created_by','=',Auth::id())
+                         ->get()
+                         ->count();
+        //counting pending requests
+        $countPending = DB::table('repairrequests')
+                         ->where('status', 0)
+                         ->where('created_by','=',Auth::id())
+                         ->get()
+                         ->count();
+        //counting approved                 
+        $countApproved = DB::table('repairrequests')
+                         ->where('status', 1)
+                         ->where('created_by','=',Auth::id())
+                         ->get()
+                         ->count();
+        //returns allocations
+        $getdata = DB::table('vehicleallocations')
+                    ->join('vehicles', 'vehicles.id', '=', 'vehicleallocations.vehicle_id')
+                    ->select('vehicleallocations.*', 'vehicles.reg_no', 'vehicles.make')
+                    ->where('vehicleallocations.driver_id','=', Auth::id())
+                    ->latest()
+                    ->get();
+        return view('requests.dashboard')
+                ->withgetdata($getdata)
+                ->withcountRequests($countRequests)
+                ->withcountPending($countPending)
+                ->withcountApproved($countApproved);
+    }
+
     public function index()
     {
         //
@@ -23,18 +67,36 @@ class requestscontroller extends Controller
      */
     public function create()
     {
-        //
+        $getdata = DB::table('vehicleallocations')
+                    ->join('vehicles', 'vehicles.id', '=', 'vehicleallocations.vehicle_id')
+                    ->select('vehicleallocations.*', 'vehicles.reg_no', 'vehicles.type','vehicles.id')
+                    ->where('vehicleallocations.driver_id','=', Auth::id())
+                    ->get();
+        return view('requests.create')
+                ->withgetdata($getdata);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
+        $createdBy=Auth::id();
+        $request->validate([
+
+           'description'=>'required',
+           'vehicle_id'=>'required'
+
+        ]);
+        $formdata = array(
+            'description'=>$request->description,
+            'vehicle_id'=>$request->vehicle_id,
+            'created_by'=>$createdBy      
+        );
+
+        repairrequest::create($formdata);
+        return redirect('/requests/dashboard')
+                ->with('status', 'request sent');
+       
+               
     }
 
     /**

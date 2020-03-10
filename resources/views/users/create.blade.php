@@ -11,6 +11,7 @@
             </button>
         </div>
               @endif
+          <!-- card -->
           <div class="card card-primary ">
             <div class="card-header">
               <h3 class="card-title">Add user</h3>
@@ -61,11 +62,6 @@
                                 <option>driver</option>
 
                             </select>
-                        @error('role')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
                      </div>
                      <div class="form-group col-md-3">
                          <label for="password-confirm">Department</label>

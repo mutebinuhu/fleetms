@@ -19,9 +19,6 @@
   <!-- Theme style -->
   <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-  <!-- select2 -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 </head>
 <body>
   <div class="wrapper">
@@ -218,21 +215,27 @@
             <a href="#" class="nav-link">
               <i class="far fa-user nav-icon"></i>
               <p>
-                users
+                   Requests
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{'users/'}}" class="nav-link">
+                <a href="{{'requests/'}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View users</p>
+                  <p>Approved requests</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{'users/create'}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add User</p>
+                  <p>Pending Requests</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{'requests/create'}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>create Request</p>
                 </a>
               </li>
             </ul>
@@ -241,16 +244,16 @@
             <a href="#" class="nav-link">
                 <i class="fa fa-car" aria-hidden="true"></i>
               <p>
-                vehicles
+                My cars
                 <i class="fas fa-angle-left right"></i>
                 
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('/vehicles')}}" class="nav-link">
+                <a href="pages/charts/chartjs.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View Vehicles</p>
+                  <p>ChartJS</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -276,12 +279,8 @@
     @yield('content')
   </div>
   </div>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('.regno').select2();
-});
-</script>
-
+<script src="{{asset('js/plugins/jquery/jquery.js')}}"></script>
+<script src="{{asset('js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('js/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
@@ -307,7 +306,6 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-
-</script>
+<script src="{{asset('js/pages/demo.js')}}"></script>
 </body>
 </html>

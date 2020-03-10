@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class vehicleallocation extends Model
 {
     //
-    protected $fillable = ['reg_no', 'officer', 'driver'];
+    protected $fillable = ['vehicle_id', 'officer_id', 'driver_id', 'created_by', 'updated_by'];
+
+    public function vehicleallocation()
+    {
+    	return $this->hasMany(vehicle::class);
+    }
+
 }

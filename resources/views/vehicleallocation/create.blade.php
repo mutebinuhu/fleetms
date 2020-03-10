@@ -1,4 +1,4 @@
-@extends('layouts.admin.index')
+@extends('layouts.application')
 @section('content')
 <!-- content -->
 <div class="content">
@@ -22,7 +22,7 @@
       								<select class="select2 custom-select custom-select-lg mb-3 @error('reg_no') is-invalid @enderror" name="reg_no">
     									<option></option>
       									@foreach($vehicles as $vehicle)
-  										<option>{{$vehicle->reg_no}}</option>
+  										<option value="{{$vehicle->id}}">{{$vehicle->reg_no}}</option>
   										@endforeach
 									</select>
 									@error('reg_no')
@@ -37,7 +37,7 @@
       								<select class="select2 custom-select custom-select-lg mb-3 @error('officer') is-invalid @enderror" name="officer">
     									<option></option>
   										@foreach($officers as $officer)
-  										<option>{{$officer->sur_name . " " . $officer->first_name . " " . $officer->phone_number}}</option>
+  										<option value="{{$officer->id}}">{{$officer->sur_name . " " . $officer->first_name . " " . $officer->phone_number}}</option>
   										@endforeach
 									</select>
 									@error('officer')
@@ -51,7 +51,7 @@
       								<select class=" form-control select2 custom-select custom-select-lg mb-3 @error('driver') is-invalid @enderror" name="driver">
     									<option></option>     					
       									@foreach($drivers as $driver)
-  										<option>{{$driver->sur_name . " " . $driver->first_name . " " . $driver->phone_number}}</option>
+  										<option value="{{$driver->id}}">{{$driver->sur_name . " " . $driver->first_name . " " . $driver->phone_number}}</option>
   										@endforeach
 									</select>
 									@error('driver')

@@ -150,13 +150,15 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->5
+      <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="https://yinnepal.files.wordpress.com/2017/11/admin.png?w=640" alt="User Image">
+
         </div>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->first_name}}</a>
+              
         </div>
       </div>
 
@@ -179,36 +181,6 @@
                   <i class="fas fa-cog"></i>
                   <p>Settings</p>
                 </a>
-              </li>
-              <li >
-                @guest
-                        <li class="nav-item">
-                            <a class="nav-link bord-top" href="{{ route('login') }}"style="color: white;">{{ __('Login') }}</a>
-                        </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link bord-btm" href="{{ route('register') }}" style="color: white;">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
-                                    Log out <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" style="color: black;" 
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Click') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: block;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
               </li>
             </ul>
           </li>
@@ -246,21 +218,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{url('/vehicles')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+                  <p>View vehicles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="{{url('vehicles/create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
+                  <p>Add vehicles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="{{url('vehicleallocation')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inline</p>
+                  <p>Allocate vehicles</p>
                 </a>
               </li>
             </ul>

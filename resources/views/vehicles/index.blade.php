@@ -93,7 +93,6 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>ID</th>
                       <th>Reg No</th>
                       <th>Type</th>
                       <th>Eng No</th>
@@ -108,7 +107,6 @@
                   	@endif
                   	@foreach($vehicles as $vehicle)
                     <tr>
-                      <td>{{$vehicle->id}}</td>
                       <td>{{$vehicle->reg_no}}</td>
                       <td>{{$vehicle->type}}</td>
                       <td>{{$vehicle->eng_no}}</td>

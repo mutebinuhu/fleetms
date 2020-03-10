@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use DB;
+use Auth;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -38,4 +39,20 @@ class User extends Authenticatable
     ];
 
     //vehicle relationship
+    public static function getvehicle($id)
+    {
+        $getvehicle = DB::select("SELECT * FROM `vehicleallocations` va INNER JOIN vehicles vh ON vh.id = va.vehicle_id WHERE driver_id = '$id'");
+       
+        return $getvehicle;
+    }
+
+    public static function getvehicledata()
+    {
+        $getdata = DB::table('vehicleallocations')
+                    ->join('vehicles', 'vehicles.id', '=', 'vehicleallocations.vehicle_id')
+                    ->select('vehicleallocations.*', 'vehicles.reg_no')
+                    ->where('vehicleallocations.driver_id','=', Auth::id())
+                    ->get();
+        return $getdata;
+    }
 }

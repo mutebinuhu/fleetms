@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\vehicle;
 use App\vehicleallocation;
+use Auth;
 
 class vehicleallocationcontroller extends Controller
 {
@@ -17,9 +18,12 @@ class vehicleallocationcontroller extends Controller
     {
 
         //returns all tos
-        
-        //returns all vehicles
         $allocatedvehicles = DB::table('vehicleallocations')
+                    ->join('vehicles', 'vehicles.id','=','vehicleallocations.vehicle_id')
+                    ->join('users', 'users.id', '=', 'vehicleallocations.officer_id')
+                    ->get();
+        //returns all vehicles
+        $allocatedvehicless = DB::table('vehicleallocations')
                                     ->get();
         $countallocatedvehicles = count(DB::table('vehicleallocations')
                                     ->get());
@@ -65,6 +69,7 @@ class vehicleallocationcontroller extends Controller
     public function store(Request $request)
     {
         //
+        $user_id = Auth::id();
         $request->validate([
             'reg_no' => 'required',
             'officer' => 'required',
@@ -72,9 +77,11 @@ class vehicleallocationcontroller extends Controller
         ]);
 
         $formdata = array(
-            'reg_no' => $request->reg_no,
-            'officer' => $request->officer,
-            'driver' => $request->driver,
+            'vehicle_id' => $request->reg_no,
+            'officer_id' => $request->officer,
+            'driver_id' => $request->driver,
+            'created_by'=> $user_id,
+            
         );
         vehicleallocation::create($formdata);
         return redirect('vehicleallocation/create')->with('status','vehicle allocated');

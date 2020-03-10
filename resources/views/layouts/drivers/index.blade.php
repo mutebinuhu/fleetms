@@ -19,9 +19,7 @@
   <!-- Theme style -->
   <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-  <!-- select2 -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+  <link rel="stylesheet" type="text/css" href=" //cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 </head>
 <body>
   <div class="wrapper">
@@ -218,21 +216,21 @@
             <a href="#" class="nav-link">
               <i class="far fa-user nav-icon"></i>
               <p>
-                users
+                Requests
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{'users/'}}" class="nav-link">
+                <a href="{{url('users/')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View users</p>
+                  <p>View Requests</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{'users/create'}}" class="nav-link">
+                <a href="{{url('users/create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add User</p>
+                  <p>Add Request</p>
                 </a>
               </li>
             </ul>
@@ -250,19 +248,19 @@
               <li class="nav-item">
                 <a href="{{url('/vehicles')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View Vehicles</p>
+                  <p>My Vehicles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="{{url('vehicles/create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
+                  <p>Add vehicles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="{{url('vehicleallocation')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inline</p>
+                  <p>Allocate vehicles</p>
                 </a>
               </li>
             </ul>
@@ -276,12 +274,15 @@
     @yield('content')
   </div>
   </div>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('.regno').select2();
-});
+<!-- data tables -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script type="">
+      $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
 </script>
-
+<script src="{{asset('js/plugins/jquery/jquery.js')}}"></script>
+<script src="{{asset('js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('js/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
@@ -307,7 +308,6 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-
-</script>
+<script src="{{asset('js/pages/demo.js')}}"></script>
 </body>
 </html>

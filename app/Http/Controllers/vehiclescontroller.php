@@ -11,15 +11,16 @@ use Illuminate\Http\Request;
 
 class vehiclescontroller extends Controller
 {
+       public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-         public function __construct()
-    {
-        $this->middleware('auth');
-    }
+      
 
     public function index()
     {
@@ -58,10 +59,10 @@ class vehiclescontroller extends Controller
     public function store(Request $request)
     {
         //
-        $url = uniqid();
+        $unique = uniqid();
         $user_id = Auth::id();
         $request->validate([
-            'reg_no'=>'required',
+            'reg_no'=>['required', 'unique:vehicles'],
             'eng_no'=>'required',
             'make'=>'required',
             'type'=>'required',
@@ -78,8 +79,6 @@ class vehiclescontroller extends Controller
             'mileage'=>$request->mileage,
             'year'=>$request->year,
             'user_id'=>$user_id,
-            'url'=>$url
-
         );
         vehicle::create($formdata);
         return redirect('vehicles/create')->with('status', 'vehicle successfully added');

@@ -67,15 +67,15 @@ class AdminController extends Controller
     public function storeVehicle(Request $request)
     {
     	$user_id = Auth::id();
-    	$url = uniqid();
     	$created_by = Auth::user()->email;
     	$request->validate([
-    		'reg_no' => 'required',
+    		'reg_no' => ['required', 'unique:vehicle'],
     		'type' => 'required',
     		'eng_no' => 'required',
     		'make' => 'required',
     		'mileage' => 'required',
     		'year' => 'required',
+
 
     	]);
 
@@ -88,8 +88,8 @@ class AdminController extends Controller
     		'mileage' => $request->mileage,
     		'year' => $request->year,
     		'created_by' => $created_by,
+            'updated_by' => $updated_by,
     		'user_id'=>$user_id,
-    		'url' => $url
     	);
 
     	vehicle::create($form_data);

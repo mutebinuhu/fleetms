@@ -1,4 +1,4 @@
-@extends('layouts.admin.index')
+@extends('layouts.application')
 @section('content')
 		<!-- content  -->
 	    <div class="row content">
@@ -44,9 +44,7 @@
       					<p>No Vehicles</p>
       				@endif
                     <tr>
-                      <th>ID</th>
                       <th>Reg No</th>
-                      <th>Driver</th>
                       <th>Officer</th>
 
                     </tr>
@@ -54,11 +52,8 @@
                   <tbody>
                     @foreach($allocatedvehicles as $vehicle)
                     <tr>
-                      <td>{{$vehicle->id}}</td>
                       <td>{{$vehicle->reg_no}}</td>
-                      <td>{{$vehicle->driver}}</td>
-                      <td>{{$vehicle->officer}}</td>
-
+                      <td>{{$vehicle->sur_name . " ". $vehicle->first_name}}</td>
                     <tr>
                     @endforeach
                   </tbody>

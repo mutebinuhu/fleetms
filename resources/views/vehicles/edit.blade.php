@@ -92,7 +92,7 @@
                         </div>
                      </div>
                      <div class="modal-footer">
-                    <a href="{{url('/vehicles')}}"  class="btn btn-secondary">Cancel</a>
+                    <a href="{{('/vehicles')}}"  class="btn btn-secondary">Cancel</a>
                     <button name="submit" class="btn btn-primary" type="submit">submit</button>
                     <form method="POST" action="{{route('vehicles.destroy', $editvehicle->id)}}" class="my-5">
                   @csrf
