@@ -52,6 +52,40 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      <!-- logout -->
+      <li>
+        <!-- logout -->
+                @guest
+                        <li class="nav-item">
+                            <a class="nav-link bord-top" href="{{ route('login') }}"style="color: white;">{{ __('Login') }}</a>
+                        </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link bord-btm text-danger" href="{{ route('register') }}" style="color: red;">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-danger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Log out <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" style="color: black;" 
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Click') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: block;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+              </li>
+
+      <!-- /logout -->
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -138,6 +172,7 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
+      <!----- user config----->
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -158,7 +193,11 @@
         </div>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->first_name}}</a>
-              
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: block;">
+                @csrf
+                <button class="btn btn-success" type="submit" name="submit">Logout</button>
+              </form> 
+      
         </div>
       </div>
 

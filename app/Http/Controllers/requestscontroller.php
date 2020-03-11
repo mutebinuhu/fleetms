@@ -48,11 +48,20 @@ class requestscontroller extends Controller
                     ->where('vehicleallocations.driver_id','=', Auth::id())
                     ->latest()
                     ->get();
+        //  requests history
+        $requestHistory= DB::table('repairrequests')
+                            ->join('vehicles', 'vehicles.id','=','repairrequests.vehicle_id')
+                            ->select('vehicles.reg_no','repairrequests.*')
+                            ->where('repairrequests.created_by','=',Auth::id())
+                            ->latest()
+                            ->get();
+
         return view('requests.dashboard')
                 ->withgetdata($getdata)
                 ->withcountRequests($countRequests)
                 ->withcountPending($countPending)
-                ->withcountApproved($countApproved);
+                ->withcountApproved($countApproved)
+                ->withrequestHistory($requestHistory);
     }
 
     public function index()
@@ -72,8 +81,14 @@ class requestscontroller extends Controller
                     ->select('vehicleallocations.*', 'vehicles.reg_no', 'vehicles.type','vehicles.id')
                     ->where('vehicleallocations.driver_id','=', Auth::id())
                     ->get();
+        //count request
+        $countRequests = DB::table('repairrequests')
+                         ->where('created_by','=',Auth::id())
+                         ->get()
+                         ->count();
         return view('requests.create')
-                ->withgetdata($getdata);
+                ->withgetdata($getdata)
+                ->withcountRequests($countRequests);
     }
 
     public function store(Request $request)

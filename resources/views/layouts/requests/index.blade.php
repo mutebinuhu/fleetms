@@ -51,29 +51,51 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      <li>
+        <!-- logout -->
+                @guest
+                        <li class="nav-item">
+                            <a class="nav-link bord-top" href="{{ route('login') }}"style="color: white;">{{ __('Login') }}</a>
+                        </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link bord-btm text-danger" href="{{ route('register') }}" style="color: red;">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-danger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Log out <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" style="color: black;" 
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Click') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: block;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+              </li>
+
+      <!-- /logout -->
+
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+        <a class="nav-link" data-toggle="dropdown" href="www.google.com">
           <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
+          <span class="badge badge-danger navbar-badge">6</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
             <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
+          
             <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
+        <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
@@ -143,13 +165,13 @@
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="#" class="brand-link">
       <span class="brand-text font-weight-light">Fleet</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->5
+      <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="https://yinnepal.files.wordpress.com/2017/11/admin.png?w=640" alt="User Image">
@@ -179,36 +201,6 @@
                   <p>Settings</p>
                 </a>
               </li>
-              <li >
-                @guest
-                        <li class="nav-item">
-                            <a class="nav-link bord-top" href="{{ route('login') }}"style="color: white;">{{ __('Login') }}</a>
-                        </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link bord-btm" href="{{ route('register') }}" style="color: white;">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: white;">
-                                    Log out <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" style="color: black;" 
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Click') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: block;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -221,19 +213,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{'requests/'}}" class="nav-link">
+                <a href="{{'#'}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approved requests</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{'users/create'}}" class="nav-link">
+                <a href="{{'#'}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pending Requests</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{'requests/create'}}" class="nav-link">
+                <a href="{{'create/'}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>create Request</p>
                 </a>
@@ -265,7 +257,7 @@
               <li class="nav-item">
                 <a href="pages/charts/inline.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inline</p>
+                  <p>Inlines</p>
                 </a>
               </li>
             </ul>

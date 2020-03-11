@@ -1,4 +1,4 @@
-@extends('layouts.drivers.index')
+@extends('layouts.requests.index')
 @section('content')
 <!-- content -->
 <div class="content section">
@@ -8,14 +8,13 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>5</h3>
-
-                <p>Requests</p>
+                <h3>SEND REQUEST</h3>
+                <p>{{$countRequests}}</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="{{url('/users')}}" class="small-box-footer">Request </a>
+              <a href="{{url('#')}}" class="small-box-footer">Request </a>
             </div>
           </div>
           <!-- col -->

@@ -34,9 +34,7 @@ class LoginController extends Controller
 
     // Check user role
     switch ($role) {
-        case 'default':
-                return '/home';
-            break;
+        
         case 'admin':
                 return '/admin';
             break;
@@ -45,7 +43,7 @@ class LoginController extends Controller
          case 'to':
                 return '/transportofficer';  
         default:
-                return '/login'; 
+                return ''; 
             break;
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.drivers.index')
+@extends('layouts.requests.index')
     @section('content')
       <div class="content-header">
       <div class="container-fluid">
@@ -15,7 +15,7 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <!-- col -->
+    <!-- tiles -->
     <div class="col-md-12">
       <div class="row">
           <div class="col-lg-4  col-md-4 col-sm-12">
@@ -27,9 +27,9 @@
                 <p>Requests</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="fas fa-ticket-alt"></i>
               </div>
-              <a href="{{url('/users')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('#')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -42,9 +42,9 @@
                 <p>Pending</p>
               </div>
               <div class="icon">
-                <i class="ion ion-android-car"></i>
+                <i class="fas fa-pause"></i>
               </div>
-              <a href="{{url('/vehicles')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('#')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -58,26 +58,25 @@
               <div class="icon">
                 <i class="far fa-thumbs-up"></i>
               </div>
-              <a href="{{url('/users')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('#')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
-          <!-- ./col -->
-          <!-- profile -->
-          <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-4">
-
-            <!-- Profile Image -->
-              @if(session('status'))
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>{{session('status')}}</strong> 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
         </div>
-              @endif
+          <!-- end tiles -->
+          <!-- alert -->
+          @if(session('status'))
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{session('status')}}</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+          @endif
+          <!-- /alert -->
+        <!-- row -->
+       <div class="row">
+        <!-- profile -->
+         <div class="col-md-4 col-lg-4 col-sm-12">
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
@@ -87,7 +86,7 @@
                 <h3 class="profile-username text-center">{{Auth::user()->first_name . " " . Auth::user()->sur_name}}</h3>
 
                 <p class="text-muted text-center">{{Auth::user()->role}}</p>
-
+                <!-- ul for details -->
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
                     <b>Department</b> <a class="float-right">{{Auth::user()->department}}</a>
@@ -96,92 +95,95 @@
                     <b>Phone</b> <a class="float-right">{{Auth::user()->phone_number}}</a>
                   </li>
                   <li class="list-group-item">
-
                     <b>Reg No</b> 
                     <a class="float-right">
                        @if($getdata->isEmpty())
                           no vehicle allocated yet
                        @endif
                        @foreach($getdata as $data)
-                          {{$data->reg_no}}
+                          <p>{{$data->reg_no}}</p>
                         @endforeach
                     </a>
                   </li>
                 </ul>
-                 @if($getdata->isEmpty())
-                 
+                <!-- /ul for details -->
+                @if($getdata->isEmpty())
                  @else
                   <a href="{{url('requests/create')}}" class="btn btn-primary btn-block"><b>Request</b></a>      
                 @endif
               </div>
               <!-- /.card-body -->
             </div>
-            <!-- /.card -->
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-8">
-            <div class="card">
-              <div class="card-header p-2">
-                <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Requests History</a></li>
-                </ul>
-              </div><!-- /.card-header -->
+         </div>
+         <!-- /profile -->
+         <!-- history -->
+          <div class="col-sm-12 col-md-4 col-lg-8">
+            <!-- card -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">Requests History</div>
               <div class="card-body">
-                <div class="tab-content">
-                  <div class="active tab-pane" id="activity">
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="profile-user-img img-fluid img-circle" src="https://previews.123rf.com/images/jovanas/jovanas1606/jovanas160600554/59285177-car-icon-with-long-shadow.jpg" alt="vehicle image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                      <!-- time line -->
+               @foreach($requestHistory as $request)
+                 <div class="timeline timeline-inverse">
+                      <!-- timeline time label -->
+                      <div class="time-label">
+                        <span class="bg-danger">
+                          {{$request->created_at}}
                         </span>
-                        <span class="description">Shared publicly - 7:30 PM today</span>
                       </div>
-                      <!-- /.user-block -->
-                      <p>
-                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                       consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                       cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                       proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                      </p>
+                      <!-- /.timeline-label -->
+                      <!-- timeline item -->
+                      <div>
+                        <i class="fa fa-car bg-primary" aria-hidden="true"></i>
+                        <div class="timeline-item">
+                          <span class="time"></i>
+                            @if($request->status == 0)
+                            <i>pending</i>
+                            @elseif($request->status == 1)
+                            <i>approved</i>
+                            @endif
+                          </span>
 
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
+                          <h3 class="timeline-header"><a href="#">Reg No:</a>{{$request->reg_no}}</h3>
 
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-                    </div>
-                    <!-- /.post -->
-                  </div>
-                  <!-- /.tab-pane -->
-                  <!-- vehicle list -->
-                    <!-- card -->
-                   
-                    <!-- end card -->
-                  <!-- end vehicle list -->
-                
-               
-                </div>
-                <!-- /.tab-content -->
-              </div><!-- /.card-body -->
+                          <div class="timeline-body">
+                            {{$request->description}}
+                          </div>
+                          <div class="timeline-footer">
+                            @if($request->status == 1)
+                             <a href="#" class="btn btn-primary btn-sm">Download</a>
+                            @endif
+                          </div>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <!-- timeline item -->
+                      <div>
+                      </div>
+                      <!-- END timeline item -->
+                      <!-- timeline item -->
+                      <div>
+                        <i class="fas fa-comments bg-warning"></i>
+
+                        <div class="timeline-item">
+                          @if($request->status == 0)
+                            <h3 class="timeline-header"><a href="#">{{Auth::user()->sur_name}}</a> your request is still pending</h3> 
+                          @elseif($request->status == 1) 
+                            <h3 class="timeline-header"><a href="#">{{Auth::user()->sur_name}}</a> your request is approved</h3> 
+                          @endif
+                        </div>
+                      </div>
+               @endforeach
+                      <!-- END timeline item -->
+              </div>
+              </div>
             </div>
-            <!-- /.nav-tabs-custom -->
+            <!-- /card -->
           </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+         <!-- /history -->
+       </div> 
+        <!-- end row -->
+
+      </div>
     </section>
-          <!-- profile -->
     @endsection
