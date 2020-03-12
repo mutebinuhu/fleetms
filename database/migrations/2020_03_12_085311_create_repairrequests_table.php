@@ -19,7 +19,7 @@ class CreateRepairrequestsTable extends Migration
             $table->longText('description');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
-            $table->smallinteger('status')->default(false);
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

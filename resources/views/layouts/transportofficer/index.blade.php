@@ -19,6 +19,7 @@
   <!-- Theme style -->
   <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href=" //cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 </head>
 <body>
   <div class="wrapper">
@@ -51,6 +52,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      <!-- logout -->
       <li>
         <!-- logout -->
                 @guest
@@ -84,18 +86,29 @@
               </li>
 
       <!-- /logout -->
-
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="www.google.com">
+        <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">6</span>
+          <span class="badge badge-danger navbar-badge">3</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
             <!-- Message Start -->
-          
+            <div class="media">
+              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
             <!-- Message End -->
-        <div class="dropdown-divider"></div>
+          </a>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
@@ -159,13 +172,14 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
+      <!----- user config----->
     </ul>
   </nav>
   <!-- /.navbar -->
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="index3.html" class="brand-link">
       <span class="brand-text font-weight-light">Fleet</span>
     </a>
 
@@ -175,6 +189,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="https://yinnepal.files.wordpress.com/2017/11/admin.png?w=640" alt="User Image">
+
         </div>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->first_name}}</a>
@@ -205,29 +220,23 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-                <i class="fab fa-joget"></i>
+              <i class="far fa-user nav-icon"></i>
               <p>
-                   Requests
+                users
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{'#'}}" class="nav-link">
+                <a href="{{url('users/')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Approved requests</p>
+                  <p>View users</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{'#'}}" class="nav-link">
+                <a href="{{url('users/create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pending Requests</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{'create/'}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>create Request</p>
+                  <p>Add User</p>
                 </a>
               </li>
             </ul>
@@ -236,28 +245,28 @@
             <a href="#" class="nav-link">
                 <i class="fa fa-car" aria-hidden="true"></i>
               <p>
-                My cars
+                vehicles
                 <i class="fas fa-angle-left right"></i>
                 
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{url('/vehicles')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+                  <p>View vehicles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="{{url('vehicles/create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
+                  <p>Add vehicles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="{{url('vehicleallocation')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inlines</p>
+                  <p>Allocate vehicles</p>
                 </a>
               </li>
             </ul>
@@ -271,6 +280,13 @@
     @yield('content')
   </div>
   </div>
+<!-- data tables -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script type="">
+      $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
 <script src="{{asset('js/plugins/jquery/jquery.js')}}"></script>
 <script src="{{asset('js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Bootstrap 4 -->

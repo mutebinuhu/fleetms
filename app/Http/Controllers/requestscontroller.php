@@ -31,13 +31,13 @@ class requestscontroller extends Controller
                          ->count();
         //counting pending requests
         $countPending = DB::table('repairrequests')
-                         ->where('status', 0)
+                         ->where('status', 'pending')
                          ->where('created_by','=',Auth::id())
                          ->get()
                          ->count();
         //counting approved                 
         $countApproved = DB::table('repairrequests')
-                         ->where('status', 1)
+                         ->where('status', 'approved')
                          ->where('created_by','=',Auth::id())
                          ->get()
                          ->count();
@@ -110,8 +110,6 @@ class requestscontroller extends Controller
         repairrequest::create($formdata);
         return redirect('/requests/dashboard')
                 ->with('status', 'request sent');
-       
-               
     }
 
     /**
@@ -122,8 +120,8 @@ class requestscontroller extends Controller
      */
     public function show($id)
     {
-        //
-    }
+
+     }
 
     /**
      * Show the form for editing the specified resource.
@@ -134,6 +132,16 @@ class requestscontroller extends Controller
     public function edit($id)
     {
         //
+        $show =DB::table('repairrequests')
+                    ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
+                    ->join('users','users.id','=','repairrequests.created_by')
+                    ->where('repairrequests.id','=',$id)
+                    ->select('vehicles.*','repairrequests.*', 'users.*')
+                    ->get();
+
+
+        return view('transportofficer.edit')
+                    ->withshow($show);
     }
 
     /**
