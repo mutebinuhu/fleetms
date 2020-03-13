@@ -24,23 +24,32 @@ class requestscontroller extends Controller
 
      public function dashboard()
     {
+        //loops test
+
         //counting requests
         $countRequests = DB::table('repairrequests')
                          ->where('created_by','=',Auth::id())
                          ->get()
                          ->count();
-        //counting pending requests
-        $countPending = DB::table('repairrequests')
+        //pending
+         $pending = DB::table('repairrequests')
                          ->where('status', 'pending')
                          ->where('created_by','=',Auth::id())
-                         ->get()
-                         ->count();
+                         ->get();
+        //approved
+        $approved = DB::table('repairrequests')
+                         ->where('status', 'approved')
+                         ->where('created_by','=',Auth::id())
+                         ->get();
+        //counting pending requests
+        $countPending = count($pending);
         //counting approved                 
         $countApproved = DB::table('repairrequests')
                          ->where('status', 'approved')
                          ->where('created_by','=',Auth::id())
                          ->get()
                          ->count();
+
         //returns allocations
         $getdata = DB::table('vehicleallocations')
                     ->join('vehicles', 'vehicles.id', '=', 'vehicleallocations.vehicle_id')
@@ -61,8 +70,11 @@ class requestscontroller extends Controller
                 ->withcountRequests($countRequests)
                 ->withcountPending($countPending)
                 ->withcountApproved($countApproved)
-                ->withrequestHistory($requestHistory);
-    }
+                ->withrequestHistory($requestHistory)
+                ->withapproved($approved)
+                ->withpending($pending);
+
+        }
 
     public function index()
     {
@@ -136,11 +148,11 @@ class requestscontroller extends Controller
                     ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
                     ->join('users','users.id','=','repairrequests.created_by')
                     ->where('repairrequests.id','=',$id)
-                    ->select('vehicles.*','repairrequests.*', 'users.*')
+                    ->select('vehicles.reg_no', 'vehicles.make', 'vehicles.type', 'vehicles.mileage', 'repairrequests.*', 'users.sur_name','users.first_name')
                     ->get();
 
 
-        return view('transportofficer.edit')
+        return view('requests.edit')
                     ->withshow($show);
     }
 
@@ -154,6 +166,12 @@ class requestscontroller extends Controller
     public function update(Request $request, $id)
     {
         //
+        $update = repairrequest::whereid($id)->firstorFail();
+        $update->status = $request->get('status');
+
+        $update->save();
+        return redirect('/transportofficer')->with('status', 'Repair request approved');
+
     }
 
     /**

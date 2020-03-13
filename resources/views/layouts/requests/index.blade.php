@@ -19,6 +19,9 @@
   <!-- Theme style -->
   <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <style type="text/css">
+    
+  </style>
 </head>
 <body>
   <div class="wrapper">
@@ -205,7 +208,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-                <i class="fab fa-joget"></i>
+              <i class="far fa-user nav-icon"></i>
               <p>
                    Requests
                 <i class="fas fa-angle-left right"></i>
@@ -225,7 +228,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{'create/'}}" class="nav-link">
+                <a href="{{'#'}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>create Request</p>
                 </a>
@@ -245,19 +248,9 @@
               <li class="nav-item">
                 <a href="pages/charts/chartjs.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inlines</p>
+                  @if(Auth::user()->role == 'admin')
+                  <p>My Cars List</p>
+                  @endif
                 </a>
               </li>
             </ul>

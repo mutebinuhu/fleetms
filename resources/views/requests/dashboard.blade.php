@@ -5,6 +5,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Driver Dashboard</h1>
+            
           </div>
           <!-- /.col -->
           <div class="col-sm-6">
@@ -153,9 +154,9 @@
                         <div class="timeline-item">
                           <span class="time"></i>
                             @if($request->status == 'pending')
-                            <i>pending</i>
+                            <i class="text-warning">pending</i>
                             @elseif($request->status == 'approved')
-                            <i>approved</i>
+                            <i class="text-success bg-success text-success-lg">approved</i>
                             @endif
                           </span>
 
