@@ -134,14 +134,14 @@
 					                      <td>{{$request->created_at}}</td>
 					                      <td>
 					                      	@if($request->status == 'pending')
-					                      	<p class="bg-warning bg-warning-lg text-center">Pending</p>
-					                      	@else($reques->staus == 'approved')
-					                      	<p class="bg-success bg-success-lg text-center">Approved</p>
+					                      	<p class="bg-warning bg-warning text-center"><i class="fas fa-pause"></i> Pending</p>
+					                      	@else($request->status == 'approved')
+					                      	<p class="bg-success bg-success text-center"><i class="fas fa-check"></i> Approved</p>
 					                      	@endif
 					                      </td>
 					                      <td class="text-center">
 					                      	<a class="btn btn-primary btn-sm" href="{{action('requestscontroller@edit', $request->id)}}">
-				                              <i class="fas fa-folder"></i> View
+				                              <i class="fas fa-eye"></i> View
                          				 	</a>
                          				 </td>
 					                    </tr>

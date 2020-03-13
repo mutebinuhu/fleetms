@@ -8,7 +8,7 @@
             <h1 class="m-0 text-dark">Dashboard</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            {{Breadcrumbs::render('requests',$show)}}
+            {{Breadcrumbs::render('requests')}}
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

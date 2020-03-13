@@ -142,11 +142,9 @@
             <i class="fas fa-cogs mr-2"></i> Settings
           </a>
           <div class="dropdown-divider"></div>
-          <form action="{{route('logout')}}" method="POST">
-             <a href="#" class="dropdown-item">
-              <i class="fas fa-sign-out-alt mr-2"></i>Log Out
-            </a>
-          </form>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-sign-out-alt mr-2"></i>Log Out
+          </a>
         </div>
       </li>
     </ul>

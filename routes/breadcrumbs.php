@@ -18,9 +18,8 @@ Breadcrumbs::for('blog', function ($trail) {
 });
 
 // Home > Blog > [Category]
-Breadcrumbs::for('requests', function ($trail, $request) {
+Breadcrumbs::for('requests', function ($trail) {
     $trail->parent('requests',route('requests.index'));
-    $trail->push($request->id, route('requests.edit', $request->id));
 });
 
 // Home > Blog > [Category] > [Post]

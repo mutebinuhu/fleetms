@@ -45,7 +45,7 @@ Route::resource('vehicleallocation', 'vehicleallocationcontroller');
 Route::get('requests/dashboard', 'requestscontroller@dashboard');
 Route::resource('requests', 'requestscontroller');
 
-Route::resource('transportofficer', 'transportofficercontroller')
+Route::resource('transportofficer', 'transportofficercontroller');
 /*Route::get('driver/dashboard', 'driverscontroller@dashboard');
 Route::resource('driver', 'driverscontroller');
 */
