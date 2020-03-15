@@ -20,6 +20,9 @@
   <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href=" //cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <!-- animate css -->
+  <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+  <!-- animate css -->
 </head>
 <body>
   <div class="wrapper">
@@ -155,6 +158,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <span class="brand-text font-weight-light">Fleet</span>
+
     </a>
 
     <!-- Sidebar -->
@@ -183,11 +187,108 @@
               </p>
             </a>
           </li>
+          <!-- deiver routst -->
+        @switch(Auth::user()->role)
+           @case ('driver')
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fa fa-car" aria-hidden="true"></i>
+              <p>
+                   Repair Requests
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{'#'}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approved requests</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{'#'}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pending Requests</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{'#'}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>create Request</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fa fa-cog nav-icon" aria-hidden="true"></i>
+              <p>
+                Settings
+                <i class="fas fa-angle-left right"></i>       
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('/vehicles')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Settings</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('vehicles/create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Settings</p>
+                </a>
+              </li>
+              @break
+              @case('to')
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fa fa-car nav-icon" aria-hidden="true"></i>
+              <p>
+                Vehicles
+                <i class="fas fa-angle-left right"></i>       
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('/vehicles')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View vehicles</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fa fa-cog nav-icon" aria-hidden="true"></i>
+              <p>
+                Settings
+                <i class="fas fa-angle-left right"></i>       
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('#')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Settings</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('#')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Settings</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @break
+          @case('admin')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="far fa-user nav-icon"></i>
               <p>
-                Users
+                users
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -235,35 +336,54 @@
               </li>
             </ul>
           </li>
-                    <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-                <i class="fa fa-cog nav-icon" aria-hidden="true"></i>
-              <p>
-                Settings
-                <i class="fas fa-angle-left right"></i>       
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{url('/vehicles')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>View Settings</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('vehicles/create')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Settings</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          @break
+        <!-- links -->   
       </nav>
-      <!-- /.sidebar-menu -->
+
+    @endswitch
     </div>
     <!-- /.sidebar -->
   </aside>
+
   <div class="content-wrapper">
+          <!-- header -->
+      <!-- /.sidebar-menu -->
+      <section class="content-header">
+            <div class="container-fluid">
+              <div class="row mb-2">
+                <div class="col-sm-6">
+                  <!-- role case to output dasboard title basing on role -->
+                  @switch(Auth::user()->role)
+                    @case('to')
+                     <h1>Transport Officer's Dashboard</h1>
+                     @break
+                    @case('admin')
+                     <h1>Admin's Dashboard</h1>
+                     @break
+                    @case('driver')
+                     <h1>Driver's Dashboard</h1>
+                     @break
+
+                  @endswitch
+                  <!-- end switch -->
+                </div>
+                <!-- success alert -->
+                   <div class="col-sm-12 col">
+                    @if(session('status'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <strong>{{session('status')}}</strong> 
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                  @endif
+                   </div>
+                  <!-- /success alert -->
+              </div>
+            </div>
+            <!-- /.container-fluid -->
+          </section>
+      <!-- /header -->
     @yield('content')
   </div>
   </div>

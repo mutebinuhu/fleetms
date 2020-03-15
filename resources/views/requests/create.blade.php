@@ -1,4 +1,4 @@
-@extends('layouts.requests.index')
+@extends('layouts.dashboard')
 @section('content')
 <!-- content -->
 <div class="content section">

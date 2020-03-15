@@ -1,4 +1,4 @@
-@extends('layouts.application')
+@extends('layouts.dashboard')
 @section('content')
 
 	<div class="content-header">
@@ -98,7 +98,6 @@
                       <th>Eng No</th>
                       <th>Mileage</th>
                       <th class="text-right"><a href="{{url('vehicles/create')}}" class="btn btn-success btn-lg">Add Vehicle</button></th>
-
                     </tr>
                   </thead>
                   <tbody>

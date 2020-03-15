@@ -1,4 +1,4 @@
-@extends('layouts.transportofficer.index')
+@extends('layouts.dashboard')
 @section('content')
 	<!-- section -->
 	<div class="content-header">
@@ -8,7 +8,6 @@
             <h1 class="m-0 text-dark">Dashboard</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            {{Breadcrumbs::render('requests')}}
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

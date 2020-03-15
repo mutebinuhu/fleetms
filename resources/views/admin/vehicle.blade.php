@@ -1,4 +1,4 @@
-@extends('layouts.application')
+@extends('layouts.dashboard')
 		<div class="card">
 			<div class="card-header">{{$vehicle->reg_no}}</div>
 			<div class="card-body">

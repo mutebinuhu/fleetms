@@ -1,4 +1,4 @@
-@extends('layouts.application')
+@extends('layouts.dashboard')
 @section('content')
 <div class="content-header">
       <div class="container-fluid">

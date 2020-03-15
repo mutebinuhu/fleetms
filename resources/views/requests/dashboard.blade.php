@@ -1,19 +1,5 @@
-@extends('layouts.requests.index')
+@extends('layouts.dashboard')
     @section('content')
-      <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Driver Dashboard</h1>
-            
-          </div>
-          <!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div><!-- /.col -->
           <!-- errors -->
           @foreach($errors->all() as $error)
           <p class="alert alert-danger alert-dismissible fade show col-12" role="alert">
@@ -24,20 +10,6 @@
           </p>
           @endforeach
           <!-- /errors -->
-         <!-- alert -->
-          @if(session('status'))
-            <div class="alert alert-warning alert-dismissible fade show col-12" role="alert">
-              <strong>{{session('status')}}</strong> 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          @endif
-          <!-- /alert -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- tiles -->
     <div class="col-md-12">
       <div class="row">
           <div class="col-lg-4  col-md-4 col-sm-12">
@@ -136,7 +108,7 @@
           <div class="col-sm-12 col-md-4 col-lg-8">
             <!-- card -->
             <div class="card card-primary card-outline">
-              <div class="card-header">Requests History</div>
+              <div class="card-header">Reapair Requests History</div>
               <div class="card-body">
                       <!-- time line -->
                @foreach($requestHistory as $request)
@@ -154,13 +126,20 @@
                         <div class="timeline-item">
                           <span class="time"></i>
                             @if($request->status == 'pending')
-                            <i class="text-warning">pending</i>
+                            <i class="text-danger bg-warning  animated infinite fadeOut">pending</i>          
                             @elseif($request->status == 'approved')
-                            <i class="text-success bg-success text-success-lg">approved</i>
+                            <i class="text-success bg-success">approved</i>
                             @endif
                           </span>
-
-                          <h3 class="timeline-header"><a href="#">Reg No:</a>{{$request->reg_no}}</h3>
+                          <!-- prints tthe background based on the status, success/warning/success -->
+                          @switch($request->status)
+                            @case('pending')
+                             <h3 class="timeline-header bg-warning"><a href="#">Reg No:</a>{{$request->reg_no}}</h3>
+                             @break
+                            @case('approved')
+                             <h3 class="timeline-header bg-success"><a href="#">Reg No:</a>{{$request->reg_no}}</h3>
+                             @break
+                          @endswitch
 
                           <div class="timeline-body">
                             {{$request->description}}
