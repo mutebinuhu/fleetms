@@ -16,7 +16,7 @@ class userstableseeder extends Seeder
         	[
         	'first_name' => 'jose',
         	'sur_name' => 'mubiru',
-        	'email' => 'mubirujose@gmail.com',
+        	'email' => 'driver@gmail.com',
         	'password' => Hash::make(12345),
         	'role' => 'driver',
         	'department' => 'procurement',
@@ -25,7 +25,7 @@ class userstableseeder extends Seeder
         	[
         	'first_name' => 'isaac',
         	'sur_name' => 'kavuma',
-        	'email' => 'kavumaisaac@gmail.com',
+        	'email' => 'transportofficer@gmail.com',
         	'password' => Hash::make(12345),
         	'role' => 'to',
         	'department' => 'finance',
@@ -45,7 +45,7 @@ class userstableseeder extends Seeder
         	'sur_name' => 'mabirizi',
         	'email' => 'mabirizijose@gmail.com',
         	'password' => Hash::make(12345),
-        	'role' => 'driver',
+        	'role' => 'to',
         	'department' => 'accounts',
         	'phone_number' => '0758567705'
         	],

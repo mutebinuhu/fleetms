@@ -2,9 +2,13 @@
       
       font-family: consolas;
       border-radius: 5px;
+      padding: 5px 10px;
     }
 .bg-warning-lg{
   
       font-family: consolas;
       border-radius: 5px;
+}
+.rejectform{
+	display: none;
 }
