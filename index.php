@@ -35,7 +35,7 @@ require __DIR__.'/../fleetms/vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/bootstrap/app.php';
+$app = require_once __DIR__.'/../fleetms/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
