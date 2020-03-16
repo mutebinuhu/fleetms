@@ -7,6 +7,7 @@ use Auth;
 use vehicle;
 use App\repairrequest;
 use vehicleallocation;
+use reject;
 
 
 
@@ -33,19 +34,19 @@ class requestscontroller extends Controller
                          ->count();
         //pending
          $pending = DB::table('repairrequests')
-                         ->where('status', 'pending')
+                         ->where('status', 0)
                          ->where('created_by','=',Auth::id())
                          ->get();
         //approved
         $approved = DB::table('repairrequests')
-                         ->where('status', 'approved')
+                         ->where('status', 1)
                          ->where('created_by','=',Auth::id())
                          ->get();
         //counting pending requests
         $countPending = count($pending);
         //counting approved                 
         $countApproved = DB::table('repairrequests')
-                         ->where('status', 'approved')
+                         ->where('status', 1)
                          ->where('created_by','=',Auth::id())
                          ->get()
                          ->count();
@@ -64,7 +65,10 @@ class requestscontroller extends Controller
                             ->where('repairrequests.created_by','=',Auth::id())
                             ->latest()
                             ->get();
-
+        //rejected requests
+        $rejected = count(DB::table('repairrequests')
+                    ->where('status',2)
+                    ->get());
         return view('requests.dashboard')
                 ->withgetdata($getdata)
                 ->withcountRequests($countRequests)
@@ -72,7 +76,9 @@ class requestscontroller extends Controller
                 ->withcountApproved($countApproved)
                 ->withrequestHistory($requestHistory)
                 ->withapproved($approved)
-                ->withpending($pending);
+                ->withpending($pending)
+                ->withrejected($rejected);
+
 
         }
 
@@ -132,7 +138,13 @@ class requestscontroller extends Controller
      */
     public function show($id)
     {
-
+             /* $print =DB::table('repairrequests')
+                    ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
+                    ->join('users','users.id','=','repairrequests.created_by')
+                    ->where('repairrequests.id','=',$id)
+                    ->select('vehicles.reg_no', 'vehicles.make', 'vehicles.type', 'vehicles.mileage', 'repairrequests.*', 'users.sur_name','users.first_name')
+                    ->get();
+                    */
      }
 
     /**
@@ -168,6 +180,8 @@ class requestscontroller extends Controller
         //
         $update = repairrequest::whereid($id)->firstorFail();
         $update->status = $request->get('status');
+        $update->status_by=$request->get('status_by');
+        $update->reason =$request->get('reason');
 
         $update->save();
         return redirect('/transportofficer')->with('status', 'Repair request approved');

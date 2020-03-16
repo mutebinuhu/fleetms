@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class repairrequest extends Model
 {
     //
-    protected $fillable = ['description', 'vehicle_id', 'created_by','status', 'approved_by' ];
+    protected $fillable = ['description', 'vehicle_id', 'created_by','status', 'created_by', 'reason', 'status_by' ];
 
     public function request()
     {

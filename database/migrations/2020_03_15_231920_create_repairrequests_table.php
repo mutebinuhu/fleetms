@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRejectsTable extends Migration
+class CreateRepairrequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateRejectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rejects', function (Blueprint $table) {
+        Schema::create('repairrequests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->biginteger('created_by');
+            $table->integer('vehicle_id');
             $table->longText('description');
-            $table->biginteger('repair_request_id');
+            $table->string('status')->default(0);
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->longText('reason')->nullable();
+            $table->integer('status_by')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateRejectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rejects');
+        Schema::dropIfExists('repairrequests');
     }
 }

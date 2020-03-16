@@ -389,9 +389,14 @@
   </div>
 <!-- data tables -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-<script type="">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
       $(document).ready( function () {
-    $('#myTable').DataTable();
+    $(".reject").click(function(){
+      $('.reject-section').show();
+      $('.reject-btn').show();
+
+    })
 } );
 </script>
 <script src="{{asset('js/plugins/jquery/jquery.js')}}"></script>

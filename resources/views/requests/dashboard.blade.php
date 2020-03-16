@@ -12,7 +12,7 @@
           <!-- /errors -->
     <div class="col-md-12">
       <div class="row">
-          <div class="col-lg-4  col-md-4 col-sm-12">
+          <div class="col-lg-3  col-md-3 col-sm-12">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
@@ -27,7 +27,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="col-lg-3 col-md-3 col-sm-12">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
@@ -42,12 +42,25 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="col-lg-3 col-md-3 col-sm-12">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
                 <h3>{{$countApproved}}</h3>
                 <p>Approved</p>
+              </div>
+              <div class="icon">
+                <i class="far fa-thumbs-up"></i>
+              </div>
+              <a href="{{url('#')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{$rejected}}</h3>
+                <p>rejected</p>
               </div>
               <div class="icon">
                 <i class="far fa-thumbs-up"></i>
@@ -125,27 +138,39 @@
                         <i class="fa fa-car bg-primary" aria-hidden="true"></i>
                         <div class="timeline-item">
                           <span class="time"></i>
-                            @if($request->status == 'pending')
-                            <i class="text-danger bg-warning  animated infinite fadeOut">pending</i>          
-                            @elseif($request->status == 'approved')
-                            <i class="text-success bg-success">approved</i>
+                            @if($request->status == 0)
+                            <i style="color: white;">Pending</i>          
+                            @elseif($request->status == 1)
+                            <i style="color: white;">Approved</i>
+                            @elseif($request->status == 2)
+                            <i class="" style="color: white;">rejected</i>     
                             @endif
                           </span>
                           <!-- prints tthe background based on the status, success/warning/success -->
                           @switch($request->status)
-                            @case('pending')
+                            @case(0)
                              <h3 class="timeline-header bg-warning"><a href="#">Reg No:</a>{{$request->reg_no}}</h3>
                              @break
-                            @case('approved')
+                            @case(1)
                              <h3 class="timeline-header bg-success"><a href="#">Reg No:</a>{{$request->reg_no}}</h3>
+                             @break
+                            @case(2)
+                             <h3 class="timeline-header bg-danger"><a href="#">Reg No:</a>{{$request->reg_no}}</h3>
                              @break
                           @endswitch
 
                           <div class="timeline-body">
                             {{$request->description}}
+                            @if($request->description != "NULL")
+                          <hr/>
+                            <label>Reason:</label>
+                            <br>
+                            {{$request->reason}}
+                            @endif  
                           </div>
+
                           <div class="timeline-footer">
-                            @if($request->status == 'approved')
+                            @if($request->status == 1)
                              <a href="#" class="btn btn-primary btn-sm">Download</a>
                             @endif
                           </div>
@@ -161,10 +186,12 @@
                         <i class="fas fa-comments bg-warning"></i>
 
                         <div class="timeline-item">
-                          @if($request->status == 'pending')
+                          @if($request->status == 0)
                             <h3 class="timeline-header"><a href="#">{{Auth::user()->sur_name}}</a> your request is still pending</h3> 
-                          @elseif($request->status == 'approved') 
+                          @elseif($request->status == 1) 
                             <h3 class="timeline-header"><a href="#">{{Auth::user()->sur_name}}</a> your request is approved</h3> 
+                          @elseif($request->status == 2)
+                             <h3 class="timeline-header"><a href="#">{{Auth::user()->sur_name}}</a> your request is rejected</h3> 
                           @endif
                         </div>
                       </div>

@@ -5,31 +5,6 @@
 	<!-- row -->
 		<div class="row">
 			<div class="col-12">
-				<!-- header -->
-				<!-- container-fluid -->
-				<section class="content-header">
-			      <div class="container-fluid">
-			        <div class="row mb-2">
-			          <div class="col-sm-6">
-			            <h1>Transport Officer Dashboard</h1>
-			          </div>
-			          <!-- success alert -->
-			             <div class="col-sm-12 col">
-			             	@if(session('status'))
-				              	<div class="alert alert-success alert-dismissible fade show" role="alert">
-					                <strong>{{session('status')}}</strong> 
-					                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					                  <span aria-hidden="true">&times;</span>
-					                </button>
-				            	</div>
-				        	@endif
-			             </div>
-			            <!-- /success alert -->
-			        </div>
-			      </div>
-			      <!-- /.container-fluid -->
-    			</section>
-				<!-- /header -->	
 				<!-- card -->
 				<div class="card">
 					<div class="card-body">
@@ -67,7 +42,7 @@
 									<!-- small box -->
 									<div class="small-box bg-success">
 						              <div class="inner">
-						                <h3>5<sup style="font-size: 20px"></sup></h3>
+						                <h3>{{$countapproved}}<sup style="font-size: 20px"></sup></h3>
 						                <p>Approved</p>
 						              </div>
 						              <div class="icon">
@@ -81,7 +56,7 @@
 									<!-- small box -->
 									  <div class="small-box bg-danger">
 							              <div class="inner">
-							                <h3>0</h3>
+							                <h3>{{$countrejected}}</h3>
 
 							                <p>Rejected</p>
 							              </div>
@@ -133,18 +108,23 @@
 					                      <td>{{$request->first_name . " " . $request->sur_name}}</td>
 					                      <td>{{$request->created_at}}</td>
 					                      <td>
-					                      	@if($request->status == 'pending')
-					                      	<p class="bg-warning bg-warning text-center"><i class="fas fa-pause"></i> Pending</p>
-					                      	@else($request->status == 'approved')
-					                      	<p class="bg-success bg-success text-center"><i class="fas fa-check"></i> Approved</p>
-					                      	@endif
+					                      	@switch($request->status)
+					                      		@case(0)
+					                      		<p class="bg-warning bg-warning text-center"><i class="fas fa-pause"> </i> Pending</p>
+					                      		@break
+					                      		@case(1)
+					                      		<p class="bg-success  text-center"><i class="fas fa-check-circle"> </i> Approved</p>
+					                      		@break
+					                      		@case(2)
+					                      		<p class="bg-danger text-center"><i class="fas fa-window-close"> </i> Rejected</p>
+					                      		@break
+					                      	@endswitch
 					                      </td>
 					                      <td class="text-center">
 					                      	<a class="btn btn-primary btn-sm" href="{{action('requestscontroller@edit', $request->id)}}">
 				                              <i class="fas fa-eye"></i> View
                          				 	</a>
                          				 </td>
-					                    </tr>
 					                    @endforeach
 					                 
 					                  </tbody>

@@ -46,7 +46,9 @@ Route::get('requests/dashboard', 'requestscontroller@dashboard');
 Route::resource('requests', 'requestscontroller');
 
 Route::resource('transportofficer', 'transportofficercontroller');
-/*Route::get('driver/dashboard', 'driverscontroller@dashboard');
-Route::resource('driver', 'driverscontroller');
-*/
+Route::get('/transportofficer/printout/{id}/', 'transportofficercontroller@print');
+
 //bread crumps
+
+//rejects controller
+Route::resource('rejects', 'rejectscontroller');

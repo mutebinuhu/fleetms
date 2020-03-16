@@ -1,17 +1,6 @@
 @extends('layouts.dashboard')
 @section('content')
 	<!-- section -->
-	<div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
 	<div class="content">
 		<!-- row -->
 		<div class="row">
@@ -80,27 +69,45 @@
 							  		  <div class="form-group">
     									<textarea class="form-control" id="Textarea1" rows="3" readonly="">{{$show->description}}</textarea>
   									 </div>
-  									 @if($show->status == 'approved')
+  									 @if($show->status == 1)
   									  <div class="form-group">
 										  <button class="btn btn-success">Repair Request Approved</button>
 										  <a href="{{url('/transportofficer')}}" class="btn btn-primary">Back</a>
+										  <a href="{{'#'}}" class="btn btn-info">Download</a>
 										</div>
 									</div>
   									 @else
   									 <div class="form-group">
     									<div class="form-check form-check-inline">
-										  <input class="form-check-input" type="radio" name="status" id="status" value="approved" onclick="this.form.submit()">
+										  <input class="form-check-input" type="radio" name="status" id="status" value="1" onclick="this.form.submit()">
 										  <label class="form-check-label text-success" for="status">Approve</label>
 										</div>
 										<div class="form-check form-check-inline">
-										  <input class="form-check-input" type="radio" name="status" id="status" value="rejected" onclick="confirm('Are You Sure?')">
+										  <input class="form-check-input reject" type="radio" name="status" id="status" value="2">
 										  <label class="form-check-label text-danger" for="status">Reject</label>
 										</div>
+										<div class="form-group reject-section" style="display: none">
+										 <label for="email" class="">Reason:</label>
+    										<textarea class="form-control @error('description') is-invalid @enderror" id="Textarea1" rows="3" name="reason" placeholder="write something"></textarea> 
+			                                @error('reason')
+			                                    <span class="invalid-feedback" role="alert">
+			                                        <strong>{{ $message }}</strong>
+			                                    </span>
+			                                @enderror
+			                                <input type="hidden" name="status_by" value="{{Auth::id()}}">
+                            			<button class="btn btn-danger my-2">Submit</button>
+
+                            			</div>
   									 </div>
+  									 </div>
+
   									 @endif
 							  	</form>
-							  	<!-- reject/approve repair request -->
+							  
 							  </div>
+							  </div>
+							</div>
+
 							  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">No history Yet</div>
 							  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
 						</div>

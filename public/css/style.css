@@ -9,3 +9,6 @@
       font-family: consolas;
       border-radius: 5px;
 }
+.rejectform{
+	display: none;
+}

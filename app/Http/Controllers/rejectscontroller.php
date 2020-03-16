@@ -4,47 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use DB;
-use App\requestrepair;
+use App\reject;
 
-class transportofficercontroller extends Controller
+class rejectscontroller extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-      public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function index()
     {
-    	//requests details
-    	$requests = DB::table('repairrequests')
-    					->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
-    					->join('users','users.id','=','repairrequests.created_by')
-    					->select('vehicles.reg_no','repairrequests.id','repairrequests.description','repairrequests.status','users.first_name','users.sur_name','repairrequests.created_at')
-    					->latest()
-    					->get();
-        //counting pending requests
-        $pendingRequests = DB::table('repairrequests')
-        					->where('status','=',0)
-        					->get()
-        					->count();
-        //count rejected
-        $countrejected = count(DB::table('repairrequests')->get()
-                        ->where('status', 2));
-        //count approved
-        $countapproved = count(DB::table('repairrequests')->get()
-                        ->where('status', 1));
-
-        return view('transportofficer.index')
-        		->withpendingRequests($pendingRequests)
-        		->withrequests($requests)
-                ->withcountrejected($countrejected)
-                ->withcountapproved($countapproved);
+        //
     }
 
     /**
@@ -66,6 +37,19 @@ class transportofficercontroller extends Controller
     public function store(Request $request)
     {
         //
+       $request->validate([
+        'description'=>['required', 'min:30']
+       ]);
+
+       $formdata = array(
+        'created_by'=> $request->created_by,
+        'repair_request_id'=> $request->repair_request_id,
+        'description'=>$request->description
+       );
+
+       reject::create($formdata);
+       return redirect('/transportofficer')->with('status', 'Repair request rejected');
+    
     }
 
     /**
@@ -77,7 +61,6 @@ class transportofficercontroller extends Controller
     public function show($id)
     {
         //
-        dd('yah');
     }
 
     /**
@@ -112,13 +95,5 @@ class transportofficercontroller extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    //printing route
-
-    public function print()
-
-    {
-        dd('yah');
     }
 }
