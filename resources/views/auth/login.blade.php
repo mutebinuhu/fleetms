@@ -39,7 +39,7 @@
             <div class="card my-5">
                 <div class="card-header text-center"><h3>{{ __('Login here') }}</h3></div>
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/login') }}">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
