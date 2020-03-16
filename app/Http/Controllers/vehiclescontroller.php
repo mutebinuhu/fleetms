@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Support\Paginator;
 use Auth;
-use App\vehicle;
+use App\Vehicle;
 use App\user;
 use Illuminate\Http\Request;
 
@@ -80,7 +80,7 @@ class vehiclescontroller extends Controller
             'year'=>$request->year,
             'user_id'=>$user_id,
         );
-        vehicle::create($formdata);
+        Vehicle::create($formdata);
         return redirect('vehicles/create')->with('status', 'vehicle successfully added');
 
     }
@@ -132,7 +132,7 @@ class vehiclescontroller extends Controller
             'year'=>'required'
         ]);
 
-        $update = vehicle::whereid($id)->firstorFail();
+        $update = Vehicle::whereid($id)->firstorFail();
         $update->reg_no = $request->get('reg_no');
         $update->eng_no = $request->get('eng_no');
         $update->make = $request->get('make');
@@ -154,7 +154,7 @@ class vehiclescontroller extends Controller
     public function destroy($id)
     {
         //
-        $id = vehicle::whereid($id)->firstorFail();
+        $id = Vehicle::whereid($id)->firstorFail();
         $id->delete();
         return redirect('/vehicles')->with('status', 'vehicle deleted');
     }
