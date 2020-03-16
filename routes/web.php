@@ -10,12 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('auth.login');
 });
+*/
 Auth::routes();
 
 //admin routes
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login')->name('login');
+
+
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('admin/users/{id}', 'AdminController@singleUser');
 Route::patch('admin/users/{id}', 'AdminController@update');
