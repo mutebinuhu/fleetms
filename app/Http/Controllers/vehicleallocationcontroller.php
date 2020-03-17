@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\vehicle;
+use App\Vehicle;
 use App\vehicleallocation;
 use Auth;
 

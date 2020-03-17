@@ -67,15 +67,15 @@ class vehiclescontroller extends Controller
             'make'=>'required',
             'type'=>'required',
             'mileage'=>'required',
-            'year'=>'required'
+            'year'=>['required', 'max:4']
         ]);
 
         $formdata = array(
 
-            'reg_no'=>$request->reg_no,
-            'eng_no'=>$request->eng_no,
-            'make'=>$request->make,
-            'type'=>$request->type,
+            'reg_no'=>strtoupper($request->reg_no),
+            'eng_no'=>strtoupper($request->eng_no),
+            'make'=>strtoupper($request->make),
+            'type'=>strtoupper($request->type),
             'mileage'=>$request->mileage,
             'year'=>$request->year,
             'user_id'=>$user_id,

@@ -50,84 +50,146 @@
           <!-- ./col -->
           <!-- ./col -->
         </div>
+           
+<div class="content">      
+  <!-- lists -->
+  <!-- ul -->
+  <!-- card -->
+<div class="card">
+  <!-- card-header -->
+  <div class="card-header">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Recent vehicles</a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Recent Users</a>
+        </li>
+        <!-- last tab
+        <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Recent Requests</a>
+        </li>
+      -->
+  </ul>
+<!-- /ul -->
+  </div>
+<!-- /card-header -->
+<!-- tabs -->
+<div class="tab-content" id="pills-tabContent">
+  <!-- vehicle list tab -->
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <!-- card -->
+    <div class="card">
+      <!-- card body -->
+      <div class="card-body">
+            <div class="row">
+          <div class="col-12">
             <div class="card">
-              <div class="card-header p-2">
-                <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Recent users</a></li>
-                  <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Recent Vehicles</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Recent Requests</a></li>
-                </ul>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                @if($users->isEmpty())
-                  <p class="alert alert-danger">No Users Yet </p>
-                @endif
-                <div class="tab-content">
-                  <div class="tab-pane" id="activity">
-                    <!-- Post -->
-                    <div class="tab-pane active" id="activity">
-                    <!-- Post -->
-                      @foreach($users as $user)
-                        <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="https://image.shutterstock.com/image-vector/avatar-vector-male-profile-gray-260nw-538707355.jpg" alt="user image">
-                        <span class="username">
-                          <a href="{{action('userscontroller@show', $user->id)}}">{{$user->first_name . " " . $user->sur_name}}</a>
-                          
-                        </span>
-                        <span class="description">created on {{$user->created_at}}</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Role : <strong>{{ " ".  $user->role}}</strong>
-                      </p>
-                    </div>
-                      @endforeach
-                  
-                  </div>
-                    <!-- /.post -->
-
-                  </div>
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane active" id="timeline">
-                    <!-- The timeline -->
-                    <div class="timeline timeline-inverse">
-                      <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Recent Vehicles</h3>
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0 ">
-                <table id="myTable" class="table table-sm">
-                  <thead class="bg-primary">
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                   <thead class="bg-primary">
                     <tr>
                       <th>Car Make</th>
                       <th>Type</th>
                       <th>Reg No</th>
                       <th style="text-align: center;">Created</th>
-
                     </tr>
                   </thead>
                   <tbody>
                     @foreach($vehicles as $vehicle)
-                    <tr>
-                      
+                    <tr> 
                       <td>{{$vehicle->make}}</td>
                       <td>{{$vehicle->type}}</td>
                       <td>{{$vehicle->reg_no}}</td>
                       <td style="text-align: center;">{{$vehicle->created_at}}</td>
-
                     </tr>
-                    <tr>
-                    @endforeach 
-                    
-                   
+                    @endforeach                     
                   </tbody>
                 </table>
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-                    
+          </div>
+        </div>
+      </div>
+      <!-- /card body -->
+    </div>
+    <!-- /card -->
+  </div> 
+  <!-- /vehicle list tab -->
+  <!-- users list tab -->
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <!-- users list card -->
+    <div class="card">
+      <!-- card body -->
+        <div class="card-body">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                   <thead class="bg-primary">
+                    <tr>
+                      <th>Image</th>
+                      <th>Name</th>
+                      <th>Role</th>
+                      <th style="text-align: center;">Created</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($users as $user)
+                    <tr> 
+                      <td><img class="img-circle img-bordered-sm" src="https://image.shutterstock.com/image-vector/avatar-vector-male-profile-gray-260nw-538707355.jpg" alt="user image" width="70px" height="70px"></td>
+                      <td>{{$user->first_name. " " .$user->sur_name}}</td>
+                      <td>{{$user->role}}</td>
+                      <td style="text-align: center;">{{$user->created_at}}</td>
+                    </tr>
+                    @endforeach                     
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      <!-- /card body -->
+    </div>
+    <!-- /users list card -->
+  </div>
+  <!-- /users list tab -->
+  <!------------ last tab
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+ /last tab -------------->
+</div>
+<!-- tabs -->
+<!-- lists -->
+</div>
+<!-- card -->
+</div>
+<!-- content -->
     @endsection

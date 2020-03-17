@@ -17,8 +17,6 @@ Route::get('/', function () {
 Auth::routes();
 
 //admin routes
-
-
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('admin/users/{id}', 'AdminController@singleUser');
 Route::patch('admin/users/{id}', 'AdminController@update');
@@ -50,5 +48,3 @@ Route::get('/transportofficer/printout/{id}/', 'transportofficercontroller@print
 
 //bread crumps
 
-//rejects controller
-Route::resource('rejects', 'rejectscontroller');

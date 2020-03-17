@@ -87,8 +87,6 @@
             </div>
             <!-- /.card -->
               <div class="text-center">{{$users->links()}}</div>
-
-        	<a href="{{url('/admin')}}" class="btn btn-primary">Back</a>
           </div>
         </div>
 @endsection

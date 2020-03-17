@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Support\Paginator;
 use Auth;
 use Illuminate\Http\Request;
-use App\user;
-use App\vehicle;
+use App\User;
+use App\Vehicle;
 use Hash;
 
 
@@ -25,10 +25,10 @@ class userscontroller extends Controller
     public function index()
     {
         //counting users
-        $countusers = count(user::all());
+        $countusers = count(User::all());
 
         //counting vehicles   
-        $countvehicles = count(vehicle::all());
+        $countvehicles = count(Vehicle::all());
 
         $users = DB::table('users')
                     ->latest()
@@ -78,16 +78,16 @@ class userscontroller extends Controller
         ]);
 
         $userdata = array(
-            'first_name' => $request->first_name,
-            'sur_name' => $request->sur_name,
-            'email' => $request->email,
+            'first_name' => strtolower($request->first_name),
+            'sur_name' => strtolower($request->sur_name),
+            'email' => strtolower($request->email),
             'role' => $request->role,
-            'department' => $request->department,
+            'department' => strtolower($request->department)
             'password'=> $password,
             'phone_number'=> $request->phone_number,
         );
 
-        user::create($userdata);
+        User::create($userdata);
         return redirect('/users/create')->with('status', 'user registered');
     }
 
@@ -100,7 +100,7 @@ class userscontroller extends Controller
     public function show($user)
     {
         //show single user
-        $singleuser = user::whereid($user)->firstorFail();
+        $singleuser = User::whereid($user)->firstorFail();
         return view('users.show')
                 ->withsingleuser($singleuser);
 
@@ -115,7 +115,7 @@ class userscontroller extends Controller
     public function edit($user)
     {
         //edit user
-        $edituser = user::whereid($user)->firstorFail();
+        $edituser = User::whereid($user)->firstorFail();
         return view('users.edit')
                 ->withedituser($edituser);
 
@@ -139,16 +139,17 @@ class userscontroller extends Controller
             'role' => ['required'],
             'department' => ['required'],
         ]);
-        $update = user::whereid($id)->firstorFail();
-        $update->first_name = $request->get('first_name');
-        $update->sur_name = $request->get('sur_name');
+        $update = User::whereid($id)->firstorFail();
+        $update->first_name = strtolower($request->get('first_name'));
+        $update->sur_name = strtolower($request->get('sur_name');)
         $update->email = $request->get('email');
-        $update->role = $request->get('role');
-        $update->department = $request->get('department');
+        $update->role = strtolower($request->get('role'));
+        $update->department = strtolower($request->get('department');)
         $update->save();
         return redirect('/users')->with('status', 'user updated');
  
     }
+    strto
 
     /**
      * Remove the specified resource from storage.
@@ -159,7 +160,7 @@ class userscontroller extends Controller
     public function destroy($id)
     {
         //
-        $user = user::whereid($id)->firstorFail();
+        $user = User::whereid($id)->firstorFail();
         $user->delete();
         return redirect('/users')->with('status', 'user deleted');
     
