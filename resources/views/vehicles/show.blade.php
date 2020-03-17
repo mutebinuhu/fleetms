@@ -36,7 +36,6 @@
                   </li>
                 </ul>
 
-                <a href="{{url('/vehicles')}}" class="btn btn-primary"><b>Back</b></a>
               </div>
               <!-- /.card-body -->
             </div>

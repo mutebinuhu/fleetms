@@ -72,7 +72,6 @@
   									 @if($show->status == 1)
   									  <div class="form-group">
 										  <button class="btn btn-success">Repair Request Approved</button>
-										  <a href="{{url('/transportofficer')}}" class="btn btn-primary">Back</a>
 										  <a href="{{'#'}}" class="btn btn-info">Download</a>
 										</div>
 									</div>

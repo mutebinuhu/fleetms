@@ -1,4 +1,4 @@
-@extends('layouts.transportofficer.index')
+@extends('layouts.dashboard')
 @section('content')
 	<!-- section -->
 	<div class="content">
