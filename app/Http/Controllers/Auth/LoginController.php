@@ -41,7 +41,9 @@ class LoginController extends Controller
          case 'driver':
                 return '/requests/dashboard';
          case 'to':
-                return '/transportofficer';  
+                return '/transportofficer'; 
+        default:
+                return '/'; 
             break;
     }
 }
