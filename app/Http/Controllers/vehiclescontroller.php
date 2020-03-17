@@ -94,7 +94,7 @@ class vehiclescontroller extends Controller
     public function show($id)
     {
         //
-        $singlevehicle = vehicle::whereid($id)->firstorFail();
+        $singlevehicle = Vehicle::whereid($id)->firstorFail();
         return view('vehicles.show')
                 ->withsinglevehicle($singlevehicle);
     }
@@ -108,7 +108,7 @@ class vehiclescontroller extends Controller
     public function edit($id)
     {
         //
-        $editvehicle = vehicle::whereid($id)->firstorFail();
+        $editvehicle = Vehicle::whereid($id)->firstorFail();
         return view('vehicles.edit')
                 ->witheditvehicle($editvehicle);
     }
