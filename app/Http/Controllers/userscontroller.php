@@ -82,7 +82,7 @@ class userscontroller extends Controller
             'sur_name' => strtolower($request->sur_name),
             'email' => strtolower($request->email),
             'role' => $request->role,
-            'department' => strtolower($request->department),
+            'department' => $request->department,
             'password'=> $password,
             'phone_number'=> $request->phone_number,
         );
@@ -143,8 +143,8 @@ class userscontroller extends Controller
         $update->first_name = strtolower($request->get('first_name'));
         $update->sur_name = strtolower($request->get('sur_name'));
         $update->email = $request->get('email');
-        $update->role = strtolower($request->get('role'));
-        $update->department = strtolower($request->get('department'));
+        $update->role = $request->get('role');
+        $update->department =$request->get('department');
         $update->save();
         return redirect('/users')->with('status', 'user updated');
  

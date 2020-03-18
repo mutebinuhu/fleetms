@@ -388,16 +388,15 @@
                 <div class="col-sm-6">
                   <!-- role case to output dasboard title basing on role -->
                   @switch(Auth::user()->role)
-                    @case('to')
+                    @case('Transport Officer')
                      <h1>Transport Officer's Dashboard</h1>
                      @break
-                    @case('admin')
+                    @case('Admin')
                      <h1>Admin's Dashboard</h1>
                      @break
-                    @case('driver')
+                    @case('Driver')
                      <h1>Driver's Dashboard</h1>
                      @break
-
                   @endswitch
                   <!-- end switch -->
                 </div>

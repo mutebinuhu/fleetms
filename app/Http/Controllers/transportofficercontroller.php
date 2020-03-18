@@ -28,6 +28,7 @@ class transportofficercontroller extends Controller
     					->select('vehicles.reg_no','repairrequests.id','repairrequests.description','repairrequests.status','users.first_name','users.sur_name','repairrequests.created_at')
     					->latest()
     					->get();
+                        
         //counting pending requests
         $pendingRequests = DB::table('repairrequests')
         					->where('status','=',0)
