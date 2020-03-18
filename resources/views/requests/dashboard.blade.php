@@ -121,7 +121,7 @@
           <div class="col-sm-12 col-md-4 col-lg-8">
             <!-- card -->
             <div class="card card-primary card-outline">
-              <div class="card-header">Reapair Requests History</div>
+              <div class="card-header">Repair Requests History</div>
               <div class="card-body">
                       <!-- time line -->
                @foreach($requestHistory as $request)
@@ -161,7 +161,7 @@
 
                           <div class="timeline-body">
                             {{$request->description}}
-                            @if($request->description != "NULL")
+                            @if($request->reason != NULL)
                           <hr/>
                             <label>Reason:</label>
                             <br>

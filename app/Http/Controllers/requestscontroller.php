@@ -68,6 +68,7 @@ class requestscontroller extends Controller
         //rejected requests
         $rejected = count(DB::table('repairrequests')
                     ->where('status',2)
+                    ->where('created_by',  Auth::id())
                     ->get());
         return view('requests.dashboard')
                 ->withgetdata($getdata)
@@ -78,8 +79,6 @@ class requestscontroller extends Controller
                 ->withapproved($approved)
                 ->withpending($pending)
                 ->withrejected($rejected);
-
-
         }
 
     public function index()

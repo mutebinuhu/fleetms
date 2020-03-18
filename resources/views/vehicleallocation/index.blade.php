@@ -2,11 +2,12 @@
 @section('content')
 		<!-- content  -->
 	    <div class="row content">
-          <div class="col-lg-12 col-12">
+        <!-- allocate vehicles -->
+          <div class="col-lg-6 col-md-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>Allocations</h3>
+                <h3>Allocated Vehicles</h3>
                 <p>{{$countallocatedvehicles}}</p>
               </div>
               <div class="icon">
@@ -15,11 +16,25 @@
               <a href="{{url('vehicleallocation/create')}}" class="small-box-footer">Allocate <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+        <!-- /allocate vehicles -->
+        <!-- pool vehicles -->
+          <div class="col-lg-6 col-md-6">
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>Non Allocated Vehicles</h3>
+                <p>{{$countallocatedvehicles}}</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-location-arrow"></i>    
+              </div>
+              <a href="{{url('#')}}" class="small-box-footer">More <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        <!-- pool vehicles -->
         </div>
 		<!-- content  -->
 		<div class="content">
 		<!-- card -->
-			
 		
              <!-- table -->
               <div class="card">

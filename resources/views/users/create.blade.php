@@ -26,7 +26,7 @@
                         @enderror
                      </div>
                      <div class="form-group col-md-6">
-                        <label for="sur name">Sur Name</label>
+                        <label for="sur name">SurName</label>
                          <input type="text" name="sur_name" class="form-control @error('sur_name') is-invalid @enderror" id="sur-name" placeholder="sur name" value="{{old('sur_name')}}">
                         @error('sur_name')
                         <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
                      </div>
                   </div>
                   <div class="form-row">
-                     <div class="form-group col-md-3">
+                     <div class="form-group col-md-6">
                         <label for="email">Email</label>
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="email" value="{{old('email')}}" >
                         @error('email')
@@ -45,23 +45,23 @@
                         </span>
                         @enderror
                      </div>
-                     <div class="form-group col-md-3">
+                     <div class="form-group col-md-6">
                          <label for="password">Role</label>
                             <select id="role" class="form-control  @error('role') is-invalid @enderror" name="role">
                                 <option></option>
-                                <option>to</option>
-                                <option>admin</option>
-                                <option>driver</option>
+                                <option>Transport Officer</option>
+                                <option>Admin</option>
+                                <option>Driver</option>
 
                             </select>
                      </div>
-                     <div class="form-group col-md-3">
+                     <div class="form-group col-md-6">
                          <label for="password-confirm">Department</label>
                               <select id="department" class="form-control  @error('department') is-invalid @enderror" name="department">
                                 <option></option>
-                                <option>finance</option>
-                                <option>procurement</option>
-                                <option>adminstration</option>
+                                <option>Finance</option>
+                                <option>Procurement</option>
+                                <option>Adminstration</option>
 
                             </select>
                         @error('department')
@@ -70,7 +70,7 @@
                         </span>
                         @enderror
                      </div>
-                      <div class="form-group col-md-3">
+                      <div class="form-group col-md-6">
                         <label for="phone_number">Phone</label>
                         <input type="phone_number" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" placeholder="phone" value="{{old('phone_number')}}" >
                         @error('phone_number')

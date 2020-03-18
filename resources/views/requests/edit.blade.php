@@ -47,68 +47,35 @@
 						<div class="card-header">
 		                	<h3 class="card-title">Request Description</h3>
 		              	</div>
-		              <!-- /.card-header -->
-		              <div class="card-body">
-		              		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-								  <li class="nav-item">
-								    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Request Description</a>
-								  </li>
-								  <li class="nav-item">
-								    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Vehicle History</a>
-								  </li>
-								  <li class="nav-item">
-								    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">More info</a>
-								  </li>
+			              <!-- /.card-header -->
+			              <!-- card body -->
+			              	<div class="card-body">
+			              		<!-- pills -->
+			              		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+									  <li class="nav-item">
+									    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+									  </li>
+									  <li class="nav-item">
+									    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+									  </li>
+									  <li class="nav-item">
+									    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+									  </li>
 								</ul>
-						<div class="tab-content" id="pills-tabContent">
-							  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-							  	<!-- reject/approve repair request -->
-							  	<form action="{{route('requests.update', $show->id)}}" method="POST">
-                  				{{ method_field('PATCH')}}
-                  				@csrf
-							  		  <div class="form-group">
-    									<textarea class="form-control" id="Textarea1" rows="3" readonly="">{{$show->description}}</textarea>
-  									 </div>
-  									 @if($show->status == 1)
-  									  <div class="form-group">
-										  <button class="btn btn-success">Repair Request Approved</button>
-										  <a href="{{'#'}}" class="btn btn-info">Download</a>
-										</div>
-									</div>
-  									 @else
-  									 <div class="form-group">
-    									<div class="form-check form-check-inline">
-										  <input class="form-check-input" type="radio" name="status" id="status" value="1" onclick="this.form.submit()">
-										  <label class="form-check-label text-success" for="status">Approve</label>
-										</div>
-										<div class="form-check form-check-inline">
-										  <input class="form-check-input reject" type="radio" name="status" id="status" value="2">
-										  <label class="form-check-label text-danger" for="status">Reject</label>
-										</div>
-										<div class="form-group reject-section" style="display: none">
-										 <label for="email" class="">Reason:</label>
-    										<textarea class="form-control @error('description') is-invalid @enderror" id="Textarea1" rows="3" name="reason" placeholder="write something"></textarea> 
-			                                @error('reason')
-			                                    <span class="invalid-feedback" role="alert">
-			                                        <strong>{{ $message }}</strong>
-			                                    </span>
-			                                @enderror
-			                                <input type="hidden" name="status_by" value="{{Auth::id()}}">
-                            			<button class="btn btn-danger my-2">Submit</button>
+								<div class="tab-content" id="pills-tabContent">
+								<!-- vehicle form -->
+								  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+								  		klkk
+								  </div>
+								<!-- /vehicle form -->
 
-                            			</div>
-  									 </div>
-  									 </div>
-
-  									 @endif
-							  	</form>
-							  
-							  </div>
-							  </div>
+								  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">.you</div>
+								  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">.yah</div>
+								</div>
+			              		<!-- /pills -->
+							
 							</div>
-
-							  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">No history Yet</div>
-							  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+						<!-- card body -->
 						</div>
 					</div>
 		              <!-- /.card-body -->
