@@ -44,7 +44,7 @@
               <div class="icon">
                   <i class="fab fa-joget"></i>
               </div>
-              <a href="{{url('/users')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('dashboard/requests')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

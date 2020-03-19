@@ -24,12 +24,26 @@
 						 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 						 	<!-- stats -->
 						 	<div class="row">
-						 			<div class="col-md-12 col-sm-12 col-lg-4">
+						 		<div class="col-md-12 col-sm-12 col-lg-3">
 									<!-- small box -->
-									 <div class="small-box bg-info">
+									 <div class="small-box bg-warning">
 							              <div class="inner">
 							                <h3>{{$pendingRequests}}</h3>
 							                <p>Pending Requests</p>
+							              </div>
+							              <div class="icon">
+							                  <i class="fas fa-pause"></i>
+							              </div>
+							              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+							         </div>
+									<!-- /small box -->
+								</div>
+						 			<div class="col-md-12 col-sm-12 col-lg-3">
+									<!-- small box -->
+									 <div class="small-box bg-info">
+							              <div class="inner">
+							                <h3>{{$pendingRequests+$countapproved+$countrejected}}</h3>
+							                <p>Total Requests</p>
 							              </div>
 							              <div class="icon">
 							                  <i class="fab fa-joget"></i>
@@ -38,12 +52,12 @@
 							         </div>
 									<!-- /small box -->
 								</div>
-								<div class="col-md-12 col-sm-12 col-lg-4">
+								<div class="col-md-12 col-sm-12 col-lg-3">
 									<!-- small box -->
 									<div class="small-box bg-success">
 						              <div class="inner">
 						                <h3>{{$countapproved}}<sup style="font-size: 20px"></sup></h3>
-						                <p>Approved</p>
+						                <p>Approved Requests</p>
 						              </div>
 						              <div class="icon">
 						                <i class="far fa-thumbs-up"></i>
@@ -52,13 +66,13 @@
 						            </div>
 									<!-- /small box -->.
 								</div>
-								<div class="col-md-12 col-sm-12 col-lg-4">
+								<div class="col-md-12 col-sm-12 col-lg-3">
 									<!-- small box -->
 									  <div class="small-box bg-danger">
 							              <div class="inner">
 							                <h3>{{$countrejected}}</h3>
 
-							                <p>Rejected</p>
+							                <p>Rejected Requests</p>
 							              </div>
 							              <div class="icon">
 							                <i class="far fa-thumbs-down"></i>
@@ -141,7 +155,68 @@
 						  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 						  <!-- table -->
 						 	<div class="row">
-					          <div class="col-12">
+					          <div class="col-md-12 col-lg-12">
+					          		<!-- stats -->
+						 	<div class="row">
+						 		<div class="col-md-12 col-sm-12 col-lg-3">
+									<!-- small box -->
+									 <div class="small-box bg-warning">
+							              <div class="inner">
+							                <h3>0</h3>
+							                <p>Pending LPO Requests</p>
+							              </div>
+							              <div class="icon">
+							                  <i class="fas fa-pause"></i>
+							              </div>
+							              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+							         </div>
+									<!-- /small box -->
+								</div>
+						 			<div class="col-md-12 col-sm-12 col-lg-3">
+									<!-- small box -->
+									 <div class="small-box bg-info">
+							              <div class="inner">
+							                <h3>0</h3>
+							                <p>Pending Verification Requests</p>
+							              </div>
+							              <div class="icon">
+							                  <i class="fab fa-joget"></i>
+							              </div>
+							              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+							         </div>
+									<!-- /small box -->
+								</div>
+								<div class="col-md-12 col-sm-12 col-lg-3">
+									<!-- small box -->
+									<div class="small-box bg-success">
+						              <div class="inner">
+						                <h3>0}<sup style="font-size: 20px"></sup></h3>
+						                <p>Pending Works Requests</p>
+						              </div>
+						              <div class="icon">
+						                <i class="far fa-thumbs-up"></i>
+						              </div>
+						              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+						            </div>
+									<!-- /small box -->.
+								</div>
+								<div class="col-md-12 col-sm-12 col-lg-3">
+									<!-- small box -->
+									  <div class="small-box bg-danger">
+							              <div class="inner">
+							                <h3>0</h3>
+
+							                <p>Pending Payments Requests</p>
+							              </div>
+							              <div class="icon">
+							                <i class="far fa-thumbs-down"></i>
+							              </div>
+							              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+							            </div>
+									<!-- /small box -->
+								</div>
+						 	</div>
+						 	<!-- /stats -->
 					            <div class="card">
 					              <div class="card-header">
 					                <h3 class="card-title">Pending Requests</h3>

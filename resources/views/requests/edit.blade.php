@@ -72,7 +72,11 @@
                                     <a href="{{'#'}}" class="btn btn-info">Download</a>
                                 </div>
                                 @else
-                                <div class="form-group">
+                                <!-- shows the rejected button if status is rejected -->
+                                    @if($show->status == 2)
+                                    <button class="btn btn-danger btn-block">Request Blocked</button>
+                                    @else
+                                    <div class="form-group">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="status" id="status" value="1" onclick="this.form.submit()">
                                         <label class="form-check-label text-success" for="status">Approve</label>
@@ -86,12 +90,14 @@
                                         <textarea class="form-control @error('description') is-invalid @enderror" id="Textarea1" rows="3" name="reason" placeholder="write something"></textarea>
                                         @error('reason')
                                         <span class="invalid-feedback" role="alert">
-						                    <strong>{{ $message }}</strong>
-						                </span> @enderror
+                                            <strong>{{ $message }}</strong>
+                                        </span> @enderror
                                         <input type="hidden" name="status_by" value="{{Auth::id()}}">
                                         <button class="btn btn-danger my-2">Submit</button>
                                     </div>
                                 </div>
+                                    @endif
+                                <!-- /shoe the rejected button if status is rejected -->
                                 @endif
                             </form>
                             <!-- /form -->
