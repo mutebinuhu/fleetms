@@ -198,7 +198,7 @@
           </li>
           <!-- deiver routst -->
         @switch(Auth::user()->role)
-           @case ('driver')
+           @case ('Driver')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
                 <i class="fa fa-car" aria-hidden="true"></i>
@@ -252,7 +252,7 @@
             </ul>
           </li>
           @break
-          @case('to')
+          @case('Transport Officer')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
                 <i class="fa fa-car nav-icon" aria-hidden="true"></i>
@@ -294,7 +294,7 @@
             </ul>
           </li>
           @break
-          @case('admin')
+          @case('Admin')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="far fa-user nav-icon"></i>

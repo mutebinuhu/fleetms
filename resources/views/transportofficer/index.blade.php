@@ -190,7 +190,7 @@
 									<!-- small box -->
 									<div class="small-box bg-success">
 						              <div class="inner">
-						                <h3>0}<sup style="font-size: 20px"></sup></h3>
+						                <h3>0<sup style="font-size: 20px"></sup></h3>
 						                <p>Pending Works Requests</p>
 						              </div>
 						              <div class="icon">

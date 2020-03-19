@@ -22,13 +22,13 @@ class RedirectIfAuthenticated
          $role = Auth::User()->role; 
 
             switch ($role) {
-                case 'admin':
+                case 'Admin':
                 return redirect('/admin');
             break;
-                case 'driver':
+                case 'Driver':
                 return redirect('/requests/dashboard');
             break;
-                 case 'to':
+                 case 'Transport Officer':
                 return redirect('/transportofficer');
             break; 
                 default:
