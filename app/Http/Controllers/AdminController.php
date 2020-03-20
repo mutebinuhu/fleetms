@@ -7,7 +7,8 @@ use Illuminate\Pagination\Support\Paginator;
 use App\User;
 use App\vehicle;
 use Hash;
-
+use Redirect,Config;
+use Datatables;
 class AdminController extends Controller
 {
     //
@@ -146,5 +147,16 @@ class AdminController extends Controller
                 ->withcountusers($countusers)
                 ->withcountvehicles($countvehicles);
 
+    }
+
+    public function myusers()
+    {
+        return view('users');
+    }
+    public function usersList()
+    {
+        $users = DB::table('users')->select('*');
+        return datatables()->of($users)
+            ->make(true);
     }
 }

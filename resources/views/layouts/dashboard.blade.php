@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{asset('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')}}">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet" href="{{asset('css/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+    
+  
   <!-- iCheck -->
    <link rel="stylesheet" href="{{asset('css/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- JQVMap -->
@@ -19,10 +21,17 @@
   <!-- Theme style -->
   <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href=" //cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
   <!-- animate css -->
   <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
   <!-- animate css -->
+  <!-- dt -->  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+
+
+
 </head>
 <body>
   <div class="wrapper">
@@ -39,6 +48,7 @@
         </div>
       </div>
     </form>
+
 
 
     <!-- Right navbar links -->
@@ -420,16 +430,28 @@
     @yield('content')
   </div>
   </div>
+  <!-- dt -->
+
+  <!-- dt -->
 <!-- data tables -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
       $(document).ready( function () {
     $(".reject").click(function(){
       $('.reject-section').show();
       $('.reject-btn').show();
 
-    })
+    });
+        $('#laravel_datatable').DataTable({
+           processing: true,
+           serverSide: true,
+           ajax: "{{ url('users-list') }}",
+           columns: [
+                    { data: 'id', name: 'id' },
+                    { data: 'sur_name', name: 'sur_name' },
+                    { data: 'email', name: 'email' },
+                    { data: 'created_at', name: 'created_at' }
+                 ]
+        });
 } );
 </script>
 <script src="{{asset('js/plugins/jquery/jquery.js')}}"></script>
@@ -460,5 +482,7 @@
 <script src="{{asset('js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('js/pages/demo.js')}}"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
 </body>
 </html>

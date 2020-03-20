@@ -19,7 +19,7 @@
   <!-- Theme style -->
   <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href=" //cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
 </head>
 <body>
   <div class="wrapper">
@@ -286,12 +286,7 @@
   </div>
   </div>
 <!-- data tables -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-<script type="">
-      $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-</script>
+
 <script src="{{asset('js/plugins/jquery/jquery.js')}}"></script>
 <script src="{{asset('js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Bootstrap 4 -->

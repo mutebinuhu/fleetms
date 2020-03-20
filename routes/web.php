@@ -15,6 +15,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('myusers', 'AdminController@myusers');
+
+Route::get('users-list', 'AdminController@usersList'); 
 
 //admin routes
 Route::get('/admin', 'AdminController@index')->name('admin');
@@ -42,6 +45,7 @@ Route::resource('vehicleallocation', 'vehicleallocationcontroller');
 //requests
 Route::get('requests/dashboard', 'requestscontroller@dashboard');
 Route::resource('requests', 'requestscontroller');
+Route::get('/download/{id}', 'requestscontroller@download');
 
 Route::resource('transportofficer', 'transportofficercontroller');
 Route::get('/transportofficer/printout/{id}/', 'transportofficercontroller@print');

@@ -69,12 +69,12 @@
                                 @if($show->status == 1)
                                 <div class="form-group">
                                     <button class="btn btn-success">Repair Request Approved</button>
-                                    <a href="{{'#'}}" class="btn btn-info">Download</a>
+                                    <a href="{{action('requestscontroller@download', $show->id)}}" class="btn btn-info">Download</a>
                                 </div>
                                 @else
                                 <!-- shows the rejected button if status is rejected -->
                                     @if($show->status == 2)
-                                    <button class="btn btn-danger btn-block">Request Blocked</button>
+                                    <button class="btn btn-danger btn-block">Request Rejected</button>
                                     @else
                                     <div class="form-group">
                                     <div class="form-check form-check-inline">

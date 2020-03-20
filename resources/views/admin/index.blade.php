@@ -1,3 +1,4 @@
+
 @extends('layouts.dashboard')
     @section('content')
     <!-- col -->
@@ -134,54 +135,28 @@
   <!-- users list tab -->
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
     <!-- users list card -->
-    <div class="card">
+    <div class="card col-lg-12">
       <!-- card body -->
-        <div class="card-body">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <div class="card-body col-lg-12">
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
+                <table class="table display cell-border" id="laravel_datatable" width="100%">
                    <thead class="bg-primary">
-                    <tr>
-                      <th>Image</th>
-                      <th>Name</th>
-                      <th>Role</th>
-                      <th style="text-align: center;">Created</th>
-                    </tr>
+                      <tr>
+                         <th>Id</th>
+                         <th>Name</th>
+                         <th>Email</th>
+                         <th>Created at</th>
+                      </tr>
                   </thead>
                   <tbody>
-                    @foreach($users as $user)
-                    <tr> 
-                      <td><img class="img-circle img-bordered-sm" src="https://image.shutterstock.com/image-vector/avatar-vector-male-profile-gray-260nw-538707355.jpg" alt="user image" width="70px" height="70px"></td>
-                      <td>{{$user->first_name. " " .$user->sur_name}}</td>
-                      <td>{{$user->role}}</td>
-                      <td style="text-align: center;">{{$user->created_at}}</td>
-                    </tr>
-                    @endforeach                     
+                                       
                   </tbody>
                 </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
       <!-- /card body -->
-    </div>
+           </div>
     <!-- /users list card -->
-  </div>
+     </div>
+
   <!-- /users list tab -->
   <!------------ last tab
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
@@ -193,4 +168,4 @@
 <!-- card -->
 </div>
 <!-- content -->
-    @endsection
+@endsection

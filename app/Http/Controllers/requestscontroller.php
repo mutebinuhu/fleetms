@@ -197,4 +197,17 @@ class requestscontroller extends Controller
     {
         //
     }
+
+    public function download($id)
+    {
+            $show =DB::table('repairrequests')
+                    ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
+                    ->join('users','users.id','=','repairrequests.created_by')
+                    ->where('repairrequests.id','=',$id)
+                    ->select('vehicles.reg_no', 'vehicles.make', 'vehicles.type', 'vehicles.mileage', 'repairrequests.*', 'users.sur_name','users.first_name')
+                    ->get();
+
+        return view('requests.printout')
+                    ->withshow($show);
+    }
 }
