@@ -101,8 +101,9 @@
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap">
-                   <thead class="bg-primary">
+                   <thead>
                     <tr>
+                      <th>ID</th>
                       <th>Car Make</th>
                       <th>Type</th>
                       <th>Reg No</th>
@@ -112,6 +113,7 @@
                   <tbody>
                     @foreach($vehicles as $vehicle)
                     <tr> 
+                      <td>{{$vehicle->id}}</td>
                       <td>{{$vehicle->make}}</td>
                       <td>{{$vehicle->type}}</td>
                       <td>{{$vehicle->reg_no}}</td>
@@ -139,6 +141,7 @@
       <!-- card body -->
         <div class="card-body col-lg-12">
               <!-- /.card-header -->
+                 <!--datatables-->
                 <table class="table display cell-border" id="laravel_datatable" width="100%">
                    <thead class="bg-primary">
                       <tr>
@@ -152,6 +155,7 @@
                                        
                   </tbody>
                 </table>
+                 <!--/datatables-->
       <!-- /card body -->
            </div>
     <!-- /users list card -->

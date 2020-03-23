@@ -433,26 +433,7 @@
 
   <!-- dt -->
 <!-- data tables -->
-<script type="text/javascript">
-      $(document).ready( function () {
-    $(".reject").click(function(){
-      $('.reject-section').show();
-      $('.reject-btn').show();
 
-    });
-        $('#laravel_datatable').DataTable({
-           processing: true,
-           serverSide: true,
-           ajax: "{{ url('users-list') }}",
-           columns: [
-                    { data: 'id', name: 'id' },
-                    { data: 'sur_name', name: 'sur_name' },
-                    { data: 'email', name: 'email' },
-                    { data: 'created_at', name: 'created_at' }
-                 ]
-        });
-} );
-</script>
 <script src="{{asset('js/plugins/jquery/jquery.js')}}"></script>
 <script src="{{asset('js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Bootstrap 4 -->
@@ -482,5 +463,27 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('js/pages/demo.js')}}"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" defer></script>
+<script type="text/javascript">
+      $(document).ready( function () {
+    $(".reject").click(function(){
+      $('.reject-section').show();
+      $('.reject-btn').show();
+
+    });
+    /*datatables*/
+        $('#laravel_datatable').DataTable({
+           processing: true,
+           serverSide: true,
+           ajax: "{{ url('users-list') }}",
+           columns: [
+                    { data: 'id', name: 'id' },
+                    { data: 'sur_name', name: 'sur_name' },
+                    { data: 'email', name: 'email' },
+                    { data: 'created_at', name: 'created_at' }
+                 ]
+        }); 
+    
+} );
+</script>
 </body>
 </html>

@@ -158,5 +158,6 @@ class AdminController extends Controller
         $users = DB::table('users')->select('*');
         return datatables()->of($users)
             ->make(true);
+        
     }
 }

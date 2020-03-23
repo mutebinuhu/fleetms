@@ -200,7 +200,7 @@ class requestscontroller extends Controller
 
     public function download($id)
     {
-            $show =DB::table('repairrequests')
+            $download =DB::table('repairrequests')
                     ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
                     ->join('users','users.id','=','repairrequests.created_by')
                     ->where('repairrequests.id','=',$id)
@@ -208,6 +208,6 @@ class requestscontroller extends Controller
                     ->get();
 
         return view('requests.printout')
-                    ->withshow($show);
+                    ->withdownload($download);
     }
 }
