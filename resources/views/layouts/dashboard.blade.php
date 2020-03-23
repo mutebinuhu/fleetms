@@ -21,17 +21,13 @@
   <!-- Theme style -->
   <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
   <!-- animate css -->
   <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
   <!-- animate css -->
   <!-- dt -->  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-
-
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="wrapper">
