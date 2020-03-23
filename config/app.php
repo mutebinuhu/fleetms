@@ -161,7 +161,7 @@ return [
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
-        Yajra\DataTables\DataTablesServiceProvider::class
+        Yajra\Datatables\DatatablesServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
         /*
@@ -227,7 +227,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Datatables' => Yajra\DataTables\Facades\DataTables::class,
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+
 
 
     ],
