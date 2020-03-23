@@ -1,7 +1,7 @@
 <style type="text/css">
 	body {
   background: rgb(204,204,204); 
-  font-size: 12px;
+  font-size: 14px;
 }
 .out-put{
   font-weight: bold;
@@ -19,7 +19,6 @@ page{
 }
 page[size="A4"] {  
   width: 18.5cm;
-  height: 26.5cm; 
 }
 .row{
   display: flex;
@@ -68,6 +67,10 @@ page[size="A4"] {
   text-align: center;
 
 }
+span{
+  margin-left: 10px;
+  font-weight: bold;
+}
 </style>
 <!DOCTYPE html>
 <html>
@@ -77,78 +80,84 @@ page[size="A4"] {
 		car verification form
 	</title>
 </head>
-<body>
+<body onclick="window.print()">
 		<page size="A4">
-      <div class="row">
-        <div class="col-4">
-           <p>MINISTRY OF INTERNAL AFFAIRS <br>JINJA RD</p>
-           <p>P.O.BOX 7191,  KAMPALA-UGANDA</p>
-  
-        </div>
-        <div class="col-4 coat">
-              <div class="coat-of-arm">
-                <img src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/112012/uganda_court_of_arms.png?itok=cmhoQ3Mh" width="100px" height="80px" class="coat-img" style="margin: auto;" onclick="printMe();">
-              </div>
-          
-        </div>
-        <div class="col-4">
-          <p>MINISTRY OF INTERNAL AFFAIRS <br>JINJA RD</p>
-          <p>P.O.BOX 7191,  KAMPALA-UGANDA</p>
-          
-        </div>
-      </div>
-      <hr>
-      <div class="container">
-        <h3>VEHICLE DEFECT VERIFICATION FORM PRIOR TO REPAIR</h3>
-        <h3>JOB No:{{$download->id}}</h3>
-        <p>To:<b>The Cheif Mechanical Engineer-Ministry of Works and Transport</b></p>
-        <p>Our ministry Vehicle of particulars hereunder developed defecets as described in item 2. This is to requestyou have the vehicle inspected and furnish us with your findings </p>
-      </div>
-      <div class="data">
-        <h3>1.0 <b>VEHICLE DATA</b></h3>
-        <p>Registration Number : <span class="out-put">{{  $download->reg_no}}</span><br><br><span>Make:  <span class="out-put">{{ $download->make}}</span></span><br><br><span>Type: <span class=out-put>{{$download->type}}</span></span><br><br><span>Engine Number:<span class="out-put">{{ $download->eng_no}}</span></span><br><br><span>Chasis No: <span class="out-put">{{$download->chasis_no}}</span></span><br><br><span>Year Of Manufacture: <span class="out-put">{{$download->date}}</span></span><br><br><span>Mileage:<span class="out-put">{{$download->mileage}}.</span></span></p>
-
-        <h3>2.0 <b>General Description</b></h3>
-          <p>{{$download->description}}</p>
-
-        <div class="my-info">
-          <h3>Name : {{ Auth::User()->name}}</h3>
-          <h3>Sign..................................................</h3>
-          <h3>Date....................................................</h3>
-        </div>
-
-        <div class="findings">
-          <h3>3.0 <b>Technical findings:</b></h3>
-          <div class="table">
-            <div class="section">
-              <h3>NO</h3>
-           
-            </div>
-             <div class="section">
-              <h3>FINDINGS</h3>
-                   
-            </div>
-             <div class="section">
-              <h3>PRESCRIBED REPAIR</h3>
-                   
-            </div>
-
+        <div class="row">
+          <div class="col-4">
+             <p>MINISTRY OF INTERNAL AFFAIRS <br>JINJA RD</p>
+             <p>P.O.BOX 7191,  KAMPALA-UGANDA</p>
+          </div>
+          <div class="col-4 coat">
+                <div class="coat-of-arm">
+                  <img src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/112012/uganda_court_of_arms.png?itok=cmhoQ3Mh" width="100px" height="80px" class="coat-img" style="margin: auto;">
+                </div>
+          </div>
+          <div class="col-4">
+            <p>MINISTRY OF INTERNAL AFFAIRS <br>JINJA RD</p>
+            <p>P.O.BOX 7191,  KAMPALA-UGANDA</p>     
           </div>
         </div>
-      </div>
-      <div class="">
-        <h3>1.0 Remarks</h3>
-        <p>......................................................................................................................................................................................................................................</p>
-        <p>......................................................................................................................................................................................................................................</p>
-         <h3>INSPECTION ENGINEER...........................................................................</b> Sign...........................................................</h3>
-          <h3>CHIEF MECHANICAL ENGINEER......................................................</b> Sign................................................................</h3>
-      </div>
+        <hr>
+
+        @foreach ($download as $download)
+        @endforeach
+
+        <div class="container">
+          <h3>VEHICLE DEFECT VERIFICATION FORM PRIOR TO REPAIR</h3>
+          <h3>JOB No:{{$download->id}}</h3>
+          <p>To:<b>The Cheif Mechanical Engineer-Ministry of Works and Transport</b></p>
+          <p>Our ministry Vehicle of particulars hereunder developed defecets as described in item 2. This is to request you have the vehicle inspected and furnish us with your findings </p>
+        </div>
+        <div class="data">
+          <h3>1.0 <b>VEHICLE DATA</b></h3>
+
+          <p>Registration Number : <span>{{$download->reg_no}}</span></p>
+
+          <p>Make: <span>{{$download->make}}</span></p>
+
+          <p>Type: <span>{{$download->type}}</span></p>
+
+          <p>Engine Number: <span>{{$download->eng_no}}</span></p>
+
+          <p>Year Of manufacture <span>{{$download->year}}</span></p>
+
+          <p>Mileage: <span>{{$download->mileage}}</span></p>
+
+          <h3>2.0 <b>General Description</b></h3>
+
+          <p>{{$download->description}}</p>
+
+          <div class="">
+            <p>Name:<span>{{$download->first_name. " ". $download->sur_name}}</span></p>
+            <p>Sign: <span>.................................................</span></p>
+            <p>Date:<span><?php echo date("d:m:y"); ?></span></p>
+          </div>
+
+          <div class="findings">
+            <h3>3.0 <b>Technical findings:</b></h3>
+            <div class="table">
+              <div class="section">
+                <h3>NO</h3>    
+              </div>
+               <div class="section">
+                <h3>FINDINGS</h3>              
+              </div>
+               <div class="section">
+                <h3>PRESCRIBED REPAIR</h3>                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <h3>1.0 Remarks</h3>
+          <p>.........................................................................................................................................................................................</p>
+          <p>............................................................................................................................................................................................</p>
+           <h3>INSPECTION ENGINEER......................................................</b> Sign...........................................................</h3>
+            <h3>CHIEF MECHANICAL ENGINEER......................................................</b> Sign................................................................</h3>
+        </div>
     </page>
 <script type="text/javascript">
-  function printMe()
-  {
-    window.print();
-  }
+
 </script>
 </body>
 </html>

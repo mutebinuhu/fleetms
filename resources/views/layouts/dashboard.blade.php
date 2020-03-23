@@ -470,20 +470,9 @@
       $('.reject-btn').show();
 
     });
-    /*datatables*/
-        $('#laravel_datatable').DataTable({
-           processing: true,
-           serverSide: true,
-           ajax: "{{ url('users-list') }}",
-           columns: [
-                    { data: 'id', name: 'id' },
-                    { data: 'sur_name', name: 'sur_name' },
-                    { data: 'email', name: 'email' },
-                    { data: 'created_at', name: 'created_at' }
-                 ]
-        }); 
     
 } );
 </script>
+@yield('scripts')
 </body>
 </html>

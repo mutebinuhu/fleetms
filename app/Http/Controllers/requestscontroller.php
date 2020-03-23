@@ -204,7 +204,7 @@ class requestscontroller extends Controller
                     ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
                     ->join('users','users.id','=','repairrequests.created_by')
                     ->where('repairrequests.id','=',$id)
-                    ->select('vehicles.reg_no', 'vehicles.make', 'vehicles.type', 'vehicles.mileage', 'repairrequests.*', 'users.sur_name','users.first_name')
+                    ->select('vehicles.reg_no', 'vehicles.make', 'vehicles.type', 'vehicles.mileage', 'vehicles.eng_no', 'vehicles.year', 'repairrequests.*', 'users.sur_name','users.first_name')
                     ->get();
 
         return view('requests.printout')
