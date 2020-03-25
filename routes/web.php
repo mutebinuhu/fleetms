@@ -15,9 +15,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('myusers', 'AdminController@myusers');
+//all users list api
+//Route::get('myusers', 'AdminController@myusers');
 
 Route::get('users-list', 'AdminController@usersList'); 
+//all users list api
+
+//all vehicles list api
+Route::get('vehicles-list', 'AdminController@vehicleList');
 
 //admin routes
 Route::get('/admin', 'AdminController@index')->name('admin');

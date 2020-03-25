@@ -2,7 +2,7 @@
 @section('content')
     <div class="row content">
           <!-- .col -->
-          <div class="col-lg-12 col-12">
+          <div class="col-lg-12">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">

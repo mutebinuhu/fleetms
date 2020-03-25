@@ -148,6 +148,7 @@ class AdminController extends Controller
                 ->withcountvehicles($countvehicles);
 
     }
+    // the functions below searches through the users list on the admin dashboard
 
     public function myusers()
     {
@@ -155,9 +156,17 @@ class AdminController extends Controller
     }
     public function usersList()
     {
-        $users = DB::table('users')->select('*');
+        $users = DB::table('users')->select('*')->orderBy('id', 'desc');
         return datatables()->of($users)
             ->make(true);
         
+    }
+    //searches through the users list on the admin dashboard
+
+    public function vehicleList()
+    {
+        $vehicles = DB::table('vehicles')->select('*')->orderBy('id', 'desc');
+        return datatables()->of($vehicles)
+            ->make(true);
     }
 }

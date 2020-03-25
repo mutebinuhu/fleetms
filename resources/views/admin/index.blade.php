@@ -82,25 +82,11 @@
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
     <!-- card -->
     <div class="card">
-      <!-- card body -->
-      <div class="card-body">
-            <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="col-lg-12">
+            <div class="card col-lg-12 ">
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
+                <table class="table display cell-border" id="vehicles_datatable" width="100%">
                    <thead>
                     <tr>
                       <th>ID</th>
@@ -111,15 +97,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($vehicles as $vehicle)
-                    <tr> 
-                      <td>{{$vehicle->id}}</td>
-                      <td>{{$vehicle->make}}</td>
-                      <td>{{$vehicle->type}}</td>
-                      <td>{{$vehicle->reg_no}}</td>
-                      <td style="text-align: center;">{{$vehicle->created_at}}</td>
-                    </tr>
-                    @endforeach                     
+                                      
                   </tbody>
                 </table>
               </div>
@@ -127,9 +105,7 @@
             </div>
             <!-- /.card -->
           </div>
-        </div>
-      </div>
-      <!-- /card body -->
+
     </div>
     <!-- /card -->
   </div> 
@@ -142,7 +118,7 @@
         <div class="card-body col-lg-12">
               <!-- /.card-header -->
                  <!--datatables-->
-                <table class="table display cell-border" id="laravel_datatable" width="100%">
+                <table class="table display cell-border" id="users_datatable" width="100%">
                    <thead class="bg-primary">
                       <tr>
                          <th>Id</th>
@@ -175,7 +151,7 @@
 @section('scripts')
  <script type="text/javascript">
      $(document).ready(function(){
-      $('#laravel_datatable').DataTable({
+      $('#users_datatable').DataTable({
            processing: true,
            serverSide: true,
            ajax: "{{ url('users-list') }}",
@@ -184,6 +160,19 @@
                     { data: 'sur_name', name: 'sur_name' },
                     { data: 'email', name: 'email' },
                     { data: 'created_at', name: 'created_at' }
+                 ]
+        }); 
+      $('#vehicles_datatable').DataTable({
+           processing: true,
+           serverSide: true,
+           ajax: "{{ url('vehicles-list') }}",
+           columns: [
+                    { data: 'id', name: 'id' },
+                    { data: 'reg_no', name: 'reg_no' },
+                    { data: 'type', name: 'type' },
+                    { data: 'make', name: 'make' },
+                    { data: 'created_at', name: 'created_at' },
+
                  ]
         }); 
     });
