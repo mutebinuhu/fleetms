@@ -50,7 +50,7 @@
                       <th>Type</th>
                       <th>Eng No</th>
                       <th>Mileage</th>
-                      <th class="text-right"><a href="{{url('vehicles/create')}}" class="btn btn-success btn-lg">Add Vehicle</button></th>
+                      <th class="text-right"><a href="{{url('vehicles/create')}}" class="btn btn-success btn-lg">Add Vehicle</a></button></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -80,6 +80,7 @@
                   </tbody>
                 </table>
               </div>
+
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
