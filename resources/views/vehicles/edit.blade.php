@@ -81,18 +81,18 @@
                         </div>
                      </div>
                        <div class="form-group row">
-                        <label for="year" class="col-sm-2 col-form-label">Year</label> 
-                        <div class="col-sm-10">
-                            <input type="text" name="year" class="form-control @error('year') is-invalid @enderror" placeholder="year" value="{{$editvehicle->year}}">
-                             @error('year')
-                            <span class="invalid-feedback" role="alert">
-                        		<strong>{{ $message }}</strong>
-                        	</span>
-                        	@enderror  
-                        </div>
+                            <label for="year" class="col-sm-2 col-form-label">Year</label> 
+                            <div class="col-sm-10">
+                                <input type="text" name="year" class="form-control @error('year') is-invalid @enderror" placeholder="year" value="{{$editvehicle->year}}">
+                                 @error('year')
+                                <span class="invalid-feedback" role="alert">
+                            		<strong>{{ $message }}</strong>
+                            	</span>
+                            	@enderror  
+                            </div>
                      </div>
                      <div class="modal-footer">
-                    <a href="{{('/vehicles')}}"  class="btn btn-secondary">Cancel</a>
+                    <a href="{{url('/vehicles')}}"  class="btn btn-secondary">Cancel</a>
                     <button name="submit" class="btn btn-primary" type="submit">submit</button>
                     <form method="POST" action="{{route('vehicles.destroy', $editvehicle->id)}}" class="my-5">
                   @csrf
