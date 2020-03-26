@@ -15,14 +15,19 @@
                     <strong><i class="fas fa-car mr-1"></i>Reg No:</strong>
 
                     <p class="text-muted">
-                        @foreach($show as $show) {{$show->reg_no}} @endforeach
+                        @foreach($show as $show) <?php echo strtoupper($show->reg_no) ?> @endforeach
                     </p>
                     <hr>
                     <strong><i class="far fa-user mr-1"></i>Driver's Name</strong>
                     <p class="text-muted">{{$show->sur_name ." " . $show->first_name}}</p>
                     <hr>
                     <strong><i class="fas fa-toolbox mr-1"></i>Repair Request Date</strong>
-                    <p class="text-muted">{{$show->created_at}}</p>
+                    <p class="text-muted">
+                        <?php
+                            $date = date_create($show->created_at);
+                            echo date_format($date, "d/m/Y");
+                         ?>
+                    </p>
                     <hr>
                     <strong><i class="far fa-file-alt mr-1"></i>Car Make</strong>
 

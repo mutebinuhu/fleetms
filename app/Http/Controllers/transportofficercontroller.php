@@ -7,6 +7,7 @@ use Auth;
 use DB;
 use App\requestrepair;
 
+
 class transportofficercontroller extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class transportofficercontroller extends Controller
     	$requests = DB::table('repairrequests')
     					->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
     					->join('users','users.id','=','repairrequests.created_by')
-    					->select('vehicles.reg_no','repairrequests.id','repairrequests.description','repairrequests.status','users.first_name','users.sur_name','repairrequests.created_at')
+    					->select('vehicles.reg_no', 'vehicles.type', 'repairrequests.id','repairrequests.description','repairrequests.status','users.first_name','users.sur_name','repairrequests.created_at')
     					->latest()
     					->get();
                         
@@ -40,12 +41,17 @@ class transportofficercontroller extends Controller
         //count approved
         $countapproved = count(DB::table('repairrequests')->get()
                         ->where('status', 1));
+        //rejected
+        $rejected = DB::table('repairrequests')->get()
+                        ->where('status', 2);
 
         return view('transportofficer.index')
         		->withpendingRequests($pendingRequests)
         		->withrequests($requests)
                 ->withcountrejected($countrejected)
-                ->withcountapproved($countapproved);
+                ->withcountapproved($countapproved)
+                ->withrejected($rejected);
+
     }
 
     /**

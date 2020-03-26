@@ -39,7 +39,12 @@
 			                <p class="text-muted">{{$show->sur_name ." " . $show->first_name}}</p>
 			                <hr>
 			                <strong><i class="fas fa-map-marker-alt mr-1"></i>Repair Request Date</strong>
-			                <p class="text-muted">{{$show->created_at}}</p>
+			                <p class="text-muted">
+			                	<?php
+					                  $date = date_create($request->created_at);
+					                  echo date_format($date, "d/m/Y");
+					            ?>
+			                </p>
 			                <hr>
 			                <strong><i class="far fa-file-alt mr-1"></i>Car Make</strong>
 

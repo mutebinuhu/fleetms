@@ -70,6 +70,7 @@ class requestscontroller extends Controller
                     ->where('status',2)
                     ->where('created_by',  Auth::id())
                     ->get());
+        
         return view('requests.dashboard')
                 ->withgetdata($getdata)
                 ->withcountRequests($countRequests)
