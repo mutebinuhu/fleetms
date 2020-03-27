@@ -129,7 +129,10 @@
                       <!-- timeline time label -->
                       <div class="time-label">
                         <span class="bg-danger">
-                          {{$request->created_at}}
+                          <?php 
+                              $date = date_create($request->created_at);
+                              echo date_format($date, "d/m/Y");
+                           ?>
                         </span>
                       </div>
                       <!-- /.timeline-label -->
