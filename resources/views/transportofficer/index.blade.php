@@ -133,17 +133,9 @@
 					                      <td>{{$request->type}}</td>
 
 					                      <td>
-					                      	@switch($request->status)
-					                      		@case(0)
-					                      		<p class="bg-warning bg-warning text-center"><i class="fas fa-pause"> </i> In Progress</p>
-					                      		@break
-					                      		@case(1)
-					                      		<p class="bg-success  text-center"><i class="fas fa-check-circle"> </i> Completed</p>
-					                      		@break
-					                      		@case(2)
-					                      		<p class="bg-danger text-center"><i class="fas fa-window-close"> </i> Rejected</p>
-					                      		@break
-					                      	@endswitch
+					                    
+					                      	<p class="bg-warning bg-warning text-center"><i class="fas fa-pause"> </i> In Progress</p>
+					                      		
 					                      </td>
 					                      <td class="text-center">
 					                      	<a class="btn btn-primary btn-sm" href="{{action('requestscontroller@edit', $request->id)}}">
@@ -188,7 +180,7 @@
 									 <div class="small-box bg-info">
 							              <div class="inner">
 							                <h3>0</h3>
-							                <p>Pending Verification Requests</p>
+							                <p>Approved (Pending LPO)</p>
 							              </div>
 							              <div class="icon">
 							                  <i class="fab fa-joget"></i>
@@ -202,7 +194,7 @@
 									<div class="small-box bg-success">
 						              <div class="inner">
 						                <h3>0<sup style="font-size: 20px"></sup></h3>
-						                <p>Pending Works Requests</p>
+						                <p>MoWT Verified Repairs</p>
 						              </div>
 						              <div class="icon">
 						                <i class="far fa-thumbs-up"></i>
@@ -217,7 +209,7 @@
 							              <div class="inner">
 							                <h3>0</h3>
 
-							                <p>Pending Payments Requests</p>
+							                <p>Pending Payment</p>
 							              </div>
 							              <div class="icon">
 							                <i class="far fa-thumbs-down"></i>

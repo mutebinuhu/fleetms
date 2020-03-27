@@ -27,7 +27,9 @@ class transportofficercontroller extends Controller
     					->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
     					->join('users','users.id','=','repairrequests.created_by')
     					->select('vehicles.reg_no', 'vehicles.type', 'repairrequests.id','repairrequests.description','repairrequests.status','users.first_name','users.sur_name','repairrequests.created_at')
+                        ->where('status', 0)
     					->latest()
+
     					->get();
                         
         //counting pending requests

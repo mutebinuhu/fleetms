@@ -49,7 +49,6 @@
                       <th>Reg No</th>
                       <th>Type</th>
                       <th>Eng No</th>
-                      <th>Mileage</th>
                       <th class="text-right"><a href="{{url('vehicles/create')}}" class="btn btn-success btn-lg">Add Vehicle</a></button></th>
                     </tr>
                   </thead>
@@ -62,7 +61,6 @@
                       <td>{{$vehicle->reg_no}}</td>
                       <td>{{$vehicle->type}}</td>
                       <td>{{$vehicle->eng_no}}</td>
-                      <td>{{$vehicle->mileage}}</td>
                        <td class="project-actions text-right">
                           <a class="btn btn-primary btn-sm" href="{{action('vehiclescontroller@show', $vehicle->id)}}">
                               <i class="fas fa-folder">

@@ -175,7 +175,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <span class="brand-text font-weight-light">Fleet</span>
+      <span class="brand-text font-weight-light">Fleet Ms</span>
 
     </a>
 
@@ -198,12 +198,35 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                DASHBOARD
-              </p>
-            </a>
+            <!-- redirects user according to role -->
+           @switch(Auth::user()->role)
+              @case('Admin')
+                 <a href="{{url('/admin')}}" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      DASHBOARD
+                    </p>
+                </a>
+                @break
+              @case('Transport Officer')
+                <a href="{{url('/transportofficer')}}" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      DASHBOARD
+                    </p>
+                </a>
+                @break
+              @case('Driver')
+                 <a href="{{url('/requests/dashboard')}}" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      DASHBOARD
+                    </p>
+                </a>
+                @break
+           @endswitch
+            <!-- redirects user according to role -->
+
           </li>
           <!-- deiver routst -->
         @switch(Auth::user()->role)
@@ -274,7 +297,39 @@
               <li class="nav-item">
                 <a href="{{url('/vehicles')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View vehicles</p>
+                  <p>View All Vehicles </p>
+                </a>
+              </li>
+            </ul>
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('/vehicles')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Assigned Vehicles</p>
+                </a>
+              </li>
+            </ul>
+              <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('/vehicles')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Unassigned Vehicles</p>
+                </a>
+              </li>
+            </ul>
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('/vehicles')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Vehicles Under Repair </p>
+                </a>
+              </li>
+            </ul>
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('/vehicles')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Damaged Vehicles </p>
                 </a>
               </li>
             </ul>
