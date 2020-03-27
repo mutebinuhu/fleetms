@@ -48,14 +48,14 @@ class vehicleallocationcontroller extends Controller
         //
          //returns all tos
         $officers = DB::table('users')
-                    ->where('role', '=', 'to')
+                    ->where('role', '=', 'Transport Officer')
                     ->get();
         //returns all vehicles
         $vehicles = DB::table('vehicles')
                     ->get();
         //returns all drivers
         $drivers = DB::table('users')
-                    ->where('role', '=', 'driver')
+                    ->where('role', '=', 'Driver')
                     ->get();
         
         return view('vehicleallocation.create')
