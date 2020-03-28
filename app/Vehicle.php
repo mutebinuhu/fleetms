@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Vehicle extends Model
 {
     //
-    protected $fillable = ['reg_no', 'type', 'eng_no', 'make', 'mileage', 'year', 'created_by', 'updated_by', 'user_id'];
+    protected $fillable = ['reg_no', 'type', 'eng_no', 'make', 'mileage', 'year', 'created_by', 'updated_by', 'user_id', 'status'];
 
     public function requests()
     {

@@ -67,7 +67,8 @@ class vehiclescontroller extends Controller
             'make'=>'required',
             'type'=>'required',
             'mileage'=>'required',
-            'year'=>['required', 'max:4']
+            'year'=>['required', 'max:4'],
+            'status'=>'required',
         ]);
 
         $formdata = array(
@@ -78,6 +79,7 @@ class vehiclescontroller extends Controller
             'type'=>strtoupper($request->type),
             'mileage'=>$request->mileage,
             'year'=>$request->year,
+            'status'=>$request->status,
             'user_id'=>$user_id,
         );
         Vehicle::create($formdata);
@@ -129,7 +131,9 @@ class vehiclescontroller extends Controller
             'make'=>'required',
             'type'=>'required',
             'mileage'=>'required',
-            'year'=>'required'
+            'year'=>'required',
+            'status'=>'required',
+
         ]);
 
         $update = Vehicle::whereid($id)->firstorFail();
@@ -139,6 +143,8 @@ class vehiclescontroller extends Controller
         $update->type = $request->get('type');
         $update->mileage = $request->get('mileage');
         $update->year = $request->get('year');
+        $update->status = $request->get('status');
+
 
         $update->save();
         return redirect('/vehicles')->with('status', 'vehicle data updated');

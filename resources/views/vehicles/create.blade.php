@@ -82,6 +82,23 @@
                         	@enderror  
                         </div>
                      </div>
+                     <div class="form-group row">
+                        <label for="year" class="col-sm-2 col-form-label">Vehicle Status</label> 
+                        <div class="col-sm-10">
+                            <select name="status" class="form-control @error('status') is-invalid @enderror" placeholder="year" value="{{old('status')}}">
+                                <option></option>
+                                <option>Under Repair</option>
+                                <option>Operational</option>
+                                <option>Out Of Service</option>
+                            </select>
+                            @error('status')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
+                    </div>
                      <div class="modal-footer">
                     <a href="{{url('/vehicles')}}"  class="btn btn-secondary">Cancel</a>
                     <button name="submit" class="btn btn-primary" type="submit">submit</button>

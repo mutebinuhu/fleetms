@@ -3,14 +3,6 @@
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
-            @if(session('status'))
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>{{session('status')}}</strong> 
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                @endif
 			<div class="card card-primary">
             <div class="card-header">
               <h3 class="card-title">Edit Vehicle</h3>
@@ -91,16 +83,34 @@
                             	@enderror  
                             </div>
                      </div>
+                       <div class="form-group row">
+                        <label for="year" class="col-sm-2 col-form-label">Vehicle Status</label> 
+                        <div class="col-sm-10">
+                            <select name="status" class="form-control @error('status') is-invalid @enderror" placeholder="year" value="{{old('status')}}">
+                                <option>{{$editvehicle->status}}</option>
+                                <option>Under Repair</option>
+                                <option>Operational</option>
+                                <option>Out Of Service</option>
+                            </select>
+                            @error('status')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
+                    </div>
                      <div class="modal-footer">
-                    <a href="{{url('/vehicles')}}"  class="btn btn-secondary">Cancel</a>
-                    <button name="submit" class="btn btn-primary" type="submit">submit</button>
-                    <form method="POST" action="{{route('vehicles.destroy', $editvehicle->id)}}" class="my-5">
-                  @csrf
-                  {{method_field('DELETE')}}
-                  <button type="submit" name="submit" class="btn btn-danger">Delete</button>
-               </form>
+                        <a href="{{url('/vehicles')}}"  class="btn btn-secondary">Cancel</a>
+                        <button name="submit" class="btn btn-primary" type="submit">submit</button>
+                     </form>
+                        <form method="POST" action="{{route('vehicles.destroy', $editvehicle->id)}}" class="my-5">
+                      @csrf
+                      {{method_field('DELETE')}}
+                      <button type="submit" name="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
-                   </form>
+                  
             </div>
             <!-- /.card-body -->
           </div>
