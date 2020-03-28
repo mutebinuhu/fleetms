@@ -91,6 +91,8 @@
                                 <option>Under Repair</option>
                                 <option>Operational</option>
                                 <option>Out Of Service</option>
+                                <option>Damaged</option>
+
                             </select>
                             @error('status')
                                 <span class="invalid-feedback" role="alert">

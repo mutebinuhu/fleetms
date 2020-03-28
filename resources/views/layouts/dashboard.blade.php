@@ -22,13 +22,13 @@
   <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <!-- animate css -->
-  <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-  <!-- animate css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <!-- dt -->  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 
+  <!-- animate css -->
 
 
 </head>
@@ -453,13 +453,14 @@
                   <!-- role case to output dasboard title basing on role -->
                   @switch(Auth::user()->role)
                     @case('Transport Officer')
-                     <h1>Transport Officer's Dashboard</h1>
+                     <h1 class="animated  bounce">Transport Officer's Dashboard</h1>
+
                      @break
                     @case('Admin')
-                     <h1>Admin's Dashboard</h1>
+                     <h1 class="animated  bounce">Admin's Dashboard</h1>
                      @break
                     @case('Driver')
-                     <h1>Driver's Dashboard</h1>
+                     <h1 class="animated  bounce">Driver's Dashboard</h1>
                      @break
                   @endswitch
                   <!-- end switch -->

@@ -29,7 +29,7 @@ class vehiclescontroller extends Controller
         $countusers = count($users);
         $vehicles = DB::table('vehicles')
                     ->latest()
-                    ->paginate(5);
+                    ->paginate(10);
 
         $countvehicles = count($vehicles);
         return view('vehicles.index')
@@ -164,4 +164,5 @@ class vehiclescontroller extends Controller
         $id->delete();
         return redirect('/vehicles')->with('status', 'vehicle deleted');
     }
+    
 }

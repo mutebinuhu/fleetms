@@ -122,11 +122,8 @@ class transportofficercontroller extends Controller
         //
     }
 
-    //printing route
 
-    public function print()
+    
 
-    {
-        dd('yah');
-    }
+
 }

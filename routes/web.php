@@ -43,6 +43,9 @@ Route::resource('users', 'userscontroller');
 //vehicles controllers
 Route::resource('vehicles', 'vehiclescontroller');
 
+//queries vehicles under repair
+
+
 
 //vehicle allocation controller
 Route::resource('vehicleallocation', 'vehicleallocationcontroller');
@@ -54,6 +57,8 @@ Route::get('/download/{id}', 'requestscontroller@download');
 
 Route::resource('transportofficer', 'transportofficercontroller');
 Route::get('/transportofficer/printout/{id}/', 'transportofficercontroller@print');
+
+
 
 //bread crumps
 
