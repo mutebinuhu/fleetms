@@ -57,8 +57,8 @@ Route::get('/download/{id}', 'requestscontroller@download');
 
 Route::resource('transportofficer', 'transportofficercontroller');
 Route::get('/transportofficer/printout/{id}/', 'transportofficercontroller@print');
-
-
-
-//bread crumps
+Route::get('underrepair/', 'transportofficercontroller@underRepairVehicles');
+/*queries*/
+Route::get('queries/vehiclesunderrepair', 'queriesController@underRepairVehicles');
+/*end queries*/
 

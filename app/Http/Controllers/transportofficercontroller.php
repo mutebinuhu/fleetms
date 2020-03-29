@@ -122,8 +122,13 @@ class transportofficercontroller extends Controller
         //
     }
 
-
-    
+        public function underRepairVehicles()
+    {
+        $underrepairvehicles = DB::table('vehicles')
+                                ->get();
+        return view('transportofficer.queries.underrepairvehicles')
+                        ->withunderrepairvehicles($underrepairvehicles);
+    }
 
 
 }

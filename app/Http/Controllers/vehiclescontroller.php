@@ -31,6 +31,7 @@ class vehiclescontroller extends Controller
                     ->latest()
                     ->paginate(10);
 
+
         $countvehicles = count($vehicles);
         return view('vehicles.index')
                 ->withusers($users)
