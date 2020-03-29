@@ -247,6 +247,7 @@
               </div>              
               <!-- /.card-body -->
             </div>
+             {{$vehicles->links()}}
             <!-- /.card -->
     <!-- /under repair vehicles table -->
   </div>
@@ -305,6 +306,7 @@
               </div>              
               <!-- /.card-body -->
             </div>
+             {{$vehicles->links()}}
             <!-- /.card -->
     <!-- /damaged vehicles table -->
   </div>
@@ -363,6 +365,7 @@
               </div>              
               <!-- /.card-body -->
             </div>
+             {{$vehicles->links()}}
             <!-- /.card -->
     <!-- /out of service vehicles table -->
   </div>
@@ -421,14 +424,77 @@
               </div>              
               <!-- /.card-body -->
             </div>
+             {{$vehicles->links()}}
             <!-- /.card -->
     <!--/operational vehicles table -->
   </div>
   <div class="tab-pane fade" id="pills-assigned" role="tabpanel" aria-labelledby="pills-assigned-tab">
-    <p>Assigned</p>
+    @if($assignedvehicles->isEmpty())
+      <p>empty</p>
+    @else
+    <!-- assigned vehicles -->
+              <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Operational Vehicles</h3>
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Reg No</th>
+                      <th>Type</th>
+                      <th>Eng No</th>
+                      <th>Status</th>
+                      <th>Driver</th>
+                      <th class="text-right">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  @foreach($assignedvehicles as $assignedvehicle)
+                    <tr>
+                      <td>{{$assignedvehicle->reg_no}}</td>
+                      <td>{{$assignedvehicle->type}}</td>
+                      <td>{{$assignedvehicle->eng_no}}</td>
+                      <td>{{$assignedvehicle->status}}</td>
+                      <td>{{$assignedvehicle->sur_name . " ".$assignedvehicle->first_name }}</td>
+
+
+                      <td class="project-actions text-right">
+                        <a class="btn btn-primary btn-sm" href="{{action('vehiclescontroller@show', $vehicle->id)}}">
+                            <i class="fas fa-folder">
+                            </i>
+                            View
+                        </a>
+                        <a class="btn btn-info btn-sm" href="{{action('vehiclescontroller@edit', $vehicle->id)}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Edit
+                        </a>
+                    </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>              
+              <!-- /.card-body -->
+            </div>
+             {{$vehicles->links()}}
+            <!-- /.card -->
+    <!-- end assigned vehicles -->
+    @endif
   </div>
     <div class="tab-pane fade" id="pills-unassigned" role="tabpanel" aria-labelledby="pills-unassigned-tab">
-    <p>Un Assigned</p>
+    <p>coming soon!!!</p>
   </div>
 </div>  
 </div>

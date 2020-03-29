@@ -31,13 +31,23 @@ class vehiclescontroller extends Controller
                     ->latest()
                     ->paginate(10);
 
+        $assignedvehicles = DB::table('vehicleallocations')
+                            ->join('vehicles', 'vehicles.id', '=', 'vehicleallocations.vehicle_id')
+                            ->join('users', 'users.id', '=', 'vehicleallocations.driver_id')
+                            ->get();
+        $unassignedvehicles =DB::table('vehicleallocations')
+                            ->join('vehicles', 'vehicles.id', '=', 'vehicleallocations.vehicle_id')
+                            ->join('users', 'users.id', '=', 'vehicleallocations.driver_id')
+                            ->get();
+                            
 
         $countvehicles = count($vehicles);
         return view('vehicles.index')
                 ->withusers($users)
                 ->withvehicles($vehicles)
                 ->withcountusers($countusers)
-                ->withcountvehicles($countvehicles);
+                ->withcountvehicles($countvehicles)
+                ->withassignedvehicles($assignedvehicles);
     }
 
     /**
