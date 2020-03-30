@@ -11,13 +11,13 @@
   							<div class="form-row">
     							<div class="col-4">
     								<label>Reg No</label>
-      								<select class="select2 custom-select custom-select-lg mb-3 @error('reg_no') is-invalid @enderror" name="reg_no">
+      								<select class="select2 custom-select custom-select-lg mb-3 @error('vehicle_id') is-invalid @enderror" name="vehicle_id">
     									<option></option>
       									@foreach($vehicles as $vehicle)
   										<option value="{{$vehicle->id}}">{{$vehicle->reg_no}}</option>
   										@endforeach
 									</select>
-									@error('reg_no')
+									@error('vehicle_id')
                         			<span class="invalid-feedback" role="alert">
                         			<strong>{{ $message }}</strong>
                         			</span>

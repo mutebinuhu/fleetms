@@ -76,13 +76,13 @@ class vehicleallocationcontroller extends Controller
         //
         $user_id = Auth::id();
         $request->validate([
-            'reg_no' => 'required',
+            'vehicle_id' => 'required|unique:vehicleallocations',
             'officer' => 'required',
             'driver'=> 'required'
         ]);
 
         $formdata = array(
-            'vehicle_id' => $request->reg_no,
+            'vehicle_id' => $request->vehicle_id,
             'officer_id' => $request->officer,
             'driver_id' => $request->driver,
             'created_by'=> $user_id,
