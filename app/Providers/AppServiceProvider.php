@@ -14,15 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-<<<<<<< HEAD
          
-||||||| merged common ancestors
-          if ($this->app->isLocal()) {
-        $this->app->register(TelescopeServiceProvider::class);
-    }
-=======
-       
->>>>>>> 8d7dcda5f32183ae5dfb9f8e621ecc3af586bfc8
         
     }
 
