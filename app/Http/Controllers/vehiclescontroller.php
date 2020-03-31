@@ -7,6 +7,7 @@ use Auth;
 use App\Vehicle;
 use App\user;
 use Illuminate\Http\Request;
+use sum;
 
 
 class vehiclescontroller extends Controller
@@ -27,7 +28,8 @@ class vehiclescontroller extends Controller
         //
         $users = user::all();
         $countusers = count($users);
-        
+        $vehiclesTable = DB::table('vehicles');
+
         $vehicles = DB::table('vehicles')
                     ->latest()
                     ->paginate(10);
@@ -43,7 +45,22 @@ class vehiclescontroller extends Controller
                             ->select('vehicles.id', 'vehicles.reg_no', 'vehicles.type', 'vehicles.eng_no', 'status', 'vehicles.created_at', 'vehicles.updated_at')
                             ->latest()
                             ->get();
-                            
+        $countunassignedvehicles = count($unassignedvehicles);  
+        $countassignedvehicles = count($assignedvehicles);
+       
+        $countunderrepairvehicles = $vehiclesTable
+                                    ->where('status', 'Under Repair')->count();
+
+        $countoutofservicevehicles = $vehiclesTable
+                                    ->where('status', 'Out Of Service')->count();
+                                    
+         $countoperationalvehicles = $vehiclesTable
+                                    ->where('status', 'Operational')->count();
+
+
+        
+        
+
 
         $countvehicles = count($vehicles);
         return view('vehicles.index')
@@ -52,7 +69,14 @@ class vehiclescontroller extends Controller
                 ->withcountusers($countusers)
                 ->withcountvehicles($countvehicles)
                 ->withassignedvehicles($assignedvehicles)
-                ->withunassignedvehicles($unassignedvehicles);
+                ->withunassignedvehicles($unassignedvehicles)
+                ->withcountunassignedvehicles($countunassignedvehicles)
+                ->withcountassignedvehicles($countassignedvehicles)
+                ->withcountunderrepairvehicles($countunderrepairvehicles)
+                ->withcountoutofservicevehicles($countoutofservicevehicles)
+                ->withcountoperationalvehicles($countoperationalvehicles);
+
+
     }
 
     /**

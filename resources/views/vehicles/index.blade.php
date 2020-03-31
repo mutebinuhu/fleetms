@@ -8,7 +8,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h4>5</h4>
+                <h4>{{$countunassignedvehicles}}</h4>
 
                 <p>UnAssigned</p>
               </div>
@@ -23,7 +23,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h4>54</h4>
+                <h4>{{$countassignedvehicles}}</h4>
 
                 <p>Assigned</p>
               </div>
@@ -38,7 +38,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h4>44</h4>
+                <h4>{{$countunderrepairvehicles}}</h4>
 
                 <p>Under Repair</p>
               </div>
@@ -53,7 +53,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h4>65</h4>
+                <h4>{{$countoutofservicevehicles}}</h4>
                 <p>Out Of Service</p>
               </div>
               <div class="icon">
@@ -68,7 +68,7 @@
             <!-- small box -->
             <div class="small-box bg-secondary">
               <div class="inner">
-                <h4>6</h4>
+                <h4>{{$countoperationalvehicles}}</h4>
                 <p>Operational</p>      
               </div>
               <div class="icon">
@@ -225,7 +225,8 @@
                       <td>{{$underrepair->reg_no}}</td>
                       <td>{{$underrepair->type}}</td>
                       <td>{{$underrepair->eng_no}}</td>
-                      <td>{{$underrepair->status}}</td>                       
+                      <td>{{$underrepair->status}}</td>  
+                      <td><?php echo count($underrepair)?></td>
                     </tr>
                     @endif
                     @endforeach
