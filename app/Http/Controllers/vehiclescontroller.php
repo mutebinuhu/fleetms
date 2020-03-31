@@ -27,6 +27,7 @@ class vehiclescontroller extends Controller
         //
         $users = user::all();
         $countusers = count($users);
+        
         $vehicles = DB::table('vehicles')
                     ->latest()
                     ->paginate(10);
@@ -35,9 +36,12 @@ class vehiclescontroller extends Controller
                             ->join('vehicles', 'vehicles.id', '=', 'vehicleallocations.vehicle_id')
                             ->join('users', 'users.id', '=', 'vehicleallocations.driver_id')
                             ->get();
-        $unassignedvehicles =DB::table('vehicleallocations')
-                            ->join('vehicles', 'vehicles.id', '=', 'vehicleallocations.vehicle_id')
-                            ->join('users', 'users.id', '=', 'vehicleallocations.driver_id')
+
+        $unassignedvehicles =DB::table('vehicles')
+                            ->leftjoin('vehicleallocations', 'vehicles.id', '=', 'vehicleallocations.vehicle_id')
+                            ->where('vehicleallocations.officer_id', null)
+                            ->select('vehicles.id', 'vehicles.reg_no', 'vehicles.type', 'vehicles.eng_no', 'status', 'vehicles.created_at', 'vehicles.updated_at')
+                            ->latest()
                             ->get();
                             
 
@@ -47,7 +51,8 @@ class vehiclescontroller extends Controller
                 ->withvehicles($vehicles)
                 ->withcountusers($countusers)
                 ->withcountvehicles($countvehicles)
-                ->withassignedvehicles($assignedvehicles);
+                ->withassignedvehicles($assignedvehicles)
+                ->withunassignedvehicles($unassignedvehicles);
     }
 
     /**
