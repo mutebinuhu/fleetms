@@ -45,13 +45,21 @@ class transportofficercontroller extends Controller
         //rejected
         $rejected = DB::table('repairrequests')->get()
                         ->where('status', 2);
+        //returns allocations
+        $getdata = DB::table('vehicleallocations')
+                    ->join('vehicles', 'vehicles.id', '=', 'vehicleallocations.vehicle_id')
+                    ->select('vehicleallocations.*', 'vehicles.reg_no', 'vehicles.make')
+                    ->where('vehicleallocations.officer_id','=', Auth::id())
+                    ->latest()
+                    ->get();
 
         return view('transportofficer.index')
         		->withpendingRequests($pendingRequests)
         		->withrequests($requests)
                 ->withcountrejected($countrejected)
                 ->withcountapproved($countapproved)
-                ->withrejected($rejected);
+                ->withrejected($rejected)
+                ->withgetdata($getdata);
 
     }
 

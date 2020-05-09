@@ -29,7 +29,8 @@
 <link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 
   <!-- animate css -->
-
+<!-- custom css -->
+<link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 <body>
@@ -47,7 +48,6 @@
         </div>
       </div>
     </form>
-
 
 
     <!-- Right navbar links -->
@@ -454,7 +454,6 @@
                   @switch(Auth::user()->role)
                     @case('Transport Officer')
                      <h1 class="animated  bounce">Transport Officer's Dashboard</h1>
-
                      @break
                     @case('Admin')
                      <h1 class="animated  bounce">Admin's Dashboard</h1>
@@ -526,7 +525,11 @@
       $('.reject-btn').show();
 
     });
-    
+
+    //shows and hides the attachments
+    $('.add-attachments').click(function(){
+      $('.attachments').fadeToggle();
+    });
 } );
 </script>
 @yield('scripts')

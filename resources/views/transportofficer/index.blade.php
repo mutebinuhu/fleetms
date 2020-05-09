@@ -22,6 +22,9 @@
 						    <li class="nav-item"tra>
 						    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-rejected" role="tab" aria-controls="pills-contact" aria-selected="false">Rejected</a>
 						  </li>
+						  <li class="nav-item">
+						    <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Request</button>
+						  </li>
 					</ul>
 					<div class="tab-content" id="pills-tabContent">
 						 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -430,7 +433,66 @@
 				<!-- /tabs -->
 			</div>
 		<!-- /card -->
+		<!-- request modal -->
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  		<div class="modal-dialog" role="document">
+    		<div class="modal-content">
+      		<div class="modal-header">
+        		<h5 class="modal-title" id="exampleModalLabel">Create Request</h5>
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          		<span aria-hidden="true">&times;</span>
+        		</button>
+      		</div>
+      		<div class="modal-body">
+        		 <div class="container">
+                    <div class="row">
+                      <div class=" col-sm-12  col-12  col-md-12 col-lg-12">
+                        <!-- form -->
+                          <form method="POST" action="{{ route('requests.store') }}" autocomplete="off" >
+                            @csrf
+                              <div class="form-row">
+                                 <div class="form-group col-md-12">
+                                    <label>Reg No:</label>
+                                    <select class="select2 custom-select custom-select-lg mb-3 @error('reg_no') is-invalid @enderror" name="vehicle_id">
+                                    <option></option>
+                                    @foreach($getdata as $regno)
+                                    <option value="{{$regno->vehicle_id}}">{{$regno->reg_no}}</option>
+                                    @endforeach
+                                    </select>
+                                    @error('reg_no')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                 </div>
+                               </div>
+                               <div class="form-row">
+                                  <div class="form-group col-12 col-md-12 col-lg-12">
+                                      <label for="description">Request Description</label>
+                                      <textarea class="form-control @error('description') is-invalid @enderror" name="description"rows="3"></textarea>
+                                  </div>
+                                   @error('description')
+                                      <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
+                              </div>
+                              <div class="modal-footer">
+        						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        						<button type="submit" class="btn btn-primary">Save changes</button>
+      						</div>
+                          </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /request form -->
 
+      		</div>
+    		</div>
+  		</div>
+		</div>
+		<!-- /request modal -->
 		</div>
 	<!-- row -->
 	</div>

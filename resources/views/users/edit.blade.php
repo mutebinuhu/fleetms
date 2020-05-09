@@ -1,4 +1,4 @@
-@extends('layouts.dashboard)
+@extends('layouts.dashboard')
 @section('content')
 	<div class="content">
 		<div class="row">
@@ -9,8 +9,8 @@
                   <img class="profile-user-img img-fluid img-circle" src="https://image.shutterstock.com/image-vector/avatar-vector-male-profile-gray-260nw-538707355.jpg">
                 </div>
                   <form method="POST" action="{{ route('users.update', $edituser->id) }}" autocomplete="off" >
-                  {{ method_field('PATCH')}}
                   @csrf
+                  {{ method_field('PATCH')}}
                   <div class="form-row">
                      <div class="form-group col-md-6">
                         <label for="first name">First Name</label>
@@ -45,9 +45,9 @@
                          <label for="role">Role</label>
                             <select id="role" class="form-control  @error('role') is-invalid @enderror" name="role">
                                 <option>{{$edituser->role}}</option>
-                                <option>to</option>
-                                <option>admin</option>
-                                <option>driver</option>
+                                <option>Transport Officer</option>
+                                <option>Admin</option>
+                                <option>Driver</option>
 
                             </select>
                         @error('role')
@@ -73,7 +73,7 @@
                      </div>
                   </div>
                   <button type="submit" name="submit" class="btn btn-primary">Update</button>
-                  <a  href={{url('/users')}} class="btn btn-default">Back</a>
+                  <a  href="{{url('/users')}}" class="btn btn-default">Back</a>
 
                </form>
                <form method="POST" action="{{route('users.destroy', $edituser->id)}}" class="my-5">

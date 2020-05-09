@@ -100,14 +100,20 @@
                     <b>Phone</b> <a class="float-right">{{Auth::user()->phone_number}}</a>
                   </li>
                   <li class="list-group-item">
+                  @if(Auth::user()->role == 'Transport Officer')
+                  @else
                     <b>Reg No</b> 
+                  @endif
                     <a class="float-right">
-                       @if($getdata->isEmpty())
-                          no vehicle allocated yet
-                       @endif
+                       @if(Auth::user()->role == 'Transport Officer')
+                       @else
+                         @if($getdata->isEmpty())
+                            no vehicle allocated yet
+                         @endif
                        @foreach($getdata as $data)
                           <p>{{$data->reg_no}}</p>
                         @endforeach
+                      @endif
                     </a>
                   </li>
                 </ul>
@@ -174,7 +180,7 @@
 
                           <div class="timeline-footer">
                             @if($request->status == 1)
-                             <a href="#" class="btn btn-primary btn-sm">Download</a>
+                             <a href="{{action('requestscontroller@download', $request->id)}}" class="btn btn-primary btn-sm">Download</a>
                             @endif
                           </div>
                         </div>

@@ -102,6 +102,23 @@
 
                         </div>
                     </div>
+                      <div class="text-center add-attachments">
+                        <h3>Upload Attachments</h3>
+                    </div>
+                    <div class="attachments">  
+                        <div class="form-group row">
+                                <label for="year" class="col-sm-2 col-form-label">LogBook</label> 
+                        <div class="col-sm-10">
+                            <input type="file" name="log_book">   
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="year" class="col-sm-2 col-form-label">Psv Certificate</label> 
+                        <div class="col-sm-10">
+                            <input type="file" name="psv_certificate">   
+                        </div>
+                    </div>  
+                </div>
                      <div class="modal-footer">
                     <a href="{{url('/vehicles')}}"  class="btn btn-secondary">Cancel</a>
                     <button name="submit" class="btn btn-primary" type="submit">submit</button>

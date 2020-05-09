@@ -12,3 +12,7 @@
 .rejectform{
 	display: none;
 }
+/*hides the attachements by default*/
+.attachments{
+	display: none;
+}
