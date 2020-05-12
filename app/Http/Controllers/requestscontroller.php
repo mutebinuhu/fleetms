@@ -70,6 +70,9 @@ class requestscontroller extends Controller
                     ->where('status',2)
                     ->where('created_by',  Auth::id())
                     ->get());
+        //retrieving repairs list from repairsTable
+        $repairs = DB::table('repairsList')
+                    ->get();
         
         return view('requests.dashboard')
                 ->withgetdata($getdata)
@@ -80,6 +83,7 @@ class requestscontroller extends Controller
                 ->withapproved($approved)
                 ->withpending($pending)
                 ->withrejected($rejected);
+                ->withrepairs($repairs);
         }
 
     public function index()

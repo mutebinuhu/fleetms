@@ -62,3 +62,7 @@ Route::get('underrepair/', 'transportofficercontroller@underRepairVehicles');
 Route::get('queries/vehiclesunderrepair', 'queriesController@underRepairVehicles');
 /*end queries*/
 
+/*settings*/
+Route::get('/settings', 'SettingsController@index');
+Route::resource('status', 'StatusController');
+
