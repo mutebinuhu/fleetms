@@ -16,10 +16,10 @@ class requestCreated extends Mailable
      *
      * @return void
      */
-    public function __construct($request)
+    public function __construct()
     {
         //
-        $this->request=$request;
+       // $this->request=$request;
     }
 
     /**
@@ -29,6 +29,6 @@ class requestCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.requestcreated');
+      //  return $this->markdown('emails.requestcreated');
     }
 }

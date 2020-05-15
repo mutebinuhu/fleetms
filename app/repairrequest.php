@@ -1,12 +1,14 @@
 <?php
 
 namespace App;
+use Illuminate\Notifications\Notifiable;
 
 use Illuminate\Database\Eloquent\Model;
 
 class repairrequest extends Model
 {
     //
+    use Notifiable;
     protected $fillable = ['description', 'vehicle_id', 'user_id','status', 'created_by', 'reason', 'status_by', 'repair_name', 'cost'];
 
 	public function user()

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Mail\requestCreated;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Auth;
@@ -9,6 +8,7 @@ use vehicle;
 use App\repairrequest;
 use vehicleallocation;
 use reject;
+use App\Notifications\RequestCreated;
 
 
 
@@ -140,11 +140,14 @@ class requestscontroller extends Controller
             'cost'=>3000
         );
         //mail request creater
+     $email = repairrequest::create($formdata);
+     $email->findOrFail($createdBy)->notify(new RequestCreated);
 
-       $email = repairrequest::create($formdata);
-       \Mail::to($email->user->email)->send(
+       /*  \Mail::to($email->user->email)->send(
             new requestCreated($email)
        );
+       */
+
         return redirect('/requests/dashboard')
                 ->with('status', 'request sent');
                 
@@ -203,7 +206,17 @@ class requestscontroller extends Controller
         $update->status = $request->get('status');
         $update->status_by=$request->get('status_by');
         $update->reason =$request->get('reason');
-
+        /*check the updated status to fite the approprate notifications message*/
+        $checkStatus = "";
+        switch ($update->status = $request->get('status');) {
+            case 1:
+                # code...
+                break;
+            
+            default:
+                # code...
+                break;
+        }
         $update->save();
         /*check the status type and output the desired message */
         $check = "";
@@ -218,7 +231,6 @@ class requestscontroller extends Controller
                 $check =  "Repair request kept InView";
                 break;
             default:
-                # code...
                 break;
             return $check;
         }
