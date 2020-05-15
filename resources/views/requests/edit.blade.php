@@ -1,4 +1,5 @@
-@extends('layouts.dashboard') @section('content')
+@extends('layouts.dashboard')
+@section('content')
 <!-- section -->
 <div class="content">
     <!-- row -->
@@ -82,13 +83,17 @@
                                     <button class="btn btn-danger btn-block">Request Rejected</button>
                                     @else
                                     <div class="form-group">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="status" id="status" value="1" onclick="this.form.submit()">
-                                        <label class="form-check-label text-success" for="status">Approve</label>
-                                    </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="status" id="status" value="1" onclick="this.form.submit()">
+                                            <label class="form-check-label text-success" for="status">Approve</label>
+                                        </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input reject" type="radio" name="status" id="status" value="2">
                                         <label class="form-check-label text-danger" for="status">Reject</label>
+                                    </div>
+                                     <div class="form-check form-check-inline">
+                                        <input class="form-check-input reject" type="radio" name="status" id="status" value="3">
+                                        <label class="form-check-label text-warning" for="status">Keep In View</label>
                                     </div>
                                     <div class="form-group reject-section" style="display: none">
                                         <label for="email" class="">Reason:</label>

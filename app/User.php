@@ -56,5 +56,6 @@ class User extends Authenticatable
         return $getdata;
     }
 
+
     
 }

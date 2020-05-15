@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\requestCreated;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Auth;
@@ -29,25 +30,31 @@ class requestscontroller extends Controller
 
         //counting requests
         $countRequests = DB::table('repairrequests')
-                         ->where('created_by','=',Auth::id())
+                         ->where('user_id','=',Auth::id())
                          ->get()
                          ->count();
+
         //pending
          $pending = DB::table('repairrequests')
                          ->where('status', 0)
-                         ->where('created_by','=',Auth::id())
+                         ->where('user_id','=',Auth::id())
                          ->get();
         //approved
         $approved = DB::table('repairrequests')
                          ->where('status', 1)
-                         ->where('created_by','=',Auth::id())
+                         ->where('user_id','=',Auth::id())
                          ->get();
         //counting pending requests
         $countPending = count($pending);
         //counting approved                 
         $countApproved = DB::table('repairrequests')
                          ->where('status', 1)
-                         ->where('created_by','=',Auth::id())
+                         ->where('user_id','=',Auth::id())
+                         ->get()
+                         ->count();
+        $rejected =  DB::table('repairrequests')
+                         ->where('status', 2)
+                         ->where('user_id','=',Auth::id())
                          ->get()
                          ->count();
 
@@ -62,13 +69,13 @@ class requestscontroller extends Controller
         $requestHistory= DB::table('repairrequests')
                             ->join('vehicles', 'vehicles.id','=','repairrequests.vehicle_id')
                             ->select('vehicles.reg_no','repairrequests.*')
-                            ->where('repairrequests.created_by','=',Auth::id())
+                            ->where('repairrequests.user_id','=',Auth::id())
                             ->latest()
-                            ->get();
+                            ->paginate(2);
         //rejected requests
         $rejected = count(DB::table('repairrequests')
                     ->where('status',2)
-                    ->where('created_by',  Auth::id())
+                    ->where('user_id',  Auth::id())
                     ->get());
         //retrieving repairs list from repairsTable
         $repairs = DB::table('repairsList')
@@ -82,7 +89,7 @@ class requestscontroller extends Controller
                 ->withrequestHistory($requestHistory)
                 ->withapproved($approved)
                 ->withpending($pending)
-                ->withrejected($rejected);
+                ->withrejected($rejected)
                 ->withrepairs($repairs);
         }
 
@@ -105,7 +112,7 @@ class requestscontroller extends Controller
                     ->get();
         //count request
         $countRequests = DB::table('repairrequests')
-                         ->where('created_by','=',Auth::id())
+                         ->where('user_id','=',Auth::id())
                          ->get()
                          ->count();
         return view('requests.create')
@@ -116,22 +123,31 @@ class requestscontroller extends Controller
     public function store(Request $request)
     {
         //
+         
+
         $createdBy=Auth::id();
         $request->validate([
 
            'description'=>'required',
-           'vehicle_id'=>'required'
+           'vehicle_id'=>'required',
 
         ]);
         $formdata = array(
             'description'=>$request->description,
             'vehicle_id'=>$request->vehicle_id,
-            'created_by'=>$createdBy      
+            'user_id'=>$createdBy,
+            'repair_name'=>$request->repair_name,
+            'cost'=>3000
         );
+        //mail request creater
 
-        repairrequest::create($formdata);
+       $email = repairrequest::create($formdata);
+       \Mail::to($email->user->email)->send(
+            new requestCreated($email)
+       );
         return redirect('/requests/dashboard')
                 ->with('status', 'request sent');
+                
     }
 
     /**
@@ -144,7 +160,7 @@ class requestscontroller extends Controller
     {
              /* $print =DB::table('repairrequests')
                     ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
-                    ->join('users','users.id','=','repairrequests.created_by')
+                    ->join('users','users.id','=','repairrequests.user_id')
                     ->where('repairrequests.id','=',$id)
                     ->select('vehicles.reg_no', 'vehicles.make', 'vehicles.type', 'vehicles.mileage', 'repairrequests.*', 'users.sur_name','users.first_name')
                     ->get();
@@ -162,10 +178,11 @@ class requestscontroller extends Controller
         //
         $show =DB::table('repairrequests')
                     ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
-                    ->join('users','users.id','=','repairrequests.created_by')
+                    ->join('users','users.id','=','repairrequests.user_id')
                     ->where('repairrequests.id','=',$id)
                     ->select('vehicles.reg_no', 'vehicles.make', 'vehicles.type', 'vehicles.mileage', 'repairrequests.*', 'users.sur_name','users.first_name')
                     ->get();
+
 
 
         return view('requests.edit')
@@ -188,7 +205,25 @@ class requestscontroller extends Controller
         $update->reason =$request->get('reason');
 
         $update->save();
-        return redirect('/transportofficer')->with('status', 'Repair request approved');
+        /*check the status type and output the desired message */
+        $check = "";
+        switch ($update->status = $request->get('status')) {
+            case 1:
+                $check =  "Repair request approved";
+                break;
+            case 2:
+                $check =  "Repair request rejected";
+                break;
+            case 3:
+                $check =  "Repair request kept InView";
+                break;
+            default:
+                # code...
+                break;
+            return $check;
+        }
+
+        return redirect('/transportofficer')->with('status', $check);
 
     }
 
@@ -207,7 +242,7 @@ class requestscontroller extends Controller
     {
             $download =DB::table('repairrequests')
                     ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
-                    ->join('users','users.id','=','repairrequests.created_by')
+                    ->join('users','users.id','=','repairrequests.user_id')
                     ->where('repairrequests.id','=',$id)
                     ->select('vehicles.reg_no', 'vehicles.make', 'vehicles.type', 'vehicles.mileage', 'vehicles.eng_no', 'vehicles.year', 'repairrequests.*', 'users.sur_name','users.first_name')
                     ->get();

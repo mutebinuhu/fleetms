@@ -201,12 +201,17 @@
                             <h3 class="timeline-header"><a href="#">{{Auth::user()->sur_name}}</a> your request is approved</h3> 
                           @elseif($request->status == 2)
                              <h3 class="timeline-header"><a href="#">{{Auth::user()->sur_name}}</a> your request is rejected</h3> 
+                           @elseif($request->status == 3)
+                             <h3 class="timeline-header"><a href="#">{{Auth::user()->sur_name}}</a> your request is Kept InView</h3> 
                           @endif
                         </div>
                       </div>
                @endforeach
+
                       <!-- END timeline item -->
               </div>
+              {{$requestHistory->links()}}
+              
               </div>
             </div>
             <!-- /card -->
@@ -221,7 +226,7 @@
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Send Request</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                  <span aria-hidden="true">&times;</span>    
                 </button>
               </div>
               <div class="modal-body">
@@ -234,7 +239,7 @@
                             @csrf
                               <div class="form-row">
                                  <div class="form-group col-md-12">
-                                    <label>Reg No:</label>
+                                    <label id="demo">Reg No:</label>
                                     <select class="select2 custom-select custom-select-lg mb-3 @error('reg_no') is-invalid @enderror" name="vehicle_id">
                                     <option></option>
                                     @foreach($getdata as $regno)
@@ -249,8 +254,21 @@
                                  </div>
                                </div>
                                <div class="form-row">
+                                 <div class="form-group col-md-12">
+                                    <label>Repairs List:</label>
+                                    @foreach($repairs as $repair)
+                                      <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="{{$repair->name}}" id="checkbox" name="repair_name">
+                                      <label class="form-check-label" for="checkbox">
+                                        {{$repair->name}}
+                                      </label>
+                                    </div>
+                                    @endforeach
+                                 </div>
+                               </div>
+                               <div class="form-row">
                                   <div class="form-group col-12 col-md-12 col-lg-12">
-                                      <label for="description">Request Description</label>
+                                      <label for="description">Request Description:</label>
                                       <textarea class="form-control @error('description') is-invalid @enderror" name="description"rows="3"></textarea>
                                   </div>
                                    @error('description')

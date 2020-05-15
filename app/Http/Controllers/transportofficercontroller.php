@@ -25,7 +25,7 @@ class transportofficercontroller extends Controller
     	//requests details
     	$requests = DB::table('repairrequests')
     					->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
-    					->join('users','users.id','=','repairrequests.created_by')
+    					->join('users','users.id','=','repairrequests.user_id')
     					->select('vehicles.reg_no', 'vehicles.type', 'repairrequests.id','repairrequests.description','repairrequests.status','users.first_name','users.sur_name','repairrequests.created_at')
                         ->where('repairrequests.status', '=',  0)
     					->latest()

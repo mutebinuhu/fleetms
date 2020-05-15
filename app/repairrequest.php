@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class repairrequest extends Model
 {
     //
-    protected $fillable = ['description', 'vehicle_id', 'created_by','status', 'created_by', 'reason', 'status_by' ];
+    protected $fillable = ['description', 'vehicle_id', 'user_id','status', 'created_by', 'reason', 'status_by', 'repair_name', 'cost'];
 
-    public function request()
-    {
-    	return $this->hasMany(vehicle::class);
-    }
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
+	  
+  
 }
