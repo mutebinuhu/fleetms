@@ -9,8 +9,7 @@ use App\repairrequest;
 use vehicleallocation;
 use reject;
 use App\Notifications\RequestCreated;
-
-
+use App\Notifications\ChangeStatusNotification;
 
 class requestscontroller extends Controller
 {
@@ -185,9 +184,6 @@ class requestscontroller extends Controller
                     ->where('repairrequests.id','=',$id)
                     ->select('vehicles.reg_no', 'vehicles.make', 'vehicles.type', 'vehicles.mileage', 'repairrequests.*', 'users.sur_name','users.first_name')
                     ->get();
-
-
-
         return view('requests.edit')
                     ->withshow($show);
     }
@@ -202,21 +198,13 @@ class requestscontroller extends Controller
     public function update(Request $request, $id)
     {
         //
+
         $update = repairrequest::whereid($id)->firstorFail();
         $update->status = $request->get('status');
         $update->status_by=$request->get('status_by');
         $update->reason =$request->get('reason');
-        /*check the updated status to fite the approprate notifications message*/
-        $checkStatus = "";
-        switch ($update->status = $request->get('status');) {
-            case 1:
-                # code...
-                break;
-            
-            default:
-                # code...
-                break;
-        }
+        $update->save();
+        $update->findOrFail(Auth::id())->notify(new ChangeStatusNotification);
         $update->save();
         /*check the status type and output the desired message */
         $check = "";
@@ -234,7 +222,6 @@ class requestscontroller extends Controller
                 break;
             return $check;
         }
-
         return redirect('/transportofficer')->with('status', $check);
 
     }

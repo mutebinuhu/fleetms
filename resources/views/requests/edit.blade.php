@@ -105,6 +105,7 @@
                                         <input type="hidden" name="status_by" value="{{Auth::id()}}">
                                         <button class="btn btn-danger my-2">Submit</button>
                                     </div>
+                                    <input type="hidden" name="owner" value="{{Auth::id()}}">
                                 </div>
                                     @endif
                                 <!-- /shoe the rejected button if status is rejected -->
