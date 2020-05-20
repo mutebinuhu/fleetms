@@ -27,7 +27,6 @@ class transportofficercontroller extends Controller
     					->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
     					->join('users','users.id','=','repairrequests.user_id')
     					->select('vehicles.reg_no', 'vehicles.type', 'repairrequests.id','repairrequests.description','repairrequests.status','users.first_name','users.sur_name','repairrequests.created_at')
-                        ->where('repairrequests.status', '=',  0)
     					->latest()
     					->get();
                         
@@ -43,8 +42,13 @@ class transportofficercontroller extends Controller
         $countapproved = count(DB::table('repairrequests')->get()
                         ->where('status', 1));
         //rejected
-        $rejected = DB::table('repairrequests')->get()
-                        ->where('status', 2);
+        $rejectedRequests = DB::table('repairrequests')
+                        ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
+                        ->join('users','users.id','=','repairrequests.user_id')
+                        ->select('vehicles.reg_no', 'vehicles.type', 'repairrequests.id','repairrequests.description','repairrequests.status','users.first_name','users.sur_name','repairrequests.created_at')
+                        ->where('repairrequests.status', '=',  2)
+                        ->get();
+                        
         //returns allocations
         $getdata = DB::table('vehicleallocations')
                     ->join('vehicles', 'vehicles.id', '=', 'vehicleallocations.vehicle_id')
@@ -52,14 +56,23 @@ class transportofficercontroller extends Controller
                     ->where('vehicleallocations.officer_id','=', Auth::id())
                     ->latest()
                     ->get();
-
+        $rejected = DB::table('repairrequests')->get()
+                        ->where('status', 2);
+        $allRequests = DB::table('repairrequests')
+                        ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
+                        ->join('users','users.id','=','repairrequests.user_id')
+                        ->select('vehicles.reg_no', 'vehicles.type', 'repairrequests.id','repairrequests.description','repairrequests.status','users.first_name','users.sur_name','repairrequests.created_at')
+                        ->latest()
+                        ->get();
         return view('transportofficer.index')
         		->withpendingRequests($pendingRequests)
         		->withrequests($requests)
                 ->withcountrejected($countrejected)
                 ->withcountapproved($countapproved)
                 ->withrejected($rejected)
-                ->withgetdata($getdata);
+                ->withgetdata($getdata)
+                ->withrejectedRequests($rejectedRequests)
+                ->withallRequests($allRequests);
 
     }
 

@@ -51,11 +51,7 @@ class requestscontroller extends Controller
                          ->where('user_id','=',Auth::id())
                          ->get()
                          ->count();
-        $rejected =  DB::table('repairrequests')
-                         ->where('status', 2)
-                         ->where('user_id','=',Auth::id())
-                         ->get()
-                         ->count();
+
 
         //returns allocations
         $getdata = DB::table('vehicleallocations')
@@ -89,7 +85,8 @@ class requestscontroller extends Controller
                 ->withapproved($approved)
                 ->withpending($pending)
                 ->withrejected($rejected)
-                ->withrepairs($repairs);
+                ->withrepairs($repairs)
+                ->withrejectedRequests($rejectedRequests);
         }
 
     public function index()
@@ -236,7 +233,7 @@ class requestscontroller extends Controller
     {
         //
     }
-
+    //downloads the request form
     public function download($id)
     {
             $download =DB::table('repairrequests')
@@ -249,4 +246,19 @@ class requestscontroller extends Controller
         return view('requests.printout')
                     ->withdownload($download);
     }
+
+    //Approved()/Pending MoWT
+    public function pendinglporequests()
+    {
+                $pendingLporequests = DB::table('repairrequests')
+                        ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
+                        ->join('users','users.id','=','repairrequests.user_id')
+                        ->select('vehicles.reg_no', 'vehicles.type', 'repairrequests.id','repairrequests.description','repairrequests.status','users.first_name','users.sur_name','repairrequests.created_at')
+                        ->where('repairrequests.status', '=',  1)
+                        ->latest()
+                        ->get();
+        return view('transportofficer.index')
+                    ->withpendingLpoRequests($pendingLporequests);
+    }
+  
 }

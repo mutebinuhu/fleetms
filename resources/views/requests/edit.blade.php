@@ -74,8 +74,33 @@
                                 </div>
                                 @if($show->status == 1)
                                 <div class="form-group">
-                                    <button class="btn btn-success">Repair Request Approved</button>
+                                    <button class="btn btn-success" type="button">Repair Request Approved</button>
                                     <a href="{{action('requestscontroller@download', $show->id)}}" class="btn btn-info">Download</a>
+                                </div>
+                                @elseif($show->status == 3)
+                                <div class="form-group">
+                                    <button class="btn btn-secondary" type="button">Repair Request Kept Inview</button>
+                                        <div class="form-group">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="status" id="status" value="1" onclick="this.form.submit()">
+                                            <label class="form-check-label text-success" for="status">Approve</label>
+                                        </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input reject" type="radio" name="status" id="status" value="2">
+                                        <label class="form-check-label text-danger" for="status">Reject</label>
+                                    </div>
+                                    <div class="form-group reject-section" style="display: none">
+                                        <label for="email" class="">Reason:</label>
+                                        <textarea class="form-control @error('description') is-invalid @enderror" id="Textarea1" rows="3" name="reason" placeholder="write something"></textarea>
+                                        @error('reason')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span> @enderror
+                                        <input type="hidden" name="status_by" value="{{Auth::id()}}">
+                                        <button class="btn btn-danger my-2">Submit</button>
+                                    </div>
+                                    <input type="hidden" name="owner" value="{{Auth::id()}}">
+                                </div>
                                 </div>
                                 @else
                                 <!-- shows the rejected button if status is rejected -->
@@ -110,7 +135,13 @@
                                     @endif
                                 <!-- /shoe the rejected button if status is rejected -->
                                 @endif
+                                <!-- checks if the request is approved and the mowt lpo form is uploaded or not -->
                             </form>
+                                @if($show->status == 1)
+                                    <label>upload LPO</label>
+                                    <input type="file" name="file" value="upload LPO">
+                                    <button name="submit" type="submit">Upload</button>
+                                @endif
                             <!-- /form -->
                         </div>
                         <!-- /description form -->

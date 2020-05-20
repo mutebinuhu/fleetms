@@ -137,7 +137,21 @@
 
 					                      <td>
 					                    
-					                      	<p class="bg-warning bg-warning text-center"><i class="fas fa-pause"> </i> In Progress</p>
+					                      @switch($request->status)
+					                      		@case(0)
+					                      				<p class="bg-warning bg-warning text-center"><i class="fas fa-pause"> </i>  New Request</p>
+					                      				@break
+					                      		@case(1)
+					                      				<p class="bg-info text-center"><i class="fas fa-pause"> </i>   Approved</p>
+					                      				@break
+					                      		@case(2)
+					                      				<p class="bg-danger text-center"><i class="fas fa-pause"> </i>  Rejected</p>
+					                      				@break
+					                      		@case(3)
+					                      				<p class="bg-secondary text-center"><i class="fas fa-pause"> </i>Kept Inview</p>
+					                      				@break
+
+					                      @endswitch
 					                      		
 					                      </td>
 					                      <td class="text-center">
@@ -188,7 +202,11 @@
 							              <div class="icon">
 							                  <i class="fab fa-joget"></i>
 							              </div>
-							              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+							              <!-- this triggers the modal to show the pendingLporequests  the modal is down-->
+							              <a href="#" class="small-box-footer"  data-toggle="modal" data-target="#pendinglporequests">More info <i class="fas fa-arrow-circle-right"></i>
+							              </a>
+							              <!-- /this triggers the modal to show the pendingLporequests -->
+
 							         </div>
 									<!-- /small box -->
 								</div>
@@ -211,7 +229,6 @@
 									  <div class="small-box bg-danger">
 							              <div class="inner">
 							                <h3>0</h3>
-
 							                <p>Pending Payment</p>
 							              </div>
 							              <div class="icon">
@@ -254,7 +271,7 @@
 					                  	@endif
 					                  	@foreach($requests as $request)
 					                  	<!--checks to output only pending status-->
-					                  	@if($request->status == 0)
+					                  	@if($request->status == 1)
 					                    <tr>
 					                      <td>{{$request->id}}</td>
 					                      <td>{{$request->first_name . " " . $request->sur_name}}</td>
@@ -265,8 +282,8 @@
 					                      	 ?>
 					                      </td>
 					                      <td>
-					                      	@if($request->status == 0)
-					                      	<p class="bg-warning bg-warning-lg text-center"><i class="fas fa-pause"> </i>Pending</p>
+					                      	@if($request->status == 1)
+					                      	<p class="bg-warning bg-warning-lg text-center"><i class="fas fa-pause"> </i> Pending LPO</p>
 					                      	@endif
 					                      </td>
 					                      <td class="text-center">
@@ -361,72 +378,47 @@
 						<!-- /end approved requests -->
 						<!-- rejected -->
 						<div class="tab-pane fade" id="pills-rejected" role="tabpanel" aria-labelledby="pills-contact-tab">
-							<div class="row">
-						          <div class="col-12">
-						            <div class="card">
-						              <div class="card-header">
+							<div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Rejected Requests</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                       <th>ID</th>
+	                   <th>Name</th>
+	                   <th>Reg No</th>
+	                   <th>Date</th>
+	                   <th>Status</th>
+	                </tr>
+                  </thead>
+                  <tbody>
+                   @foreach($rejectedRequests as $reject)
+                    <tr>
+                    	<td>{{$reject->id}}</td>
+                    	<td>{{$reject->sur_name ." " . $reject->first_name}}</td>
+                    	<td>{{$reject->reg_no}}</td>
+                    	<td>
+                    		<?php $date=date_create($request->created_at);
+                              echo date_format($date, "d/m/Y"); ?> 	
+                        </td>
+                        <td>
+                        	@if($reject->status == 2)
+                        	<p>Rejected</p>
+                        	@endif
+                        </td>
 
-						                <div class="card-tools">
-						                  <div class="input-group input-group-sm" style="width: 150px;">
-						                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-						                    <div class="input-group-append">
-						                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-						                    </div>
-						                  </div>
-						                </div>
-						              </div>
-						              <!-- /.card-header -->
-						              <div class="card-body table-responsive p-0">
-						                <table class="table table-hover text-nowrap">
-					                  <thead>
-					                    <tr>
-					                      <th>ID</th>
-					                      <th>Name</th>
-					                      <th>Date</th>
-					                      <th>Status</th>
-					                      <th class="text-center">Action</th>
-					                    </tr>
-					                  </thead>
-					                  <tbody>
-					                  	@if($requests->isEmpty())
-					                  	<p>No Requests</p>
-					                  	@endif
-					                  	@foreach($requests as $request)
-					                  	<!--checks to output only pending status-->
-					                  	@if($request->status == 2)
-					                    <tr>
-					                      <td>{{$request->id}}</td>
-					                      <td>{{$request->first_name . " " . $request->sur_name}}</td>
-					                      <td>
-					                      	<?php
-					                      		 $date = date_create($request->created_at);
-					                      		 echo date_format($date, "d/m/Y");
-					                      	 ?>
-					                      </td>
-					                      <td>
-					                      	@if($request->status == 2)
-					                      	<p class="bg-danger bg-succe-lg text-center"><i class="far fa-thumbs-down mr-2"></i>Rejected</p>
-					                      	@endif
-					                      </td>
-					                      <td class="text-center">
-					                      	<a class="btn btn-primary btn-sm" href="{{action('requestscontroller@edit', $request->id)}}">
-				                              <i class="fas fa-folder"></i> View
-                         				 	</a>
-                         				 </td>
-					                    </tr>
-					                    @endif
-					                  	<!--checks to output only pending status-->
-					                    @endforeach
-					                  </tbody>
-					                </table>
-						              </div>
-						              <!-- /.card-body -->
-						            </div>
-						            <!-- /.card -->
-						          </div>
-						        </div>
-							</div>
+                    </tr> 
+                   @endforeach 
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+		</div>
 						<!-- /rejected -->
 					</div>
 				</div>
@@ -487,7 +479,6 @@
                     </div>
                   </div>
                   <!-- /request form -->
-
       		</div>
     		</div>
   		</div>
@@ -495,6 +486,68 @@
 		<!-- /request modal -->
 		</div>
 	<!-- row -->
+<!-- pending lpo -->
+<!-- Modal -->
+<div class="modal fade" id="pendinglporequests" tabindex="-1" role="dialog" aria-labelledby="pendinglporequests" aria-hidden="true">
+  <div class="modal-dialog  modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pendinglporequests">Pendng  LPO Requests</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     		<!-- lpo table -->
+     		<div class="card">
+              <div class="card-body p-0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                       <th>ID</th>
+	                   <th>Name</th>
+	                   <th>Reg No</th>
+	                   <th>Date</th>
+	                   <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($allRequests as $pendingLpoRequest)
+		                    <tr>
+		                    	@if($pendingLpoRequest->status==1)
+		                    	<?php $x = count($pendingLpoRequest->status==1) ?>
+		                    	<td>{{$pendingLpoRequest->id}}</td>
+		                    	<td>{{$pendingLpoRequest->sur_name . " " . $pendingLpoRequest->first_name}}</td>
+		                    	<td>{{$pendingLpoRequest->reg_no}}</td>
+		                    	 <td>
+					                 <?php $date=date_create($request->created_at);
+                                      echo date_format($date, "d/m/Y"); ?>	
+                                 </td>
+                                 <td>
+                                 	<a href="{{action('requestscontroller@edit', $request->id)}}" class="btn bg-info">Upload Lpo</a>
+                                 </td>
+		                    	@endif
+		                    </tr>
+                    @endforeach
+                     
+                                        
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+     		<!-- /lpo table -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 	</div>
+	<!-- /pending lpo -->
 	<!-- /content -->
+	<!-- Large modal -->
+
+
 @endsection

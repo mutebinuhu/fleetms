@@ -4,3 +4,4 @@ Requests
 1 = Approved()/Pending MoWT
 2 = Rejected
 3 = Keep InView
+4 = Pending MoWT Request Verification
