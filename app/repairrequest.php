@@ -9,7 +9,7 @@ class repairrequest extends Model
 {
     //
     use Notifiable;
-    protected $fillable = ['description', 'vehicle_id', 'user_id','status', 'created_by', 'reason', 'status_by', 'repair_name', 'cost'];
+    protected $fillable = ['description', 'vehicle_id', 'user_id','status', 'created_by', 'reason', 'status_by', 'repair_name', 'cost', 'mowt_verification_form'];
 
 	public function user()
 	{

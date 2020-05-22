@@ -5,3 +5,12 @@ Requests
 2 = Rejected
 3 = Keep InView
 4 = Pending MoWT Request Verification
+5 = Procurement Underway
+		//file upload code
+        $update->status = $request->get('status');
+        $update->status_by=$request->get('status_by');
+        $update->reason =$request->get('reason');
+        $getImage = $request->file('mowt_verification_form');
+        $storeImage = $getImage->getClientOriginalName();
+        $update->mowt_verification_form  = $storeImage;
+        $getImage->move(public_path('/images'), $storeImage);

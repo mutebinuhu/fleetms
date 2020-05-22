@@ -10,6 +10,7 @@ use vehicleallocation;
 use reject;
 use App\Notifications\RequestCreated;
 use App\Notifications\ChangeStatusNotification;
+use store;
 
 class requestscontroller extends Controller
 {
@@ -195,16 +196,15 @@ class requestscontroller extends Controller
     public function update(Request $request, $id)
     {
         //
-
+      
+        
         $update = repairrequest::whereid($id)->firstorFail();
         $update->status = $request->get('status');
         $update->status_by=$request->get('status_by');
         $update->reason =$request->get('reason');
         $update->save();
-        $update->findOrFail(Auth::id())->notify(new ChangeStatusNotification);
-        $update->save();
         /*check the status type and output the desired message */
-        $check = "";
+        $check = ""; 
         switch ($update->status = $request->get('status')) {
             case 1:
                 $check =  "Repair request approved";
@@ -215,6 +215,8 @@ class requestscontroller extends Controller
             case 3:
                 $check =  "Repair request kept InView";
                 break;
+            case 5:
+                $check = "MoWt Form Uploaded";
             default:
                 break;
             return $check;
@@ -260,5 +262,7 @@ class requestscontroller extends Controller
         return view('transportofficer.index')
                     ->withpendingLpoRequests($pendingLporequests);
     }
+
+   
   
 }

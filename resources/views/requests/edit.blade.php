@@ -67,15 +67,21 @@
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                             <!-- description form -->
                             <!-- form -->
-                            <form action="{{route('requests.update', $show->id)}}" method="POST">
-                                {{ method_field('PATCH')}} @csrf
+                            <form action="{{route('requests.update', $show->id)}}" method="POST" enctype="">
+                                {{ method_field('PATCH')}}
+                                 @csrf
                                 <div class="form-group">
-                                    <textarea class="form-control" id="Textarea1" rows="3" readonly="">{{$show->description}}</textarea>
+                                    <textarea class="form-control" id="Textarea1" rows="3" value="{{$show->description}}" name="description" readonly="">{{$show->description}}</textarea>
                                 </div>
                                 @if($show->status == 1)
                                 <div class="form-group">
                                     <button class="btn btn-success" type="button">Repair Request Approved</button>
                                     <a href="{{action('requestscontroller@download', $show->id)}}" class="btn btn-info">Download</a>
+                                    <input type="hidden" name="status_by" value="{{Auth::id()}}">
+                                    <input type="hidden" name="status" value="5"> <br> <br>
+                                     <label>upload LPO</label>
+                                    <input type="file" name="mowt_verification_form">
+                                    <button name="submit" type="submit">Upload</button>
                                 </div>
                                 @elseif($show->status == 3)
                                 <div class="form-group">
@@ -132,16 +138,16 @@
                                     </div>
                                     <input type="hidden" name="owner" value="{{Auth::id()}}">
                                 </div>
+
                                     @endif
                                 <!-- /shoe the rejected button if status is rejected -->
                                 @endif
                                 <!-- checks if the request is approved and the mowt lpo form is uploaded or not -->
+
+                                  
                             </form>
-                                @if($show->status == 1)
-                                    <label>upload LPO</label>
-                                    <input type="file" name="file" value="upload LPO">
-                                    <button name="submit" type="submit">Upload</button>
-                                @endif
+                         
+                             
                             <!-- /form -->
                         </div>
                         <!-- /description form -->
