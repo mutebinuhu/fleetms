@@ -66,3 +66,7 @@ Route::get('queries/vehiclesunderrepair', 'queriesController@underRepairVehicles
 Route::get('/settings', 'SettingsController@index');
 Route::resource('status', 'StatusController');
 
+//documents routes;
+//stores new documents
+Route::post('requests/{request}/documents', 'documentsController@store');
+

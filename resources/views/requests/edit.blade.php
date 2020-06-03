@@ -74,15 +74,26 @@
                                     <textarea class="form-control" id="Textarea1" rows="3" value="{{$show->description}}" name="description" readonly="">{{$show->description}}</textarea>
                                 </div>
                                 @if($show->status == 1)
-                                <div class="form-group">
-                                    <button class="btn btn-success" type="button">Repair Request Approved</button>
-                                    <a href="{{action('requestscontroller@download', $show->id)}}" class="btn btn-info">Download</a>
-                                    <input type="hidden" name="status_by" value="{{Auth::id()}}">
-                                    <input type="hidden" name="status" value="5"> <br> <br>
-                                     <label>upload LPO</label>
-                                    <input type="file" name="mowt_verification_form">
-                                    <button name="submit" type="submit">Upload</button>
-                                </div>
+                                    <form action="" method="POST">
+                                        @csrf
+                                         <div class="form-group">
+                                            <button class="btn btn-success" type="button">Repair Request Approved</button>
+                                            <a href="{{action('requestscontroller@download', $show->id)}}" class="btn btn-info">Download</a>
+
+                                        <div class="form-group">
+                                            <label>Document Name</label>
+                                            <input type="text" name="name" class="form-control">
+
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" name="status_by" value="{{Auth::id()}}">
+                                            <input type="hidden" name="status" value="5"> <br> <br>
+                                             <label>Upload Document</label>
+                                            <input type="file" name="mowt_verification_form">
+                                            <button name="submit" type="submit" class="btn btn-info">Upload</button>
+                                        </div>
+                                    </div>
+                                    </form>
                                 @elseif($show->status == 3)
                                 <div class="form-group">
                                     <button class="btn btn-secondary" type="button">Repair Request Kept Inview</button>

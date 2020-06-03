@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Auth;
+use Document;
 use vehicle;
 use App\repairrequest;
 use vehicleallocation;
@@ -11,6 +12,7 @@ use reject;
 use App\Notifications\RequestCreated;
 use App\Notifications\ChangeStatusNotification;
 use store;
+
 
 class requestscontroller extends Controller
 {
@@ -86,8 +88,8 @@ class requestscontroller extends Controller
                 ->withapproved($approved)
                 ->withpending($pending)
                 ->withrejected($rejected)
-                ->withrepairs($repairs)
-                ->withrejectedRequests($rejectedRequests);
+                ->withrepairs($repairs);
+                
         }
 
     public function index()
@@ -158,13 +160,17 @@ class requestscontroller extends Controller
      */
     public function show($id)
     {
-             /* $print =DB::table('repairrequests')
+               $requestDetails = repairrequest::whereid($id)->firstOrFail();
+               $carAndDriverDetails = DB::table('repairrequests')
                     ->join('vehicles','vehicles.id','=','repairrequests.vehicle_id')
                     ->join('users','users.id','=','repairrequests.user_id')
                     ->where('repairrequests.id','=',$id)
-                    ->select('vehicles.reg_no', 'vehicles.make', 'vehicles.type', 'vehicles.mileage', 'repairrequests.*', 'users.sur_name','users.first_name')
+                    ->select('vehicles.reg_no', 'vehicles.make', 'vehicles.type', 'vehicles.mileage', 'repairrequests.*', 'users.sur_name','users.first_name', 'users.role', 'users.department')
                     ->get();
-                    */
+               return view('requests.show')
+                        ->withrequestDetails($requestDetails)
+                        ->withcarAndDriverDetails($carAndDriverDetails);
+
      }
 
     /**

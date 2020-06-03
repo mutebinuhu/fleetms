@@ -1,4 +1,4 @@
 <p>
 	
-	{{$data->id}}
+	{{$data->descrption}}
 </p>

@@ -12,66 +12,6 @@
           <!-- /errors -->
     <div class="col-md-12">
       <div class="row">
-          <div class="col-lg-3  col-md-3 col-sm-12">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>{{$countRequests}}</h3>
-
-                <p>Requests</p>
-              </div>
-              <div class="icon">
-                  <i class="fab fa-joget"></i>
-              </div>
-              <a href="{{url('#')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-md-3 col-sm-12">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>{{$countPending}}<sup style="font-size: 20px"></sup></h3>
-
-                <p>Pending</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-pause"></i>
-              </div>
-              <a href="{{url('#')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-md-3 col-sm-12">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>{{$countApproved}}</h3>
-                <p>Approved</p>
-              </div>
-              <div class="icon">
-                <i class="far fa-thumbs-up"></i>
-              </div>
-              <a href="{{url('#')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>{{$rejected}}</h3>
-                <p>rejected</p>
-              </div>
-              <div class="icon">
-                <i class="far fa-thumbs-up"></i>
-              </div>
-              <a href="{{url('#')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-        </div>
-          <!-- end tiles -->
-        <!-- row -->
-       <div class="row">
         <!-- profile -->
          <div class="col-md-4 col-lg-4 col-sm-12">
             <div class="card card-primary card-outline">

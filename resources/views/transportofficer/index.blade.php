@@ -156,6 +156,11 @@
 					                      </td>
 					                      <td class="text-center">
 					                      	<a class="btn btn-primary btn-sm" href="{{action('requestscontroller@edit', $request->id)}}">
+				                              <i class="fas fa-eye"></i> Edit
+                         				 	</a>
+                         				 </td>
+                         				   <td class="text-center">
+					                      	<a class="btn btn-primary btn-sm" href="{{action('requestscontroller@show', $request->id)}}">
 				                              <i class="fas fa-eye"></i> View
                          				 	</a>
                          				 </td>
@@ -281,17 +286,19 @@
 					                      		 echo date_format($date, "d/m/Y");
 					                      	 ?>
 					                      </td>
+
 					                      <td>
 					                      	@if($request->status == 1)
 					                      	<p class="bg-warning bg-warning-lg text-center"><i class="fas fa-pause"> </i> Pending LPO</p>
 					                      	@endif
 					                      </td>
 					                      <td class="text-center">
-					                      	<a class="btn btn-primary btn-sm" href="{{action('requestscontroller@edit', $request->id)}}">
+					                      	<a class="btn btn-primary btn-sm" href="{{action('requestscontroller@show', $request->id)}}">
 				                              <i class="fas fa-folder"></i> View
                          				 	</a>
                          				 </td>
 					                    </tr>
+
 					                    @endif
 					                  	<!--checks to output only pending status-->
 					                    @endforeach

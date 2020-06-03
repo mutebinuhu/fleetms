@@ -11,7 +11,7 @@ class Vehicle extends Model
 
     public function requests()
     {
-    	return $this->hasMany(repairrequest::class);
+    	return $this->hasMany(repairrequest::class)->latest();
     }
 
 }
