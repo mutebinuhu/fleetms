@@ -1,52 +1,5 @@
 @extends('layouts.dashboard')
 @section('content')
-	<div class="content">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="card card-primary card-outline my-5">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="https://previews.123rf.com/images/jovanas/jovanas1606/jovanas160600554/59285177-car-icon-with-long-shadow.jpg">
-                </div>
-
-                <h3 class="profile-username text-center">Car Details</h3>
-
-                <p class="text-muted text-center"></p>
-
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Reg No</b> <a class="float-right">{{$singlevehicle->reg_no}}</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Make</b> <a class="float-right">{{$singlevehicle->make}}</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Eng No</b> <a class="float-right">{{$singlevehicle->eng_no}}</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Type</b> <a class="float-right">{{$singlevehicle->type}}</a>
-                  </li><li class="list-group-item">
-                    <b>Mileage</b> <a class="float-right">{{$singlevehicle->mileage}}</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Year</b> <a class="float-right">{{$singlevehicle->year}}</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>created</b> <a class="float-right">
-                       <?php
-                              $date = date_create($singlevehicle->created_at);
-                              echo date_format($date, "d/m/Y");
-                           ?>.
-                    </a>
-                  </li>
-                </ul>
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-			</div>
-		</div>
-	</div>
   <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -95,62 +48,88 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <h4>Recent Requests</h4>
-                  <!-- returns all requests of the vehicle using has many relationship in the vehicle model -->
-               @foreach($singlevehicle->requests as $Details)
-                    <div class="post">
-                      <div class="">
-                        <span class="description">Date <i><span class="text-right text-primary" > <?php
-                              $date = date_create($Details->created_at);
-                              echo date_format($date, "d/m/Y");
-                           ?>.</span></i></span>
-                      </div>
-                      <!-- /.user-block -->
-                      <h3>Description</h3>
-                      <p>
-                       {{$Details->description}}
-                      </p>
+                      <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title">
+                            <i class="fas fa-text-width"></i>
+                           Recent Requests
+                          </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                          @if($singlevehicle->requests->isEmpty())
+                            <p>No Requests Made For This Vehicle Yet</p>
+                          @else
+                          @foreach($singlevehicle->requests as $Details)
+                              <div class="post">
+                                <div class="">
+                                  <span class="description">Date <i><span class="text-right text-primary" > <?php
+                                        $date = date_create($Details->created_at);
+                                        echo date_format($date, "d/m/Y");
+                                     ?>.</span></i></span>
+                                </div>
+                                <!-- /.user-block -->
+                                <h3>Description</h3>
+                                <p>
+                                 {{$Details->description}}
+                                </p>
 
-                      <p>
-                        <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo File 1 v2</a>
-                      </p>
-                    </div>
-                @endforeach  
+                                <!--<p>
+                                  <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo File 1 v2</a>
+                                </p>
+                              -->
+                              </div>
+                            @endforeach  
+                            @endif
+                        </div>
+                        <!-- /.card-body -->
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
-              <h3 class="text-primary"><i class="fas fa-car"> </i> {{$singlevehicle->eng_no}}</h3>
-              <p class="text-muted">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+              <h3 class="text-primary"><i class="fas fa-car"> </i> {{$singlevehicle->reg_no}}</h3>
+              <p class="text-muted">vehicle............</p>
               <br>
               <div class="text-muted">
-                <p class="text-sm">Client Company
-                  <b class="d-block">Deveint Inc</b>
+                <p class="text-sm">Vehicle Make
+                  <b class="d-block">{{$singlevehicle->make}}</b>
                 </p>
-                <p class="text-sm">Project Leader
-                  <b class="d-block">Tony Chicken</b>
+                <p class="text-sm">Vehicle Type
+                  <b class="d-block">{{$singlevehicle->type}}</b>
+                </p>
+                  <p class="text-sm">Vehicle Engine No
+                  <b class="d-block">{{$singlevehicle->eng_no}}</b>
+                </p>  <p class="text-sm">Vehicle Mileage
+                  <b class="d-block">{{$singlevehicle->mileage}}</b>
+                </p>
+                  <p class="text-sm">Vehicle Year
+                  <b class="d-block">{{$singlevehicle->year}}</b>
+                </p>
+                 <p class="text-sm">Vehicle Created
+                  <b class="d-block">
+                      <?php
+                              $date = date_create($singlevehicle->created_at);
+                              echo date_format($date, "d/m/Y");
+                      ?>
+                  </b>
                 </p>
               </div>
-
-              <h5 class="mt-5 text-muted">Project files</h5>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Functional-requirements.docx</a>
+              <h5 class="mt-5 text-muted">Vehicle Files</h5>
+               <!-- documents list -->
+              @if($singlevehicle->document->isEmpty())
+                <p>No Vehicle files Yet</p>
+                @else
+                <ul class="list-unstyled">
+                @foreach($singlevehicle->document as $document)
+                  <li>
+                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i>{{$document->document_name}}</a>
                 </li>
-                <li>
-                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i> UAT.pdf</a>
-                </li>
-                <li>
-                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i> Email-from-flatbal.mln</a>
-                </li>
-                <li>
-                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-image "></i> Logo.png</a>
-                </li>
-                <li>
-                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Contract-10_12_2014.docx</a>
-                </li>
+                @endforeach
               </ul>
-              <div class="text-center mt-5 mb-3">
+               <!--/document list -->
+              @endif
+              <div class="text-left mt-5 mb-3">
                 <a href="#" class="btn btn-sm btn-primary">Add files</a>
                 <a href="#" class="btn btn-sm btn-warning">Report contact</a>
               </div>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\Support\Paginator;
 
 class Vehicle extends Model
 {
@@ -13,5 +14,11 @@ class Vehicle extends Model
     {
     	return $this->hasMany(repairrequest::class)->latest();
     }
+
+    public function document()
+    {
+    	return $this->hasMany(VehicleDocument::class);
+    }
+
 
 }

@@ -15,7 +15,6 @@
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle" src="https://yinnepal.files.wordpress.com/2017/11/admin.png?w=640" alt="User profile picture">
                 </div>
-
                 <h3 class="profile-username text-center">{{Auth::user()->first_name . " " . Auth::user()->sur_name}}</h3>
 
                 <p class="text-muted text-center">{{Auth::user()->role}}</p>
