@@ -16,7 +16,7 @@ class userstableseeder extends Seeder
             'first_name' => 'admin',
             'sur_name' => 'admin',
             'email' => 'admin@mowt.ug',
-            'password' => Hash::make(123admin),
+            'password' => Hash::make('123admin'),
             'role' => 'admin',
             'department' => 'procurement',
             'phone_number' => '0758567709'
@@ -25,7 +25,7 @@ class userstableseeder extends Seeder
             'first_name' => 'kaye',
             'sur_name' => 'mubiru',
             'email' => 'driver@mowt.ug',
-            'password' => Hash::make(123driver),
+            'password' => Hash::make('123driver'),
             'role' => 'driver',
             'department' => 'procurement',
             'phone_number' => '0758567702'
@@ -34,7 +34,7 @@ class userstableseeder extends Seeder
             'first_name' => 'isaac',
             'sur_name' => 'kavuma',
             'email' => 'transportofficerone@mowt.ug',
-            'password' => Hash::make(123transportofficerone),
+            'password' => Hash::make('123transportofficerone'),
             'role' => 'to',
             'department' => 'finance',
             'phone_number' => '0758567703'
@@ -43,7 +43,7 @@ class userstableseeder extends Seeder
             'first_name' => 'pato',
             'sur_name' => 'mugisha',
             'email' => 'driverone@mowt.ug',
-            'password' => Hash::make(123driverone),
+            'password' => Hash::make('123driverone'),
             'role' => 'driver',
             'department' => 'accounts',
             'phone_number' => '0758567704'
@@ -52,7 +52,7 @@ class userstableseeder extends Seeder
             'first_name' => 'jose',
             'sur_name' => 'mabirizi',
             'email' => 'transportofficer@mowt.ug',
-            'password' => Hash::make(123transportofficer),
+            'password' => Hash::make('123transportofficer'),
             'role' => 'transportofficer',
             'department' => 'accounts',
             'phone_number' => '0758567705'
