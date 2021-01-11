@@ -35,10 +35,10 @@ class LoginController extends Controller
     // Check user role
     switch ($role) {
         
-        case 'Admin':
+        case 'admin':
                 return '/admin';
             break;
-         case 'Driver':
+         case 'driver':
                 return '/requests/dashboard';
                 break;
          case 'Transport Officer':
@@ -48,6 +48,8 @@ class LoginController extends Controller
                 return '/'; 
             break;
     }
+                return $next($request);
+
 }
 
     /**

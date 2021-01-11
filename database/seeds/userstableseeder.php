@@ -53,7 +53,7 @@ class userstableseeder extends Seeder
             'sur_name' => 'mabirizi',
             'email' => 'transportofficer@mowt.ug',
             'password' => Hash::make('123transportofficer'),
-            'role' => 'transportofficer',
+            'role' => 'to',
             'department' => 'accounts',
             'phone_number' => '0758567705'
             ],
