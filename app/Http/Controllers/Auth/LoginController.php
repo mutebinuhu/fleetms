@@ -49,6 +49,7 @@ class LoginController extends Controller
             break;
     }
                 return $next($request);
+    
 
 }
 
