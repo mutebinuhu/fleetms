@@ -39,7 +39,10 @@
                 <div class="my-5" style="height: 50px;"></div>
 
             <div class="card my-5">
-                <div class="card-header text-center"><h3>{{ __('Login here') }}</h3></div>
+                <div class="text-center mt-2">
+                    <img src="https://s1.cdn.autoevolution.com/images/gallery/TOYOTA-Hilux-Double-Cab-6495_14.jpg" align="fleet image" height="100" width="100" class="rounded-circle">
+                    <p class="my-3" style="font-size: 24px; font-weight: 300">Sign In To FleetMs</p>
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -48,7 +51,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="email address">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -62,7 +65,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
