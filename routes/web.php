@@ -70,3 +70,7 @@ Route::resource('status', 'StatusController');
 //stores new documents
 Route::post('requests/{request}/documents', 'documentsController@store');
 
+//Vehicle Documents
+Route::post('/vehicledocuments', 'VehicleDocumentsController@store');
+
+
